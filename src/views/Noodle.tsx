@@ -1,15 +1,17 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import simpleSlider from '@maxcoding/simpleslider';
-import simplereview from 'simplereview';
 import styled from 'styled-components';
 
 import { NoodleDetails } from '../Context';
-import SingleNoodleMain from '../components/SingleNoodleMain';
 import { useGlobalContext } from '../Context';
+
+// components
+import SingleNoodleMain from '../components/SingleNoodleMain';
 import Card from '../components/Card';
+
+// variables
 const baseUrl = 'https://noodleapi.herokuapp.com/api/v1/noodles/';
 const Noodle = () => {
   const { relatedByBrand, relatedByCategory } = useGlobalContext();
@@ -22,7 +24,6 @@ const Noodle = () => {
     if (data) {
       setNoodle(data);
       simpleSlider();
-      simplereview();
     }
   };
 
@@ -36,18 +37,14 @@ const Noodle = () => {
 
         <div className='related-noodles'>
           <h2>Recommended By Category</h2>
-          {relatedByCategory(noodle)
-            .map((noodle: NoodleDetails) => {
-              return <Card key={noodle.id} noodle={noodle} />;
-            })
-            .slice(0, 3)}
+          {relatedByCategory(noodle).map((noodle: NoodleDetails) => {
+            return <Card key={noodle.id} noodle={noodle} />;
+          })}
 
           <h2>Recommended By Brand</h2>
-          {relatedByBrand(noodle)
-            .map((noodle: NoodleDetails) => {
-              return <Card key={noodle.id} noodle={noodle} />;
-            })
-            .slice(0, 3)}
+          {relatedByBrand(noodle).map((noodle: NoodleDetails) => {
+            return <Card key={noodle.id} noodle={noodle} />;
+          })}
         </div>
       </Wrapper>
     );
@@ -91,14 +88,13 @@ const Wrapper = styled.div`
     font-weight: bold;
     text-transform: capitalize;
   }
-  .sliderContainer {
-    /* max-width: 600px; */
+  /* .sliderContainer {
     max-height: 400px;
   }
 
   .img {
     object-fit: contain !important;
-  }
+  } */
 
   //related-noodles
   .related-noodles {

@@ -1,17 +1,12 @@
-import { useEffect } from 'react';
 import { useGlobalContext, NoodleDetails } from '../Context';
-import simplereview from 'simplereview';
+
 // Components
 import Card from '../components/Card';
 
 const Home: React.FC = () => {
-  const { noodles } = useGlobalContext();
+  const { isLoading, noodles } = useGlobalContext();
 
-  useEffect(() => {
-    simplereview();
-  }, []);
-
-  if (noodles.length === 0) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
   return (

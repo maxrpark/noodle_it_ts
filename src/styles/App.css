@@ -1,3 +1,11 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  flex-direction: column;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -88,4 +96,24 @@ li {
 
 .vegan {
   background: rgb(59, 147, 59);
+}
+
+/* Footer */
+footer {
+  height: 100px;
+  color: var(--primary-white);
+  background-color: var(--primary-color-4);
+  display: grid;
+  place-content: center;
+  margin-top: 2rem;
+  gap: 0.5rem;
+  text-align: center;
+}
+footer a {
+  color: var(--primary-white);
+  text-decoration: underline;
+}
+footer a:hover {
+  color: var(--primary-color-2);
+  letter-spacing: normal;
 }

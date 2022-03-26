@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useContext, useState } from 'react';
-import axios from 'axios';
-// import simpleSlider from '@maxcoding/simpleslider';
-import simplereview from 'simplereview';
+import { useFetch } from './customHooks/useFetch';
 
 interface Brand {
   name: string;
@@ -30,48 +28,59 @@ export interface NoodleDetails {
 interface UseContextInterface {
   noodles: NoodleDetails[];
   isLoading: boolean;
-  // getData: () => void;
+  isModalOpen: boolean;
+  selectedImg: string;
+  openImg: (e: React.MouseEvent<HTMLImageElement>) => void;
+  closeModal: () => void;
+  setIsModalOpen: (isModalOpen: boolean) => void;
   relatedByBrand: (noodle: NoodleDetails) => NoodleDetails[];
   relatedByCategory: (noodle: NoodleDetails) => NoodleDetails[];
 }
 
 const AppContext = React.createContext({} as UseContextInterface);
+
 // variables
 const baseUrl = 'https://noodleapi.herokuapp.com/api/v1/noodles/';
 
 const AppProvider: React.FC = ({ children }) => {
-  const [noodles, setNoodles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const getData = async () => {
-    setIsLoading(true);
-    try {
-      const response = axios(baseUrl);
-      const data = await response;
-      if (data.status === 200) {
-        setNoodles(data.data);
-        console.log(data.data);
-        simplereview();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const fetchUrl = `${baseUrl}`;
+  const { isLoading, noodles } = useFetch(fetchUrl);
+  const [selectedImg, setSelectedImg] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const relatedByBrand = (noodle: NoodleDetails) =>
-    noodles.filter(
-      (item: NoodleDetails) => item.brand.name === noodle.brand.name
-    );
+    noodles
+      .filter((item: NoodleDetails) => item.brand.name === noodle.brand.name)
+      .slice(0, 3);
   const relatedByCategory = (noodle: NoodleDetails) =>
-    noodles.filter((item: NoodleDetails) => item.category === noodle.category);
+    noodles
+      .filter((item: NoodleDetails) => item.category === noodle.category)
+      .slice(0, 3);
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const openImg = (e: React.MouseEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    setSelectedImg(img.src);
+    setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = 'scroll';
+  };
   return (
     <AppContext.Provider
-      value={{ noodles, isLoading, relatedByCategory, relatedByBrand }}
+      value={{
+        noodles,
+        isLoading,
+        isModalOpen,
+        selectedImg,
+        relatedByCategory,
+        relatedByBrand,
+        closeModal,
+        openImg,
+        setIsModalOpen,
+      }}
     >
       {children}
     </AppContext.Provider>
