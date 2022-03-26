@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 // Components
 import Card from '../components/Card';
 
-const baseUrl = 'https://noodleapi.herokuapp.com/api/v1/categories/';
+const baseUrl = 'https://noodles-api.herokuapp.com/apiv1/categories/';
 const Category: React.FC = () => {
   const { slug } = useParams();
   const fetchUrl = `${baseUrl}${slug}`;

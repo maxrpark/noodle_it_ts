@@ -40,7 +40,7 @@ interface UseContextInterface {
 const AppContext = React.createContext({} as UseContextInterface);
 
 // variables
-const baseUrl = 'https://noodleapi.herokuapp.com/api/v1/noodles/';
+const baseUrl = 'https://noodles-api.herokuapp.com/apiv1/noodles/';
 
 const AppProvider: React.FC = ({ children }) => {
   const fetchUrl = `${baseUrl}`;

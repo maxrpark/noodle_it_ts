@@ -7,7 +7,7 @@ import { useFetch } from '../customHooks/useFetch';
 import Card from '../components/Card';
 
 // variables
-const baseUrl = 'https://noodleapi.herokuapp.com/api/v1/brand/';
+const baseUrl = 'https://noodles-api.herokuapp.com/apiv1/brand/';
 const Brand: React.FC = () => {
   const { slug } = useParams();
   const fetchUrl = `${baseUrl}${slug}`;
