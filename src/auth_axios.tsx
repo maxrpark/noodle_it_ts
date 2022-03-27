@@ -6,6 +6,7 @@ const axiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 5000,
   headers: {
+    // @ts-ignore: Unreachable code error
     Authorization: localStorage.getItem('access_token')
       ? 'JWT ' + localStorage.getItem('access_token')
       : null,
@@ -16,14 +17,24 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
   (response) => {
+    // console.log(response);
     return response;
   },
   async function (error) {
     const errorType = error.response.data.error;
     const originalRequest = error.config;
 
+    if (error.response.statusText === 'Unauthorized') {
+      alert('No active account found with the given credentials');
+      return Promise.reject(error);
+    }
+
     // Users errors
     if (errorType === 'empty_values') {
+      alert('Please fill all the fields');
+      return Promise.reject(error);
+    }
+    if (errorType === 'No active account found with the given credentials') {
       alert('Please fill all the fields');
       return Promise.reject(error);
     }
@@ -94,7 +105,7 @@ axiosInstance.interceptors.response.use(
             .then((response) => {
               localStorage.setItem('access_token', response.data.access);
               localStorage.setItem('refresh_token', response.data.refresh);
-
+              // @ts-ignore: Unreachable code error
               axiosInstance.defaults.headers['Authorization'] =
                 'JWT ' + response.data.access;
               originalRequest.headers['Authorization'] =

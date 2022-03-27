@@ -10,7 +10,7 @@ type Props = {
 const Card: React.FC<Props> = ({ noodle }) => {
   return (
     <Wrapper>
-      <Link to={`/${noodle.slug}`}>
+      <Link to={`/noodle/${noodle.slug}`}>
         <div className='top'>
           <p>{noodle.name}</p>
         </div>
@@ -24,9 +24,6 @@ const Card: React.FC<Props> = ({ noodle }) => {
             <p className={`special-link ${noodle.category}`}>
               {noodle.category}
             </p>
-            {/* <Link to={'/'} className={`special-link ${noodle.category}`}>
-              {noodle.category}
-            </Link> */}
           </div>
         </div>
       </Link>

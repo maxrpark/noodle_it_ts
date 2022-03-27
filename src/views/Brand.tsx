@@ -11,12 +11,11 @@ const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/brand/';
 const Brand: React.FC = () => {
   const { slug } = useParams();
   const fetchUrl = `${baseUrl}${slug}`;
-  const { isLoading, noodles } = useFetch(fetchUrl);
+  const { isLoading, noodles, error } = useFetch(fetchUrl);
 
-  // useEffect(() => {
-  //   simplereview();
-  // }, [noodles]);
-
+  if (error) {
+    return <h1>{error}</h1>;
+  }
   if (isLoading) {
     return <div>Loading...</div>;
   }

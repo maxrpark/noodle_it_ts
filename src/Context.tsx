@@ -1,10 +1,20 @@
 import React from 'react';
-import { useContext, useState } from 'react';
-import { useFetch } from './customHooks/useFetch';
+import { useContext, useState, useEffect } from 'react';
+import axiosInstance from './auth_axios';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
+import jwt_decode from 'jwt-decode';
 interface Brand {
   name: string;
   slug: string;
+}
+export interface UserDetails {
+  email: string;
+  first_name: string;
+  id: number;
+  last_login: string;
+  user_name: string;
 }
 
 export interface NoodleDetails {
@@ -26,36 +36,48 @@ export interface NoodleDetails {
 }
 
 interface UseContextInterface {
-  noodles: NoodleDetails[];
-  isLoading: boolean;
+  userDetails: UserDetails | null;
   isModalOpen: boolean;
   selectedImg: string;
+  userAuth: any;
+  setUserAuth: any;
+  setUserDetails: any;
   openImg: (e: React.MouseEvent<HTMLImageElement>) => void;
   closeModal: () => void;
   setIsModalOpen: (isModalOpen: boolean) => void;
-  relatedByBrand: (noodle: NoodleDetails) => NoodleDetails[];
-  relatedByCategory: (noodle: NoodleDetails) => NoodleDetails[];
 }
 
 const AppContext = React.createContext({} as UseContextInterface);
 
-// variables
-const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
-
 const AppProvider: React.FC = ({ children }) => {
-  const fetchUrl = `${baseUrl}`;
-  const { isLoading, noodles } = useFetch(fetchUrl);
   const [selectedImg, setSelectedImg] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const relatedByBrand = (noodle: NoodleDetails) =>
-    noodles
-      .filter((item: NoodleDetails) => item.brand.name === noodle.brand.name)
-      .slice(0, 3);
-  const relatedByCategory = (noodle: NoodleDetails) =>
-    noodles
-      .filter((item: NoodleDetails) => item.category === noodle.category)
-      .slice(0, 3);
+  let [userAuth, setUserAuth] = useState(() =>
+    localStorage.getItem('access_token')
+      ? localStorage.getItem('access_token')!
+      : null
+  );
+
+  let [userDetails, setUserDetails] = useState(() =>
+    localStorage.getItem('access_token')
+      ? jwt_decode(localStorage.getItem('access_token')!)
+      : null
+  ) as any;
+
+  const getUserDetails = async () => {
+    const res = await axios.get(
+      `http://127.0.0.1:8000/api/user/user-details/${userDetails!.user_id}`
+    );
+    setUserDetails(res.data);
+  };
+
+  useEffect(() => {
+    if (userAuth !== null) {
+      getUserDetails();
+    }
+    console.log(userDetails);
+  }, [userDetails, userAuth]);
 
   const openImg = (e: React.MouseEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -71,12 +93,12 @@ const AppProvider: React.FC = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        noodles,
-        isLoading,
+        userAuth,
         isModalOpen,
         selectedImg,
-        relatedByCategory,
-        relatedByBrand,
+        userDetails,
+        setUserDetails,
+        setUserAuth,
         closeModal,
         openImg,
         setIsModalOpen,

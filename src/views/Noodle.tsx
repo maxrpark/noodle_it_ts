@@ -6,32 +6,54 @@ import simpleSlider from '@maxcoding/simpleslider';
 import styled from 'styled-components';
 
 import { NoodleDetails } from '../Context';
-import { useGlobalContext } from '../Context';
+import { useFetch } from '../customHooks/useFetch';
 
 // components
 import SingleNoodleMain from '../components/SingleNoodleMain';
 import Card from '../components/Card';
 
 // variables
+const all_noodles = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 const Noodle = () => {
-  const { relatedByBrand, relatedByCategory } = useGlobalContext();
   const [noodle, setNoodle] = useState({} as NoodleDetails);
+  const [error, setError] = useState('');
+
+  const { noodles } = useFetch(all_noodles);
   const { slug } = useParams();
 
+  const relatedByBrand = (noodle: NoodleDetails) =>
+    noodles
+      .filter((item: NoodleDetails) => item.brand.name === noodle.brand.name)
+      .slice(0, 3);
+  const relatedByCategory = (noodle: NoodleDetails) =>
+    noodles
+      .filter((item: NoodleDetails) => item.category === noodle.category)
+      .slice(0, 3);
+
   const getData = async () => {
-    const response = await axios(baseUrl + slug);
-    const data = response.data;
-    if (data) {
-      setNoodle(data);
-      simpleSlider();
+    try {
+      const response = await axios(baseUrl + slug);
+      const data = response.data;
+      if (data) {
+        setNoodle(data);
+        simpleSlider();
+      }
+    } catch (error: any) {
+      // trow error
+      setError(error.response.data.message);
+      throw new Error(error);
     }
   };
 
   useEffect(() => {
     getData();
   }, []);
-  if (noodle.name) {
+  if (error !== '') {
+    return <h1>{error}</h1>;
+  } else if (!noodle.name) {
+    return <div>Loading...</div>;
+  } else {
     return (
       <Wrapper>
         <SingleNoodleMain noodle={noodle} key={noodle.id} />
@@ -49,8 +71,6 @@ const Noodle = () => {
         </div>
       </Wrapper>
     );
-  } else {
-    return <div>Loading...</div>;
   }
 };
 

@@ -10,7 +10,11 @@ const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/tags/';
 const Tags: React.FC = () => {
   const { slug } = useParams();
   const fetchUrl = `${baseUrl}${slug}`;
-  const { isLoading, noodles } = useFetch(fetchUrl);
+  const { isLoading, noodles, error } = useFetch(fetchUrl);
+
+  if (error) {
+    return <h1>{error} Found</h1>;
+  }
   if (isLoading) {
     return <div>Loading...</div>;
   }
