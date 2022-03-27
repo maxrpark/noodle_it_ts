@@ -13,7 +13,7 @@ import SingleNoodleMain from '../components/SingleNoodleMain';
 import Card from '../components/Card';
 
 // variables
-const baseUrl = 'https://noodles-api.herokuapp.com/apiv1/noodles/';
+const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 const Noodle = () => {
   const { relatedByBrand, relatedByCategory } = useGlobalContext();
   const [noodle, setNoodle] = useState({} as NoodleDetails);

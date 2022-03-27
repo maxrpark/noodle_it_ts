@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://noodles-api.herokuapp.com/api';
+const baseURL = 'http://127.0.0.1:8000/api/';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
@@ -19,7 +19,43 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   async function (error) {
+    const errorType = error.response.data.error;
     const originalRequest = error.config;
+
+    // Users errors
+    if (errorType === 'empty_values') {
+      alert('Please fill all the fields');
+      return Promise.reject(error);
+    }
+
+    if (errorType === 'email_error') {
+      alert('Please enter a valid email address');
+      return Promise.reject(error);
+    }
+
+    if (errorType === 'email_exist') {
+      alert('This email already exist');
+      return Promise.reject(error);
+    }
+
+    if (errorType === 'user_name_length') {
+      alert('Please enter a valid email address');
+      return Promise.reject(error);
+    }
+
+    if (errorType === 'user_name_exist') {
+      alert('User name already exists, please choose another one.');
+      return Promise.reject(error);
+    }
+
+    if (errorType === 'password_length') {
+      alert('Password must be at least 8 characters long.');
+      return Promise.reject(error);
+    }
+    if (errorType === 'user_name_exist') {
+      alert('This email address is already used by another account.');
+      return Promise.reject(error);
+    }
 
     if (typeof error.response === 'undefined') {
       alert(
