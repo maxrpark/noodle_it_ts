@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../auth_axios';
-// import axiosInstance from '../../auth_axios';
 import { useGlobalContext } from '../../Context';
 
 import jwt_decode from 'jwt-decode';
+
+interface InitialFormData {
+  email: string;
+  password: string;
+}
+const initialFormData = {
+  email: '',
+  password: '',
+};
 const LogIn = () => {
-  const { setUserAuth, userAuth } = useGlobalContext();
+  const { setUserAuth, setUserDetails } = useGlobalContext();
   const history = useNavigate();
-
-  const initialFormData = Object.freeze({
-    email: '',
-    password: '',
-  });
-
-  const [formData, updateFormData] = useState(initialFormData);
+  const [formData, updateFormData] = useState(
+    initialFormData as InitialFormData
+  );
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     updateFormData({
@@ -39,12 +43,16 @@ const LogIn = () => {
         axiosInstance.defaults.headers['Authorization'] =
           'JWT ' + localStorage.getItem('access_token');
 
-        var token = res.data.access;
-        var decoded = jwt_decode(token);
-        setUserAuth(decoded);
-        history('/profile');
+        if (res.status === 200) {
+          var token = res.data.access;
+          var decoded = jwt_decode(token);
+          setUserDetails(decoded);
+          history('/profile');
+          setUserAuth(res.data.access);
+        } else {
+          alert('Something went wrong!');
+        }
       });
-    console.log(axiosInstance.interceptors.response);
   };
 
   return (

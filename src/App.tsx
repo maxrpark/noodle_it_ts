@@ -3,6 +3,7 @@ import './styles/App.css';
 
 // Components
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 // views
 import Home from './views/Home';
@@ -22,7 +23,7 @@ function App() {
   return (
     <div className='app'>
       <Router>
-        <Link to={'/login'}>LogIn</Link>
+        <Navbar />
         <Routes>
           <Route path='*' element={<Error />} />
           <Route path='/' element={<Home />} />

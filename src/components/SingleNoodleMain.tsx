@@ -52,7 +52,6 @@ const Wrapper = styled.div`
     top: 0;
     left: 0;
     position: fixed;
-    /* background: white; */
     background: rgba(0, 0, 0, 0.83);
     display: flex;
     justify-content: center;

@@ -7,8 +7,8 @@ const axiosInstance = axios.create({
   timeout: 5000,
   headers: {
     // @ts-ignore: Unreachable code error
-    Authorization: localStorage.getItem('access_token')
-      ? 'JWT ' + localStorage.getItem('access_token')
+    Authorization: localStorage.getItem('authTokens.access')
+      ? 'JWT ' + localStorage.getItem('authTokens.access')
       : null,
     'Content-Type': 'application/json',
     accept: 'application/json',
@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
     }
 
     if (errorType === 'user_name_length') {
-      alert('Please enter a valid email address');
+      alert('User name must be at least 3 characters long');
       return Promise.reject(error);
     }
 

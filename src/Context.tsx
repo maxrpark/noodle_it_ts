@@ -9,10 +9,16 @@ interface Brand {
   name: string;
   slug: string;
 }
+
+interface UserAuthInt {
+  access: string;
+  refresh: string;
+}
 export interface UserDetails {
   email: string;
   first_name: string;
   id: number;
+  user_id: number;
   last_login: string;
   user_name: string;
 }
@@ -39,11 +45,12 @@ interface UseContextInterface {
   userDetails: UserDetails | null;
   isModalOpen: boolean;
   selectedImg: string;
-  userAuth: any;
+  userAuth: UserAuthInt | null;
   setUserAuth: any;
   setUserDetails: any;
   openImg: (e: React.MouseEvent<HTMLImageElement>) => void;
   closeModal: () => void;
+  logUserOut: () => void;
   setIsModalOpen: (isModalOpen: boolean) => void;
 }
 
@@ -53,11 +60,12 @@ const AppProvider: React.FC = ({ children }) => {
   const [selectedImg, setSelectedImg] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // 'access_token', res.data.access;
   let [userAuth, setUserAuth] = useState(() =>
     localStorage.getItem('access_token')
       ? localStorage.getItem('access_token')!
       : null
-  );
+  ) as [UserAuthInt | null, any];
 
   let [userDetails, setUserDetails] = useState(() =>
     localStorage.getItem('access_token')
@@ -65,19 +73,17 @@ const AppProvider: React.FC = ({ children }) => {
       : null
   ) as any;
 
-  const getUserDetails = async () => {
-    const res = await axios.get(
-      `http://127.0.0.1:8000/api/user/user-details/${userDetails!.user_id}`
-    );
-    setUserDetails(res.data);
+  const logUserOut = () => {
+    axiosInstance.post('user/logout/blacklist/', {
+      refresh_token: localStorage.getItem('refresh_token'),
+    });
+    setUserAuth(null);
+    setUserDetails(null);
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    // @ts-ignore: Unreachable code error
+    axiosInstance.defaults.headers['Authorization'] = null;
   };
-
-  useEffect(() => {
-    if (userAuth !== null) {
-      getUserDetails();
-    }
-    console.log(userDetails);
-  }, [userDetails, userAuth]);
 
   const openImg = (e: React.MouseEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
@@ -90,6 +96,7 @@ const AppProvider: React.FC = ({ children }) => {
     setIsModalOpen(false);
     document.body.style.overflow = 'scroll';
   };
+  useEffect(() => {}, [userAuth]);
   return (
     <AppContext.Provider
       value={{
@@ -102,6 +109,7 @@ const AppProvider: React.FC = ({ children }) => {
         closeModal,
         openImg,
         setIsModalOpen,
+        logUserOut,
       }}
     >
       {children}
