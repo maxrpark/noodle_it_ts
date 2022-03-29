@@ -14,7 +14,7 @@ const initialFormData = {
   password: '',
 };
 const LogIn = () => {
-  const { setUserAuth, setUserDetails } = useGlobalContext();
+  const { setAuthTokens, setuserAuth } = useGlobalContext();
   const history = useNavigate();
   const [formData, updateFormData] = useState(
     initialFormData as InitialFormData
@@ -46,9 +46,9 @@ const LogIn = () => {
         if (res.status === 200) {
           var token = res.data.access;
           var decoded = jwt_decode(token);
-          setUserDetails(decoded);
-          history('/profile');
-          setUserAuth(res.data.access);
+          setuserAuth(decoded);
+          history('/dashboard');
+          setAuthTokens(res.data.access);
         } else {
           alert('Something went wrong!');
         }

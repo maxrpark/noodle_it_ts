@@ -1,14 +1,12 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { useGlobalContext } from '../Context';
 
 const Navbar = () => {
-  const { logUserOut } = useGlobalContext();
   return (
     <div>
-      {' '}
-      <button onClick={logUserOut}>Link</button>
-      <Link to={'/login'}>LogIn</Link>
+      <NavLink to={'/login'}>LogIn</NavLink>
+      <span> || </span>
+      <NavLink to={'/'}>Home</NavLink>
     </div>
   );
 };

@@ -10,11 +10,11 @@ interface Brand {
   slug: string;
 }
 
-interface UserAuthInt {
+interface authTokensInt {
   access: string;
   refresh: string;
 }
-export interface UserDetails {
+export interface userAuth {
   email: string;
   first_name: string;
   id: number;
@@ -42,15 +42,17 @@ export interface NoodleDetails {
 }
 
 interface UseContextInterface {
-  userDetails: UserDetails | null;
+  userAuth: userAuth | null;
+  user: userAuth | null;
   isModalOpen: boolean;
   selectedImg: string;
-  userAuth: UserAuthInt | null;
-  setUserAuth: any;
-  setUserDetails: any;
+  authTokens: authTokensInt | null;
+  setAuthTokens: any;
+  setuserAuth: any;
   openImg: (e: React.MouseEvent<HTMLImageElement>) => void;
   closeModal: () => void;
   logUserOut: () => void;
+  setUser: (user: userAuth) => void;
   setIsModalOpen: (isModalOpen: boolean) => void;
 }
 
@@ -59,15 +61,16 @@ const AppContext = React.createContext({} as UseContextInterface);
 const AppProvider: React.FC = ({ children }) => {
   const [selectedImg, setSelectedImg] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user, setUser] = useState({} as userAuth | null);
 
   // 'access_token', res.data.access;
-  let [userAuth, setUserAuth] = useState(() =>
+  let [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem('access_token')
       ? localStorage.getItem('access_token')!
       : null
-  ) as [UserAuthInt | null, any];
+  ) as [authTokensInt | null, any];
 
-  let [userDetails, setUserDetails] = useState(() =>
+  let [userAuth, setuserAuth] = useState(() =>
     localStorage.getItem('access_token')
       ? jwt_decode(localStorage.getItem('access_token')!)
       : null
@@ -77,8 +80,9 @@ const AppProvider: React.FC = ({ children }) => {
     axiosInstance.post('user/logout/blacklist/', {
       refresh_token: localStorage.getItem('refresh_token'),
     });
-    setUserAuth(null);
-    setUserDetails(null);
+    setUser(null);
+    setAuthTokens(null);
+    setuserAuth(null);
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     // @ts-ignore: Unreachable code error
@@ -96,20 +100,22 @@ const AppProvider: React.FC = ({ children }) => {
     setIsModalOpen(false);
     document.body.style.overflow = 'scroll';
   };
-  useEffect(() => {}, [userAuth]);
+  useEffect(() => {}, [authTokens, user]);
   return (
     <AppContext.Provider
       value={{
-        userAuth,
+        authTokens,
         isModalOpen,
         selectedImg,
-        userDetails,
-        setUserDetails,
-        setUserAuth,
+        userAuth,
+        setuserAuth,
+        setAuthTokens,
+        user,
         closeModal,
         openImg,
         setIsModalOpen,
         logUserOut,
+        setUser,
       }}
     >
       {children}
