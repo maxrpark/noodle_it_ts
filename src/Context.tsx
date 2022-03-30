@@ -1,7 +1,6 @@
 import React from 'react';
 import { useContext, useState, useEffect } from 'react';
 import axiosInstance from './auth_axios';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import jwt_decode from 'jwt-decode';
@@ -21,6 +20,7 @@ export interface userAuth {
   user_id: number;
   last_login: string;
   user_name: string;
+  favorites: any[];
 }
 
 export interface NoodleDetails {
@@ -42,9 +42,11 @@ export interface NoodleDetails {
 }
 
 interface UseContextInterface {
+  baseUrl: string;
   userAuth: userAuth | null;
   user: userAuth | null;
   isModalOpen: boolean;
+  isAlreadyLogIn: boolean;
   selectedImg: string;
   authTokens: authTokensInt | null;
   setAuthTokens: any;
@@ -54,23 +56,27 @@ interface UseContextInterface {
   logUserOut: () => void;
   setUser: (user: userAuth) => void;
   setIsModalOpen: (isModalOpen: boolean) => void;
+  getUserDetails: () => void;
+  setIsAlreadyLogIn: (arg0: boolean) => void;
 }
 
 const AppContext = React.createContext({} as UseContextInterface);
 
 const AppProvider: React.FC = ({ children }) => {
+  const baseUrl = 'https://noodles-api.herokuapp.com/';
+
   const [selectedImg, setSelectedImg] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState({} as userAuth | null);
+  const [isAlreadyLogIn, setIsAlreadyLogIn] = useState(false);
 
-  // 'access_token', res.data.access;
-  let [authTokens, setAuthTokens] = useState(() =>
+  const [authTokens, setAuthTokens] = useState(() =>
     localStorage.getItem('access_token')
       ? localStorage.getItem('access_token')!
       : null
   ) as [authTokensInt | null, any];
 
-  let [userAuth, setuserAuth] = useState(() =>
+  const [userAuth, setuserAuth] = useState(() =>
     localStorage.getItem('access_token')
       ? jwt_decode(localStorage.getItem('access_token')!)
       : null
@@ -96,14 +102,33 @@ const AppProvider: React.FC = ({ children }) => {
     document.body.style.overflow = 'hidden';
   };
 
+  const getUserDetails = async () => {
+    const res = await axios.get(
+      `http://127.0.0.1:8000/api/user/user-details/${userAuth!.user_id}`
+    );
+
+    console.log(res.data);
+    setUser(res.data);
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
     document.body.style.overflow = 'scroll';
   };
-  useEffect(() => {}, [authTokens, user]);
+  useEffect(() => {
+    if (userAuth !== null && isAlreadyLogIn === false) {
+      getUserDetails();
+      console.log('logg in');
+    } else if (userAuth !== null) {
+      console.log('userAuth is null');
+    } else {
+      console.log('User is logged out');
+    }
+  }, [userAuth]);
   return (
     <AppContext.Provider
       value={{
+        baseUrl,
         authTokens,
         isModalOpen,
         selectedImg,
@@ -111,11 +136,14 @@ const AppProvider: React.FC = ({ children }) => {
         setuserAuth,
         setAuthTokens,
         user,
+        isAlreadyLogIn,
         closeModal,
         openImg,
         setIsModalOpen,
         logUserOut,
         setUser,
+        getUserDetails,
+        setIsAlreadyLogIn,
       }}
     >
       {children}

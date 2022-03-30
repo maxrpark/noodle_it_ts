@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useFetch } from '../customHooks/useFetch';
+import { useGlobalContext } from '../Context';
+import styled from 'styled-components';
 
 import axios from 'axios';
 import simpleSlider from '@maxcoding/simpleslider';
-import styled from 'styled-components';
-
 import { NoodleDetails } from '../Context';
-import { useFetch } from '../customHooks/useFetch';
 
 // components
-import SingleNoodleMain from '../components/SingleNoodleMain';
-import Card from '../components/Card';
+import { SingleNoodleMain, Card } from '../components';
 
 // variables
 const all_noodles = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 const Noodle = () => {
+  const { user, getUserDetails } = useGlobalContext();
   const [noodle, setNoodle] = useState({} as NoodleDetails);
   const [error, setError] = useState('');
-
+  const [isFavorite, setIsFavorite] = useState(false);
   const { noodles } = useFetch(all_noodles);
   const { slug } = useParams();
 
@@ -46,9 +46,50 @@ const Noodle = () => {
     }
   };
 
+  const isUserFavoriteNoodle = () => {
+    if (user && user.favorites) {
+      const userFavorites = user.favorites;
+      setIsFavorite((isFavorite) => {
+        return (isFavorite =
+          userFavorites.filter((fav: any) => fav.slug === noodle.slug).length >
+          0);
+      });
+    }
+  };
+
+  const addToFav = () => {
+    if (isFavorite) {
+      setIsFavorite(false);
+    } else {
+      setIsFavorite(true);
+    }
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/api/user/user-favorites/${user?.user_name}/${noodle.slug}/`,
+      xsrfCookieName: 'csrftoken',
+      xsrfHeaderName: 'X-CSRFTOKEN',
+      withCredentials: true,
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          getUserDetails();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    if (user !== null) {
+      isUserFavoriteNoodle();
+    }
+  }, [noodle]);
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [slug]);
+
   if (error !== '') {
     return <h1>{error}</h1>;
   } else if (!noodle.name) {
@@ -56,6 +97,10 @@ const Noodle = () => {
   } else {
     return (
       <Wrapper>
+        <div>{user?.user_name ? user.user_name : ''}</div>
+        <button onClick={addToFav}>
+          {isFavorite ? `Is favorite` : `Add to favorites`}
+        </button>
         <SingleNoodleMain noodle={noodle} key={noodle.id} />
 
         <div className='related-noodles'>
@@ -109,13 +154,6 @@ const Wrapper = styled.div`
     font-weight: bold;
     text-transform: capitalize;
   }
-  /* .sliderContainer {
-    max-height: 400px;
-  }
-
-  .img {
-    object-fit: contain !important;
-  } */
 
   //related-noodles
   .related-noodles {
