@@ -1,6 +1,6 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { useGlobalContext } from './Context';
 import './styles/App.css';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { useUserContext } from './context/userContext';
 
 // Layout
 import { CommonLayout, UsersShareLayout } from './Layouts/';
@@ -14,7 +14,7 @@ import { Dashboard, LogIn, ProtectedRoute, Register } from './views/auth';
 import { Footer, Navbar, NavbarUser } from './components/';
 
 function App() {
-  const { userAuth } = useGlobalContext();
+  const { userAuth } = useUserContext();
   return (
     <div className='app'>
       {' '}

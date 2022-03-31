@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../customHooks/useFetch';
-import { useGlobalContext } from '../Context';
+import { useUserContext } from '../context/userContext';
 import styled from 'styled-components';
 
 import axios from 'axios';
@@ -15,7 +15,7 @@ import { SingleNoodleMain, Card } from '../components';
 const all_noodles = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 const Noodle = () => {
-  const { user, getUserDetails } = useGlobalContext();
+  const { user, getUserDetails } = useUserContext();
   const [noodle, setNoodle] = useState({} as NoodleDetails);
   const [error, setError] = useState('');
   const [isFavorite, setIsFavorite] = useState(false);

@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
-import { useGlobalContext, userAuth } from '../../Context';
-import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../../context/userContext';
 
 type Props = {
   // user: any;
 };
 
 const Dashboard: React.FC<Props> = ({}) => {
-  const { userAuth, user, getUserDetails, setIsAlreadyLogIn, isAlreadyLogIn } =
-    useGlobalContext();
-
-  useEffect(() => {
-    if (!isAlreadyLogIn) {
-      getUserDetails();
-      setIsAlreadyLogIn(true);
-    }
-  }, [userAuth]);
+  const { user } = useUserContext();
 
   return <div>Name{user?.user_name}</div>;
 };

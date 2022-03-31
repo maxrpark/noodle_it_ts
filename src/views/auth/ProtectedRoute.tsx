@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useGlobalContext } from '../../Context';
+import { useUserContext } from '../../context/userContext';
 
 interface Props {
   children: any;
@@ -11,7 +11,7 @@ const ProtectedRoute: React.FC<Props> = ({
 }: {
   children: JSX.Element;
 }) => {
-  const { userAuth } = useGlobalContext();
+  const { userAuth } = useUserContext();
   return userAuth ? children : <Navigate to='/' replace />;
 };
 

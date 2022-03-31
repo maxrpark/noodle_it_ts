@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../auth_axios';
-import { useGlobalContext } from '../../Context';
+
+import { useUserContext } from '../../context/userContext';
 
 import jwt_decode from 'jwt-decode';
 
@@ -14,8 +15,7 @@ const initialFormData = {
   password: '',
 };
 const LogIn = () => {
-  const { setAuthTokens, setuserAuth, getUserDetails, userAuth } =
-    useGlobalContext();
+  const { setAuthTokens, setuserAuth, setIsAlreadyLogIn } = useUserContext();
   const history = useNavigate();
   const [formData, updateFormData] = useState(
     initialFormData as InitialFormData
@@ -47,9 +47,10 @@ const LogIn = () => {
         if (res.status === 200) {
           var token = res.data.access;
           var decoded = jwt_decode(token);
-          history('/dashboard');
           setAuthTokens(res.data.access);
           setuserAuth(decoded);
+          history('/dashboard');
+          setIsAlreadyLogIn(true);
         } else {
           alert('Something went wrong!');
         }
