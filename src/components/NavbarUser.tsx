@@ -1,11 +1,20 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 
 const NavbarUser = () => {
-  const { logUserOut } = useUserContext();
+  const { logOutUser, userAuth } = useUserContext();
+  const history = useNavigate();
+
+  useEffect(() => {
+    if (!userAuth) {
+      history('/');
+    }
+  }, [userAuth]);
+
   return (
     <div>
-      <button onClick={logUserOut}>Log Out</button>
+      <button onClick={logOutUser}>Test logout</button>
       <NavLink to={'/dashboard'}>Profile</NavLink>
       <NavLink to={'/'}>Home</NavLink>
     </div>

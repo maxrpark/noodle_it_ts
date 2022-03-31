@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useGlobalContext, NoodleDetails } from '../Context';
+import { useGlobalContext, NoodleDetails } from '../context/globalContext';
+import { useFetch } from '../customHooks/useFetch';
 type Props = {
   noodle: NoodleDetails;
 };
 
 const Carrousel: React.FC<Props> = ({ noodle }) => {
-  const { selectedImg, isModalOpen, openImg, closeModal } = useGlobalContext();
+  const { showImage, closeModal, selectedImg, isModalOpen } =
+    useGlobalContext();
 
   return (
     <>
@@ -16,7 +18,7 @@ const Carrousel: React.FC<Props> = ({ noodle }) => {
           return (
             <div className='slide' key={image}>
               <img
-                onClick={openImg}
+                onClick={showImage}
                 className='img'
                 src={image}
                 alt={noodle.name}

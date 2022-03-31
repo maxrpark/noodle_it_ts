@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { NoodleDetails } from '../Context';
+import { NoodleDetails } from '../context/globalContext';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../customHooks/useFetch';
 

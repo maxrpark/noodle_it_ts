@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import axios from 'axios';
 import simpleSlider from '@maxcoding/simpleslider';
-import { NoodleDetails } from '../Context';
+import { NoodleDetails } from '../context/globalContext';
 
 // components
 import { SingleNoodleMain, Card } from '../components';

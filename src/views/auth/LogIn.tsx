@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../auth_axios';
 
 import { useUserContext } from '../../context/userContext';
-
-import jwt_decode from 'jwt-decode';
 
 interface InitialFormData {
   email: string;
@@ -15,7 +12,7 @@ const initialFormData = {
   password: '',
 };
 const LogIn = () => {
-  const { setAuthTokens, setuserAuth, setIsAlreadyLogIn } = useUserContext();
+  const { userLoggedIn, userAuth } = useUserContext();
   const history = useNavigate();
   const [formData, updateFormData] = useState(
     initialFormData as InitialFormData
@@ -32,30 +29,14 @@ const LogIn = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    axiosInstance
-      .post(`token/`, {
-        email: formData.email,
-        password: formData.password,
-      })
-      .then((res) => {
-        localStorage.setItem('access_token', res.data.access);
-        localStorage.setItem('refresh_token', res.data.refresh);
-        // @ts-ignore: Unreachable code error
-        axiosInstance.defaults.headers['Authorization'] =
-          'JWT ' + localStorage.getItem('access_token');
-
-        if (res.status === 200) {
-          var token = res.data.access;
-          var decoded = jwt_decode(token);
-          setAuthTokens(res.data.access);
-          setuserAuth(decoded);
-          history('/dashboard');
-          setIsAlreadyLogIn(true);
-        } else {
-          alert('Something went wrong!');
-        }
-      });
+    userLoggedIn(formData);
   };
+
+  useEffect(() => {
+    if (userAuth) {
+      history('/dashboard');
+    }
+  }, [userAuth]);
 
   return (
     <div>

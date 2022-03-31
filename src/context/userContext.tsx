@@ -1,8 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useReducer } from 'react';
+import user_reducer from '../reducers/user_reducer';
 import axiosInstance from '../auth_axios';
 import axios from 'axios';
-
-import jwt_decode from 'jwt-decode';
 
 interface authTokensInt {
   access: string;
@@ -21,81 +20,97 @@ export interface userDetails {
 type UserContextType = {
   user: userDetails | null;
   authTokens: authTokensInt | null;
-  setAuthTokens: any;
-  setuserAuth: any;
+  setAuthTokens: string | null;
+  setuserAuth: string | null;
   userAuth: userDetails | null;
-  isAlreadyLogIn: boolean;
-  logUserOut: () => void;
-  setUser: React.Dispatch<React.SetStateAction<userDetails | null>>;
   getUserDetails: () => void;
-  setIsAlreadyLogIn: (arg0: boolean) => void;
+  logOutUser: () => void;
+  userLoggedIn: (formData: any) => void;
+};
+
+const initialState: any = {
+  user: null as userDetails | null,
+  authTokens: null as authTokensInt | null,
+  isAlreadyLogIn: false,
+  userAuth: null as userDetails | null,
 };
 
 const UserContext = React.createContext({} as UserContextType);
 
 export const UserProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState({} as userDetails | null);
-  const [isAlreadyLogIn, setIsAlreadyLogIn] = useState(false);
+  const [state, dispach] = useReducer(user_reducer, initialState);
+  const logOutUser = async () => {
+    try {
+      await axiosInstance.post('user/logout/blacklist/', {
+        refresh_token: localStorage.getItem('refresh_token'),
+      });
 
-  const [authTokens, setAuthTokens] = useState(() =>
-    localStorage.getItem('access_token')
-      ? localStorage.getItem('access_token')!
-      : null
-  ) as [authTokensInt | null, any];
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      // @ts-ignore: Unreachable code error
+      axiosInstance.defaults.headers['Authorization'] = null;
+      dispach({ type: 'LOG_OUT_USER' });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  const [userAuth, setuserAuth] = useState(() =>
-    localStorage.getItem('access_token')
-      ? jwt_decode(localStorage.getItem('access_token')!)
-      : null
-  ) as any;
+  const userLoggedIn = async (formData: any) => {
+    axiosInstance
+      .post(`token/`, {
+        email: formData.email,
+        password: formData.password,
+      })
+      .then((res) => {
+        localStorage.setItem('access_token', res.data.access);
+        localStorage.setItem('refresh_token', res.data.refresh);
+        // @ts-ignore: Unreachable code error
+        axiosInstance.defaults.headers['Authorization'] =
+          'JWT ' + localStorage.getItem('access_token');
 
-  const logUserOut = () => {
-    axiosInstance.post('user/logout/blacklist/', {
-      refresh_token: localStorage.getItem('refresh_token'),
-    });
-    setUser(null);
-    setAuthTokens(null);
-    setuserAuth(null);
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    // @ts-ignore: Unreachable code error
-    axiosInstance.defaults.headers['Authorization'] = null;
+        if (res.status === 200) {
+          dispach({ type: 'LOG_IN', payload: res.data });
+        } else {
+          alert('Something went wrong!');
+        }
+      });
   };
 
   const getUserDetails = async () => {
-    const res = await axios.get(
-      `http://127.0.0.1:8000/api/user/user-details/${userAuth!.user_id}`
-    );
-
-    console.log(res.data);
-    setUser(res.data);
+    try {
+      const res = await axios.get(
+        `http://127.0.0.1:8000/api/user/user-details/${state.userAuth.user_id}`
+      );
+      dispach({ type: 'GET_USER_DETAILS', payload: res.data });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  console.log(isAlreadyLogIn);
+  const logUserBackIn = () => {
+    dispach({ type: 'LOG_BACK' });
+  };
 
   useEffect(() => {
-    if (userAuth !== null && isAlreadyLogIn === false) {
+    if (state.userAuth !== null && state.isAlreadyLogIn === false) {
       getUserDetails();
-      console.log('logg in');
-    } else if (userAuth !== null) {
-      console.log('userAuth is null');
+    } else if (
+      localStorage.getItem('access_token') &&
+      state.isAlreadyLogIn === false
+    ) {
+      logUserBackIn();
     } else {
       console.log('User is logged out');
     }
-  }, [userAuth]);
+  }, [state.userAuth]);
+
   return (
     <UserContext.Provider
       value={{
-        authTokens,
-        userAuth,
-        setuserAuth,
-        setAuthTokens,
-        user,
-        isAlreadyLogIn,
-        logUserOut,
-        setUser,
+        ...state,
         getUserDetails,
-        setIsAlreadyLogIn,
+        logOutUser,
+        userLoggedIn,
       }}
     >
       {children}

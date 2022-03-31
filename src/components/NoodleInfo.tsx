@@ -1,5 +1,5 @@
 import React from 'react';
-import { NoodleDetails } from '../Context';
+import { NoodleDetails } from '../context/globalContext';
 
 type Props = {
   noodle: NoodleDetails;
