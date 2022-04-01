@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { AppProvider } from './context/globalContext';
-import { UserProvider } from './context/userContext';
+import { AppProvider, ProductsProvider, UserProvider } from './context';
 
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
       <UserProvider>
-        <App />
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
       </UserProvider>
     </AppProvider>
   </React.StrictMode>,

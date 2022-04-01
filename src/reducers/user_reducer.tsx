@@ -26,7 +26,6 @@ const user_reducer = (state: any, action: any) => {
       const userAuth = localStorage.getItem('access_token')
         ? jwt_decode(localStorage.getItem('access_token')!)
         : null;
-
       return {
         ...state,
         authTokens: authTokens,

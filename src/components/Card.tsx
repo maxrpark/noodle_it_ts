@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NoodleDetails } from '../context/globalContext';
 import styled from 'styled-components';
+import simplereview from 'simplereview';
 
 type Props = {
   noodle: NoodleDetails;

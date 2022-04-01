@@ -28,7 +28,7 @@ type UserContextType = {
   userLoggedIn: (formData: any) => void;
 };
 
-const initialState: any = {
+const initialState = {
   user: null as userDetails | null,
   authTokens: null as authTokensInt | null,
   isAlreadyLogIn: false,
@@ -92,7 +92,7 @@ export const UserProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    if (state.userAuth !== null && state.isAlreadyLogIn === false) {
+    if (state.userAuth !== null) {
       getUserDetails();
     } else if (
       localStorage.getItem('access_token') &&

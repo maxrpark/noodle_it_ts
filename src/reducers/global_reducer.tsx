@@ -1,5 +1,3 @@
-// import { InicialState } from '../Context';
-
 const global_reducer = (state: any, action: any) => {
   switch (action.type) {
     case 'IS_MODAL_OPEN':
@@ -15,6 +13,8 @@ const global_reducer = (state: any, action: any) => {
         selectedImg: img,
         isModalOpen: true,
       };
+    default:
+      return state;
   }
 };
 

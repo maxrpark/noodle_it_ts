@@ -1,15 +1,25 @@
+import { useEffect } from 'react';
 import { NoodleDetails } from '../context/globalContext';
-import { useFetch } from '../customHooks/useFetch';
+import simplereview from 'simplereview';
+
+import { useProductsContext } from '../context/productsContext';
 
 // Components
 import Card from '../components/Card';
 
 const Home: React.FC = () => {
   const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
-  const fetchUrl = `${baseUrl}`;
-  const { isLoading, noodles } = useFetch(fetchUrl);
 
-  if (isLoading) {
+  const { noodles, isProductsLoading } = useProductsContext();
+
+  useEffect(() => {
+    if (noodles.length) {
+      simplereview();
+      // console.log('fix');
+    }
+  }, [noodles]);
+
+  if (isProductsLoading) {
     return <div>Loading...</div>;
   }
   return (
