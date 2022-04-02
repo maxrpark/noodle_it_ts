@@ -13,7 +13,7 @@ import { relatedBrand, relatedCategory } from '../utils/helperFunctions';
 import { SingleNoodleMain, Card } from '../components';
 
 const Noodle = () => {
-  const { noodle, noodles, isProductLoading, getSingleNoodle, baseUrl } =
+  const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
   const { user, isFavoriteNoodle, setUserFavoriteList, isUserFavoriteNoodle } =
     useUserContext();
@@ -27,7 +27,7 @@ const Noodle = () => {
   };
 
   useEffect(() => {
-    getSingleNoodle(baseUrl + slug);
+    getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
     // isUserFavoriteNoodle();
   }, [slug]);
 

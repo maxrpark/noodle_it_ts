@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Dashboard: React.FC<Props> = ({}) => {
-  const { user, favoritesNoodles, getUserFavoriteList } = useUserContext();
+  const { user, favoritesNoodles } = useUserContext();
 
   // console.log(favoritesNoodles);
 

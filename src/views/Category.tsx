@@ -8,14 +8,11 @@ import { useProductsContext } from '../context/productsContext';
 // Components
 import Card from '../components/Card';
 
-// variables
-const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/categories/';
-
 const Category: React.FC = () => {
   const { slug } = useParams();
-  const fetchUrl = `${baseUrl}${slug}`;
-
-  const { getNoodles, noodles, isProductsLoading } = useProductsContext();
+  const { getNoodles, noodles, isProductsLoading, URL_NOODLES } =
+    useProductsContext();
+  const fetchUrl = `${URL_NOODLES}categories/${slug}`;
 
   useEffect(() => {
     getNoodles(fetchUrl);

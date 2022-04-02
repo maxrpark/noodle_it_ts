@@ -1,10 +1,8 @@
 import axios from 'axios';
-
-const baseURL = 'http://127.0.0.1:8000/api/';
-// const baseURL = 'https://noodles-api.herokuapp.com/api/';
+import { BACK_END_URL } from './utils/variables';
 
 const axiosInstance = axios.create({
-  baseURL: baseURL,
+  baseURL: BACK_END_URL,
   timeout: 5000,
   headers: {
     // @ts-ignore: Unreachable code error
@@ -80,7 +78,7 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response.status === 401 &&
-      originalRequest.url === baseURL + 'token/refresh/'
+      originalRequest.url === BACK_END_URL + 'token/refresh/'
     ) {
       window.location.href = '/login/';
       return Promise.reject(error);

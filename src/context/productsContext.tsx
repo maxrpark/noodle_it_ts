@@ -2,6 +2,8 @@ import React, { useContext, useReducer, useEffect } from 'react';
 import products_reducer from '../reducers/products_reducer';
 import axios from 'axios';
 
+import { URL_NOODLES } from '../utils/variables';
+
 import simpleSlider from '@maxcoding/simpleslider';
 import simplereview from 'simplereview';
 interface Brand {
@@ -9,7 +11,7 @@ interface Brand {
   slug: string;
 }
 
-const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
+// const URL_NOODLES = 'https://noodles-api.herokuapp.com/api/v1/';
 
 export interface NoodleDetails {
   id: number;
@@ -30,7 +32,7 @@ export interface NoodleDetails {
 }
 
 interface ProductContextInterface {
-  baseUrl: string;
+  URL_NOODLES: string;
   noodles: NoodleDetails[];
   isProductsLoading: boolean;
   noodle: NoodleDetails;
@@ -79,7 +81,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    getNoodles(baseUrl);
+    getNoodles(URL_NOODLES + 'noodles');
   }, []);
 
   useEffect(() => {}, []);
@@ -89,7 +91,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
         ...state,
         getNoodles,
         getSingleNoodle,
-        baseUrl,
+        URL_NOODLES,
       }}
     >
       {children}

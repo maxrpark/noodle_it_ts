@@ -2,10 +2,9 @@ import React, { useContext, useState, useEffect, useReducer } from 'react';
 import user_reducer from '../reducers/user_reducer';
 import axiosInstance from '../auth_axios';
 import axios from 'axios';
-
-// noodles test
+import { BACK_END_URL } from '../utils/variables';
 import { NoodleDetails, useProductsContext } from '../context/productsContext';
-// import { NoodleDetails } from '../context/globalContext';
+
 interface authTokensInt {
   access: string;
   refresh: string;
@@ -96,7 +95,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const getUserDetails = async () => {
     try {
       const res = await axios.get(
-        `http://127.0.0.1:8000/api/user/user-details/${state.userAuth.user_id}`
+        `${BACK_END_URL}user/user-details/${state.userAuth.user_id}`
       );
       dispach({ type: 'GET_USER_DETAILS', payload: res.data });
       console.log('poronga');
@@ -122,7 +121,7 @@ export const UserProvider: React.FC = ({ children }) => {
     try {
       axios({
         method: 'post',
-        url: `http://127.0.0.1:8000/api/user/user-favorites/${user}/${noodle.slug}/`,
+        url: `${BACK_END_URL}user/user-favorites/${user}/${noodle.slug}/`,
         xsrfCookieName: 'csrftoken',
         xsrfHeaderName: 'X-CSRFTOKEN',
         withCredentials: true,
