@@ -62,7 +62,6 @@ const user_reducer = (state: any, action: any) => {
       } else {
         isFavorite = false;
       }
-      console.log(isFavorite);
       return {
         ...state,
         isFavoriteNoodle: isFavorite,

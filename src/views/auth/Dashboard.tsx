@@ -12,18 +12,15 @@ type Props = {
 const Dashboard: React.FC<Props> = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
   const [showFav, setShowFav] = useState(false);
-  // console.log(favoritesNoodles);
+
   const showFavorites = () => {
     setTimeout(() => {
-      setShowFav(true);
+      setShowFav(true); // fix
+      simplereview(); // fix
     }, 100);
   };
   useEffect(() => {
     showFavorites();
-    simplereview(); // fix
-    if (favoritesNoodles && favoritesNoodles.length) {
-    }
-    console.log(favoritesNoodles);
   }, []);
 
   if (user) {
