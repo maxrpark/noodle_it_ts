@@ -23,7 +23,7 @@ function Register({}: Props) {
           password: userInfo.password,
         })
         .then((res) => {
-          history('/');
+          history('/login');
           console.log(res);
           console.log(res.data);
         });

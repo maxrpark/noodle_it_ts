@@ -55,7 +55,7 @@ const user_reducer = (state: any, action: any) => {
     case 'IS_USER_FAVORITE_NOODLE':
       let noodle = action.payload;
       let isFavorite;
-      console.log(state.favoritesNoodles);
+
       // @ts-ignore: Unreachable code error
       if (state.favoritesNoodles?.find(({ slug }) => slug === noodle.slug)) {
         isFavorite = true;

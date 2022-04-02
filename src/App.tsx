@@ -8,7 +8,13 @@ import { CommonLayout, UsersShareLayout } from './Layouts/';
 // views
 import { Brand, Category, Error, Home, Noodle, Tags } from './views';
 // auth views
-import { Dashboard, LogIn, ProtectedRoute, Register } from './views/auth';
+import {
+  Dashboard,
+  LogIn,
+  ProtectedRoute,
+  Register,
+  ProtectedRouteRegister,
+} from './views/auth';
 
 // Components
 import { Footer, Navbar, NavbarUser } from './components/';
@@ -27,7 +33,18 @@ function App() {
             <Route path='/brand/:slug' element={<Brand />} />
             <Route path='/category/:slug' element={<Category />} />
             <Route path='/tags/:slug' element={<Tags />} />
-            <Route path='/register' element={<Register />} />
+
+            {/* <Route path='/register' element={<Register />} /> */}
+            <Route path='/register' element={<UsersShareLayout />}>
+              <Route
+                index
+                element={
+                  <ProtectedRouteRegister>
+                    <Register />
+                  </ProtectedRouteRegister>
+                }
+              />
+            </Route>
             <Route path='/login' element={<LogIn />} />
             <Route path='*' element={<Error />} />
           </Route>

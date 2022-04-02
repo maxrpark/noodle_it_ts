@@ -34,7 +34,7 @@ const LogIn = () => {
 
   useEffect(() => {
     if (userAuth) {
-      history('/dashboard');
+      history('/');
     }
   }, [userAuth]);
 

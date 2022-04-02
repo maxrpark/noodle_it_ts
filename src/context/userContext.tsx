@@ -35,6 +35,7 @@ type UserContextType = {
   getUserFavoriteList: () => void;
   setUserFavoriteList: (user: string, noodle: NoodleDetails) => void;
   isUserFavoriteNoodle: () => void;
+  isAlreadyLogIn: boolean;
 };
 
 const initialState = {
@@ -42,7 +43,7 @@ const initialState = {
   authTokens: null as authTokensInt | null,
   isAlreadyLogIn: false,
   userAuth: null as userDetails | null,
-  favoritesNoodles: null as NoodleDetails[] | null,
+  favoritesNoodles: [] as NoodleDetails[],
   isFavoriteNoodle: false,
 };
 
