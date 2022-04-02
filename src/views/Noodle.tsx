@@ -15,30 +15,25 @@ import { SingleNoodleMain, Card } from '../components';
 const Noodle = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
-  const { user, isFavoriteNoodle, setUserFavoriteList, isUserFavoriteNoodle } =
-    useUserContext();
+  const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
   const { slug } = useParams();
 
   const relatedByBrand = relatedBrand(noodles, noodle?.brand?.name);
   const relatedByCategory = relatedCategory(noodles, noodle?.category);
 
-  const addToFav = () => {
-    if (user) setUserFavoriteList(user.user_name, noodle);
-  };
-
   useEffect(() => {
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
-    // isUserFavoriteNoodle();
   }, [slug]);
+  // console.log(isProductLoading);
 
-  if (isProductLoading || !noodle) {
+  if (isProductLoading) {
     return <div>Loading...</div>;
   } else {
     return (
       <Wrapper>
         {user && (
           <div>
-            <span onClick={addToFav}>
+            <span onClick={() => setUserFavoriteList(user.user_name, noodle)}>
               {isFavoriteNoodle ? (
                 <AiFillHeart className='heart fill' />
               ) : (

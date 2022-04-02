@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../auth_axios';
+import axiosInstance from '../../utils/auth_axios';
 
 type Props = {};
 

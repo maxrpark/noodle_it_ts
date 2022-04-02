@@ -46,7 +46,7 @@ const initialState = {
   isProductsLoading: false,
   isProductsError: false,
 
-  isProductLoading: false,
+  isProductLoading: true,
   isProductError: false,
   noodle: null as NoodleDetails | null,
   related_by_category: [] as NoodleDetails[],

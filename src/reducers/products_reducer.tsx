@@ -1,13 +1,11 @@
 const products_reducer = (state: any, action: any) => {
   switch (action.type) {
     case 'GET_PRODUCTS_START':
-      console.log('GET_PRODUCTS');
       return {
         ...state,
         isProductsLoading: true,
       };
     case 'GET_PRODUCTS_SUCCESS':
-      console.log('GET_PRODUCTS_SUCCESS');
       const noodles = action.payload;
       return {
         ...state,
@@ -15,8 +13,6 @@ const products_reducer = (state: any, action: any) => {
         noodles,
       };
     case 'GET_PRODUCTS_ERROR':
-      console.log('GET_PRODUCTS_ERROR');
-      // const noodles = action.payload;
       return {
         ...state,
         isProductsLoading: false,
@@ -24,9 +20,9 @@ const products_reducer = (state: any, action: any) => {
       };
     // SINGLE_PRODUCT
     case 'GET_PRODUCT_START':
-      console.log('GET_PRODUCT');
       return {
         ...state,
+        noodle: {},
         isProductLoading: true,
       };
     case 'GET_PRODUCT_SUCCESS':
@@ -37,7 +33,6 @@ const products_reducer = (state: any, action: any) => {
         isProductLoading: false,
       };
     case 'GET_PRODUCT_ERROR':
-      console.log('GET_PRODUCT_ERROR');
       return {
         ...state,
         isProductLoading: false,

@@ -40,6 +40,8 @@ const user_reducer = (state: any, action: any) => {
         authTokens: null,
         userAuth: null,
       };
+
+    /// USER FAVORITES
     case 'GET_FAVORITES_NOODLES':
       let noodles = action.payload;
       const favoritesList = noodles.filter((elem: { slug: any }) => {
@@ -50,7 +52,7 @@ const user_reducer = (state: any, action: any) => {
         ...state,
         favoritesNoodles: favoritesList,
       };
-    case 'IS_USER_FAVORITES_NOODLE':
+    case 'IS_USER_FAVORITE_NOODLE':
       let noodle = action.payload;
       let isFavorite;
       console.log(state.favoritesNoodles);
@@ -64,7 +66,6 @@ const user_reducer = (state: any, action: any) => {
       return {
         ...state,
         isFavoriteNoodle: isFavorite,
-        // favoritesNoodles: state.user?.favorites,
       };
     case 'SET_USER_FAVORITES_NOODLE':
       let userCurrentList = state.favoritesNoodles;

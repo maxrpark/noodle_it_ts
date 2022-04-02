@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BACK_END_URL } from './utils/variables';
+import { BACK_END_URL } from './variables';
 
 const axiosInstance = axios.create({
   baseURL: BACK_END_URL,

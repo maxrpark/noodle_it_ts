@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import user_reducer from '../reducers/user_reducer';
-import axiosInstance from '../auth_axios';
+import axiosInstance from '../utils/auth_axios';
 import axios from 'axios';
 import { BACK_END_URL } from '../utils/variables';
 import { NoodleDetails, useProductsContext } from '../context/productsContext';
@@ -28,14 +28,11 @@ type UserContextType = {
   getUserDetails: () => void;
   logOutUser: () => void;
   userLoggedIn: (formData: any) => void;
-
   //
   favoritesNoodles: NoodleDetails[];
   isFavoriteNoodle: boolean;
   noodles: NoodleDetails[] | null;
   getUserFavoriteList: () => void;
-
-  //
   setUserFavoriteList: (user: string, noodle: NoodleDetails) => void;
   isUserFavoriteNoodle: () => void;
 };
@@ -98,8 +95,6 @@ export const UserProvider: React.FC = ({ children }) => {
         `${BACK_END_URL}user/user-details/${state.userAuth.user_id}`
       );
       dispach({ type: 'GET_USER_DETAILS', payload: res.data });
-      console.log('poronga');
-      // getUserFavoriteList();
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +109,7 @@ export const UserProvider: React.FC = ({ children }) => {
   };
 
   const isUserFavoriteNoodle = () => {
-    dispach({ type: 'IS_USER_FAVORITES_NOODLE', payload: noodle });
+    dispach({ type: 'IS_USER_FAVORITE_NOODLE', payload: noodle });
   };
 
   const setUserFavoriteList = async (user: string, noodle: NoodleDetails) => {
