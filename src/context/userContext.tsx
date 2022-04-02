@@ -96,6 +96,7 @@ export const UserProvider: React.FC = ({ children }) => {
         `${BACK_END_URL}user/user-details/${state.userAuth.user_id}`
       );
       dispach({ type: 'GET_USER_DETAILS', payload: res.data });
+      getUserFavoriteList();
     } catch (error) {
       console.log(error);
     }

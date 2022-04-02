@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import simplereview from 'simplereview';
 
 import { useUserContext } from '../../context/userContext';
@@ -11,11 +11,15 @@ type Props = {
 
 const Dashboard: React.FC<Props> = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
-
+  const [showFav, setShowFav] = useState(false);
   // console.log(favoritesNoodles);
-
+  const showFavorites = () => {
+    setTimeout(() => {
+      setShowFav(true);
+    }, 100);
+  };
   useEffect(() => {
-    // getUserFavoriteList();
+    showFavorites();
     simplereview(); // fix
     if (favoritesNoodles && favoritesNoodles.length) {
     }
@@ -26,7 +30,7 @@ const Dashboard: React.FC<Props> = ({}) => {
     return (
       <>
         <div>Name{user?.user_name}</div>
-        {favoritesNoodles &&
+        {showFav &&
           favoritesNoodles.map((noodle: NoodleDetails) => {
             return <Card key={noodle.id} noodle={noodle} />;
           })}
