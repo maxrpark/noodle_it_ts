@@ -39,6 +39,16 @@ const user_reducer = (state: any, action: any) => {
         authTokens: null,
         userAuth: null,
       };
+    case 'GET_FAVORITES_NOODLES':
+      let noodles = action.payload;
+      const favoritesList = noodles.filter((elem: { slug: any }) => {
+        // @ts-ignore: Unreachable code error
+        return state.user?.favorites.find(({ slug }) => elem.slug === slug);
+      });
+      return {
+        ...state,
+        favoritesNoodles: favoritesList,
+      };
     default:
       return state;
   }

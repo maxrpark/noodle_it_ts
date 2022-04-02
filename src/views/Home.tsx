@@ -8,8 +8,6 @@ import { useProductsContext } from '../context/productsContext';
 import Card from '../components/Card';
 
 const Home: React.FC = () => {
-  const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
-
   const { noodles, isProductsLoading } = useProductsContext();
 
   useEffect(() => {

@@ -3,6 +3,9 @@ import user_reducer from '../reducers/user_reducer';
 import axiosInstance from '../auth_axios';
 import axios from 'axios';
 
+// noodles test
+import { NoodleDetails, useProductsContext } from '../context/productsContext';
+// import { NoodleDetails } from '../context/globalContext';
 interface authTokensInt {
   access: string;
   refresh: string;
@@ -14,7 +17,7 @@ export interface userDetails {
   user_id: number;
   last_login: string;
   user_name: string;
-  favorites: any[];
+  favorites: NoodleDetails[];
 }
 
 type UserContextType = {
@@ -26,6 +29,14 @@ type UserContextType = {
   getUserDetails: () => void;
   logOutUser: () => void;
   userLoggedIn: (formData: any) => void;
+
+  //
+  favoritesNoodles: NoodleDetails[] | null;
+  noodles: NoodleDetails[] | null;
+  getUserFavoriteList: () => void;
+
+  //
+  setUserFavoriteList: (user: string, noodle: string) => void;
 };
 
 const initialState = {
@@ -33,12 +44,15 @@ const initialState = {
   authTokens: null as authTokensInt | null,
   isAlreadyLogIn: false,
   userAuth: null as userDetails | null,
+  favoritesNoodles: null as NoodleDetails[] | null,
 };
 
 const UserContext = React.createContext({} as UserContextType);
 
 export const UserProvider: React.FC = ({ children }) => {
   const [state, dispach] = useReducer(user_reducer, initialState);
+  const { noodles } = useProductsContext();
+
   const logOutUser = async () => {
     try {
       await axiosInstance.post('user/logout/blacklist/', {
@@ -82,6 +96,8 @@ export const UserProvider: React.FC = ({ children }) => {
         `http://127.0.0.1:8000/api/user/user-details/${state.userAuth.user_id}`
       );
       dispach({ type: 'GET_USER_DETAILS', payload: res.data });
+      // getUserFavoriteList();
+      // dispach({ type: 'GET_FAVORITES_NOODLES', payload: noodles });
     } catch (error) {
       console.log(error);
     }
@@ -91,9 +107,37 @@ export const UserProvider: React.FC = ({ children }) => {
     dispach({ type: 'LOG_BACK' });
   };
 
+  const getUserFavoriteList = () => {
+    dispach({ type: 'GET_FAVORITES_NOODLES', payload: noodles });
+  };
+
+  const setUserFavoriteList = async (user: string, noodle: string) => {
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/api/user/user-favorites/${user}/${noodle}/`,
+      xsrfCookieName: 'csrftoken',
+      xsrfHeaderName: 'X-CSRFTOKEN',
+      withCredentials: true,
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data);
+          getUserDetails();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getUserFavoriteList();
+  }, [noodles]);
+
   useEffect(() => {
     if (state.userAuth !== null) {
       getUserDetails();
+      // getUserFavoriteList();
     } else if (
       localStorage.getItem('access_token') &&
       state.isAlreadyLogIn === false
@@ -111,6 +155,8 @@ export const UserProvider: React.FC = ({ children }) => {
         getUserDetails,
         logOutUser,
         userLoggedIn,
+        getUserFavoriteList,
+        setUserFavoriteList,
       }}
     >
       {children}

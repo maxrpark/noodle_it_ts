@@ -6,11 +6,11 @@ import { AppProvider, ProductsProvider, UserProvider } from './context';
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>
-      <UserProvider>
-        <ProductsProvider>
+      <ProductsProvider>
+        <UserProvider>
           <App />
-        </ProductsProvider>
-      </UserProvider>
+        </UserProvider>
+      </ProductsProvider>
     </AppProvider>
   </React.StrictMode>,
   document.getElementById('root')

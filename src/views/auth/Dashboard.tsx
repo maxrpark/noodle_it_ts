@@ -11,35 +11,21 @@ type Props = {
 };
 
 const Dashboard: React.FC<Props> = ({}) => {
-  const { user } = useUserContext();
-  const { noodles } = useProductsContext();
-  const [userFavorites, setUserFavorites] = useState([] as NoodleDetails[]);
-
-  const getUserFavoriteList = () => {
-    if (user && user.favorites) {
-      const favoritesList = noodles.filter((elem) => {
-        return user?.favorites.find(({ slug }) => elem.slug === slug);
-      });
-      setUserFavorites(favoritesList);
-    }
-  };
+  const { user, favoritesNoodles, getUserFavoriteList } = useUserContext();
 
   useEffect(() => {
-    getUserFavoriteList();
-  }, [noodles]);
-
-  useEffect(() => {
-    if (userFavorites.length) {
-      simplereview();
+    if (favoritesNoodles && favoritesNoodles.length) {
+      simplereview(); // fix
     }
-  }, [userFavorites]);
+    // getUserFavoriteList();
+  }, []);
 
   if (user) {
     return (
       <>
         <div>Name{user?.user_name}</div>
-        {userFavorites &&
-          userFavorites.map((noodle: NoodleDetails) => {
+        {favoritesNoodles &&
+          favoritesNoodles.map((noodle: NoodleDetails) => {
             return <Card key={noodle.id} noodle={noodle} />;
           })}
       </>
