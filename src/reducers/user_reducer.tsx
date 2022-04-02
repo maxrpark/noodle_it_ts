@@ -18,6 +18,7 @@ const user_reducer = (state: any, action: any) => {
         ...state,
         user: action.payload,
         isAlreadyLogIn: true,
+        favoritesNoodles: action.payload.favorites,
       };
     case 'LOG_BACK':
       const authTokens = localStorage.getItem('access_token')
@@ -52,20 +53,39 @@ const user_reducer = (state: any, action: any) => {
     case 'IS_USER_FAVORITES_NOODLE':
       let noodle = action.payload;
       let isFavorite;
+      console.log(state.favoritesNoodles);
       // @ts-ignore: Unreachable code error
-      if (state.user?.favorites.find(({ slug }) => slug === noodle.slug)) {
+      if (state.favoritesNoodles?.find(({ slug }) => slug === noodle.slug)) {
         isFavorite = true;
       } else {
         isFavorite = false;
       }
+      console.log(isFavorite);
       return {
         ...state,
         isFavoriteNoodle: isFavorite,
+        // favoritesNoodles: state.user?.favorites,
       };
     case 'SET_USER_FAVORITES_NOODLE':
+      let userCurrentList = state.favoritesNoodles;
+      let list: any = [];
+
+      if (
+        userCurrentList.length &&
+        userCurrentList.find(
+          (elem: any) => elem.slug === action.payload.noodle.slug
+        )
+      ) {
+        list = userCurrentList.filter(
+          (elem: any) => elem.slug !== action.payload.noodle.slug
+        );
+      } else {
+        list.push(action.payload.noodle);
+      }
       return {
         ...state,
         isFavoriteNoodle: !state.isFavoriteNoodle,
+        favoritesNoodles: list,
       };
     default:
       return state;

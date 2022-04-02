@@ -15,18 +15,20 @@ import { SingleNoodleMain, Card } from '../components';
 const Noodle = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, baseUrl } =
     useProductsContext();
-  const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
+  const { user, isFavoriteNoodle, setUserFavoriteList, isUserFavoriteNoodle } =
+    useUserContext();
   const { slug } = useParams();
 
   const relatedByBrand = relatedBrand(noodles, noodle?.brand?.name);
   const relatedByCategory = relatedCategory(noodles, noodle?.category);
 
   const addToFav = () => {
-    if (user) setUserFavoriteList(user.user_name, noodle.slug);
+    if (user) setUserFavoriteList(user.user_name, noodle);
   };
 
   useEffect(() => {
     getSingleNoodle(baseUrl + slug);
+    // isUserFavoriteNoodle();
   }, [slug]);
 
   if (isProductLoading || !noodle) {

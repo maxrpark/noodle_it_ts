@@ -37,8 +37,8 @@ type UserContextType = {
   getUserFavoriteList: () => void;
 
   //
-  setUserFavoriteList: (user: string, noodle: string) => void;
-  isUserFavoriteNoodle: (noodle: string) => void;
+  setUserFavoriteList: (user: string, noodle: NoodleDetails) => void;
+  isUserFavoriteNoodle: () => void;
 };
 
 const initialState = {
@@ -99,6 +99,7 @@ export const UserProvider: React.FC = ({ children }) => {
         `http://127.0.0.1:8000/api/user/user-details/${state.userAuth.user_id}`
       );
       dispach({ type: 'GET_USER_DETAILS', payload: res.data });
+      console.log('poronga');
       // getUserFavoriteList();
     } catch (error) {
       console.log(error);
@@ -117,16 +118,16 @@ export const UserProvider: React.FC = ({ children }) => {
     dispach({ type: 'IS_USER_FAVORITES_NOODLE', payload: noodle });
   };
 
-  const setUserFavoriteList = async (user: string, noodle: string) => {
-    dispach({ type: 'SET_USER_FAVORITES_NOODLE', payload: { noodle } });
+  const setUserFavoriteList = async (user: string, noodle: NoodleDetails) => {
     try {
       axios({
         method: 'post',
-        url: `http://127.0.0.1:8000/api/user/user-favorites/${user}/${noodle}/`,
+        url: `http://127.0.0.1:8000/api/user/user-favorites/${user}/${noodle.slug}/`,
         xsrfCookieName: 'csrftoken',
         xsrfHeaderName: 'X-CSRFTOKEN',
         withCredentials: true,
       });
+      dispach({ type: 'SET_USER_FAVORITES_NOODLE', payload: { noodle } });
     } catch (error) {
       console.log(error);
     }
