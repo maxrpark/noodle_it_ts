@@ -26,10 +26,10 @@ const Dashboard: React.FC<Props> = ({}) => {
     return (
       <>
         <div>Name{user?.user_name}</div>
-        {/* {favoritesNoodles &&
+        {favoritesNoodles &&
           favoritesNoodles.map((noodle: NoodleDetails) => {
             return <Card key={noodle.id} noodle={noodle} />;
-          })} */}
+          })}
       </>
     );
   } else {

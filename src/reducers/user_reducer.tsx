@@ -80,7 +80,7 @@ const user_reducer = (state: any, action: any) => {
           (elem: any) => elem.slug !== action.payload.noodle.slug
         );
       } else {
-        list.push(action.payload.noodle);
+        list.push(...userCurrentList, action.payload.noodle);
       }
       return {
         ...state,
