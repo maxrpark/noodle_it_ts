@@ -12,10 +12,9 @@ import Card from '../components/Card';
 const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/tags/';
 
 const Tags: React.FC = () => {
+  const { getNoodles, noodles, isProductsLoading } = useProductsContext();
   const { slug } = useParams();
   const fetchUrl = `${baseUrl}${slug}`;
-
-  const { getNoodles, noodles, isProductsLoading } = useProductsContext();
 
   useEffect(() => {
     getNoodles(fetchUrl);

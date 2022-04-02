@@ -31,12 +31,14 @@ type UserContextType = {
   userLoggedIn: (formData: any) => void;
 
   //
-  favoritesNoodles: NoodleDetails[] | null;
+  favoritesNoodles: NoodleDetails[];
+  isFavoriteNoodle: boolean;
   noodles: NoodleDetails[] | null;
   getUserFavoriteList: () => void;
 
   //
   setUserFavoriteList: (user: string, noodle: string) => void;
+  isUserFavoriteNoodle: (noodle: string) => void;
 };
 
 const initialState = {
@@ -45,13 +47,14 @@ const initialState = {
   isAlreadyLogIn: false,
   userAuth: null as userDetails | null,
   favoritesNoodles: null as NoodleDetails[] | null,
+  isFavoriteNoodle: false,
 };
 
 const UserContext = React.createContext({} as UserContextType);
 
 export const UserProvider: React.FC = ({ children }) => {
   const [state, dispach] = useReducer(user_reducer, initialState);
-  const { noodles } = useProductsContext();
+  const { noodles, noodle } = useProductsContext();
 
   const logOutUser = async () => {
     try {
@@ -97,7 +100,6 @@ export const UserProvider: React.FC = ({ children }) => {
       );
       dispach({ type: 'GET_USER_DETAILS', payload: res.data });
       // getUserFavoriteList();
-      // dispach({ type: 'GET_FAVORITES_NOODLES', payload: noodles });
     } catch (error) {
       console.log(error);
     }
@@ -111,24 +113,28 @@ export const UserProvider: React.FC = ({ children }) => {
     dispach({ type: 'GET_FAVORITES_NOODLES', payload: noodles });
   };
 
-  const setUserFavoriteList = async (user: string, noodle: string) => {
-    axios({
-      method: 'post',
-      url: `http://127.0.0.1:8000/api/user/user-favorites/${user}/${noodle}/`,
-      xsrfCookieName: 'csrftoken',
-      xsrfHeaderName: 'X-CSRFTOKEN',
-      withCredentials: true,
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res.data);
-          getUserDetails();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const isUserFavoriteNoodle = () => {
+    dispach({ type: 'IS_USER_FAVORITES_NOODLE', payload: noodle });
   };
+
+  const setUserFavoriteList = async (user: string, noodle: string) => {
+    dispach({ type: 'SET_USER_FAVORITES_NOODLE', payload: { noodle } });
+    try {
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/api/user/user-favorites/${user}/${noodle}/`,
+        xsrfCookieName: 'csrftoken',
+        xsrfHeaderName: 'X-CSRFTOKEN',
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    isUserFavoriteNoodle();
+  }, [noodle]);
 
   useEffect(() => {
     getUserFavoriteList();
@@ -137,7 +143,8 @@ export const UserProvider: React.FC = ({ children }) => {
   useEffect(() => {
     if (state.userAuth !== null) {
       getUserDetails();
-      // getUserFavoriteList();
+    } else if (state.user) {
+      getUserFavoriteList();
     } else if (
       localStorage.getItem('access_token') &&
       state.isAlreadyLogIn === false
@@ -157,6 +164,8 @@ export const UserProvider: React.FC = ({ children }) => {
         userLoggedIn,
         getUserFavoriteList,
         setUserFavoriteList,
+
+        isUserFavoriteNoodle,
       }}
     >
       {children}

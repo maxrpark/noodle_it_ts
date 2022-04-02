@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import simplereview from 'simplereview';
 
 import { useUserContext } from '../../context/userContext';
-import { useProductsContext } from '../../context/productsContext';
 
 import { Card } from '../../components';
 import { NoodleDetails } from '../../context/globalContext';
@@ -11,13 +10,14 @@ type Props = {
 };
 
 const Dashboard: React.FC<Props> = ({}) => {
-  const { user, favoritesNoodles, getUserFavoriteList } = useUserContext();
+  const { user, favoritesNoodles } = useUserContext();
+
+  console.log(favoritesNoodles);
 
   useEffect(() => {
     if (favoritesNoodles && favoritesNoodles.length) {
       simplereview(); // fix
     }
-    // getUserFavoriteList();
   }, []);
 
   if (user) {

@@ -1,13 +1,15 @@
 import React, { useContext, useReducer, useEffect } from 'react';
 import products_reducer from '../reducers/products_reducer';
 import axios from 'axios';
-import { useFetch } from '../customHooks/useFetch';
-import simplereview from 'simplereview';
 
+import simpleSlider from '@maxcoding/simpleslider';
+import simplereview from 'simplereview';
 interface Brand {
   name: string;
   slug: string;
 }
+
+const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
 
 export interface NoodleDetails {
   id: number;
@@ -28,6 +30,7 @@ export interface NoodleDetails {
 }
 
 interface ProductContextInterface {
+  baseUrl: string;
   noodles: NoodleDetails[];
   isProductsLoading: boolean;
   noodle: NoodleDetails;
@@ -68,12 +71,13 @@ export const ProductsProvider: React.FC = ({ children }) => {
     try {
       const response = await axios.get(url);
       dispatch({ type: 'GET_PRODUCT_SUCCESS', payload: response.data });
+      simpleSlider();
+      simplereview();
     } catch (err) {
       dispatch({ type: 'GET_PRODUCT_ERROR' });
     }
   };
 
-  const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/noodles/';
   useEffect(() => {
     getNoodles(baseUrl);
   }, []);
@@ -85,6 +89,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
         ...state,
         getNoodles,
         getSingleNoodle,
+        baseUrl,
       }}
     >
       {children}
