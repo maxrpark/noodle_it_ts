@@ -5,7 +5,6 @@
 }
 
 :root {
-  /* colors */
   --color-black-1: #1d1d1d;
   --border-radius-1: 5px;
   --border-radius-2: 10px;
@@ -16,10 +15,9 @@
   /* theme */
   --backgroung-color: #eeebd0;
   --color-primary: #ffffff;
+  --dark-background: #1d1d1d;
 }
-body {
-  background-color: var(--backgroung-color);
-}
+
 /* Globals */
 a {
   text-decoration: none;

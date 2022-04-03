@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext, useReducer } from 'react';
+import { useContext, useReducer, useState } from 'react';
 import global_reducer from '../reducers/global_reducer';
 interface Brand {
   name: string;
@@ -29,6 +29,8 @@ interface UseContextInterface {
   selectedImg: string;
   closeModal: () => void;
   showImage: (e: React.MouseEvent<HTMLImageElement>) => void;
+  theme: string;
+  toogleTheme: () => void;
 }
 
 export interface InicialState {
@@ -44,10 +46,17 @@ const initialState: InicialState = {
 const AppContext = React.createContext({} as UseContextInterface);
 
 const AppProvider: React.FC = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
   const [state, dispatch] = useReducer(
     global_reducer,
     initialState as InicialState
   );
+
+  const toogleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+    console.log(theme);
+  };
 
   const closeModal = () => {
     dispatch({ type: 'IS_MODAL_OPEN' });
@@ -65,6 +74,8 @@ const AppProvider: React.FC = ({ children }) => {
         ...state,
         closeModal,
         showImage,
+        theme,
+        toogleTheme,
       }}
     >
       {children}
