@@ -1,6 +1,7 @@
 import Card from './Card';
 import CardsDashboard from './CardsDashboard';
 import Footer from './Footer';
+import ToogleTheme from './ToogleTheme';
 import Loading from './Loading';
 import Navbar from './Navbar';
 import NavbarUser from './NavbarUser';
@@ -14,6 +15,7 @@ export {
   Card,
   CardsDashboard,
   Footer,
+  ToogleTheme,
   Loading,
   Navbar,
   NavbarUser,

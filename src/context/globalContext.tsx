@@ -46,7 +46,9 @@ const initialState: InicialState = {
 const AppContext = React.createContext({} as UseContextInterface);
 
 const AppProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(
+    localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
+  );
 
   const [state, dispatch] = useReducer(
     global_reducer,
@@ -54,8 +56,19 @@ const AppProvider: React.FC = ({ children }) => {
   );
 
   const toogleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-    console.log(theme);
+    setTheme((oldValue) => {
+      console.log(oldValue);
+      let newValue;
+      if (oldValue === 'light') {
+        newValue = 'dark';
+      } else {
+        newValue = 'light';
+      }
+      localStorage.setItem('theme', newValue);
+      return newValue;
+    });
+    // localStorage.setItem('theme', theme!);
+    // console.log(theme);
   };
 
   const closeModal = () => {
