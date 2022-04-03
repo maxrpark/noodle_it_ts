@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../utils/auth_axios';
 
-type Props = {};
-
-function Register({}: Props) {
+const Register: React.FC = () => {
   const history = useNavigate();
   const [userInfo, setUserInfo] = useState({
     user_name: '',
@@ -70,6 +68,6 @@ function Register({}: Props) {
       </form>
     </div>
   );
-}
+};
 
 export default Register;

@@ -11,7 +11,7 @@ const initialFormData = {
   email: '',
   password: '',
 };
-const LogIn = () => {
+const LogIn: React.FC = () => {
   const { userLoggedIn, userAuth } = useUserContext();
   const history = useNavigate();
   const [formData, updateFormData] = useState(

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useGlobalContext, NoodleDetails } from '../context/globalContext';
-import { useFetch } from '../customHooks/useFetch';
+import { useGlobalContext, NoodleDetails } from '../../context/globalContext';
+import { useFetch } from '../../customHooks/useFetch';
 type Props = {
   noodle: NoodleDetails;
 };

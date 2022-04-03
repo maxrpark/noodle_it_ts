@@ -10,9 +10,9 @@ import { useProductsContext } from '../context/productsContext';
 import { relatedBrand, relatedCategory } from '../utils/helperFunctions';
 
 // components
-import { SingleNoodleMain, Card } from '../components';
+import { Card, Loading, SingleNoodleMain } from '../components/';
 
-const Noodle = () => {
+const Noodle: React.FC = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
   const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
@@ -24,10 +24,9 @@ const Noodle = () => {
   useEffect(() => {
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
   }, [slug]);
-  // console.log(isProductLoading);
 
   if (isProductLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   } else {
     return (
       <Wrapper>

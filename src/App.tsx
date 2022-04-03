@@ -33,8 +33,6 @@ function App() {
             <Route path='/brand/:slug' element={<Brand />} />
             <Route path='/category/:slug' element={<Category />} />
             <Route path='/tags/:slug' element={<Tags />} />
-
-            {/* <Route path='/register' element={<Register />} /> */}
             <Route path='/register' element={<UsersShareLayout />}>
               <Route
                 index

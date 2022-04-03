@@ -1,5 +1,5 @@
 import React from 'react';
-import { NoodleDetails } from '../context/globalContext';
+import { NoodleDetails } from '../../context/globalContext';
 
 type Props = {
   noodle: NoodleDetails;
@@ -32,10 +32,10 @@ const NoodleInfo: React.FC<Props> = ({ noodle }) => {
       </p>
 
       <h3>Ingredients</h3>
-      {noodle.ingredients.map((tag: string) => {
+      {noodle.ingredients.map((ingredient: string) => {
         return (
-          <p key={tag}>
-            <span>{tag}</span>
+          <p key={ingredient}>
+            <span>{ingredient}</span>
           </p>
         );
       })}

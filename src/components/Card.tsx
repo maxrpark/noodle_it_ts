@@ -41,6 +41,7 @@ const Wrapper = styled.div`
   margin: 1rem;
   border-radius: 5px;
   transition: var(--transition-1);
+  background: var(--color-primary);
   :hover {
     box-shadow: var(--box-shadow-2);
     transform: translate(0, -2px);

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import simplereview from 'simplereview';
+import styled from 'styled-components';
 
 import { useUserContext } from '../../context/userContext';
 
-import { Card } from '../../components';
-import { NoodleDetails } from '../../context/globalContext';
-type Props = {
-  // user: any;
-};
+import { Loading, CardsDashboard } from '../../components';
 
-const Dashboard: React.FC<Props> = ({}) => {
+const Dashboard: React.FC = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
   const [showFav, setShowFav] = useState(false);
 
@@ -23,19 +20,49 @@ const Dashboard: React.FC<Props> = ({}) => {
     showFavorites();
   }, []);
 
-  if (user) {
+  if (user && showFav) {
     return (
-      <>
-        <div>Name{user?.user_name}</div>
-        {showFav &&
-          favoritesNoodles.map((noodle: NoodleDetails) => {
-            return <Card key={noodle.id} noodle={noodle} />;
-          })}
-      </>
+      <Wrapper>
+        <div>
+          <h2>Welcome, {user.user_name}</h2>
+        </div>
+        <CardsDashboard user={user} favoritesNoodles={favoritesNoodles} />
+      </Wrapper>
     );
   } else {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 };
 
 export default Dashboard;
+
+const Wrapper = styled.div`
+  /* favorites-noodles */
+  .favorites-noodles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+    align-items: center;
+  }
+  /* single noodle */
+  .single-noodle {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 0.5px solid #ccc;
+    background: var(--color-primary);
+  }
+  img {
+    height: 150px;
+    object-fit: cover;
+    justify-self: flex-start;
+  }
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem;
+    position: relative;
+  }
+`;

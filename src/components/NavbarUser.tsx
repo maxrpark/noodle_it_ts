@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 
-const NavbarUser = () => {
+const NavbarUser: React.FC = () => {
   const { logOutUser, userAuth } = useUserContext();
   const history = useNavigate();
 

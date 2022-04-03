@@ -1,11 +1,8 @@
 import { useEffect } from 'react';
 import { NoodleDetails } from '../context/globalContext';
-import simplereview from 'simplereview';
-
 import { useProductsContext } from '../context/productsContext';
-
-// Components
-import Card from '../components/Card';
+import { Card, Loading } from '../components';
+import simplereview from 'simplereview';
 
 const Home: React.FC = () => {
   const { noodles, isProductsLoading } = useProductsContext();
@@ -13,12 +10,11 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (noodles.length) {
       simplereview();
-      // console.log('fix');
     }
   }, [noodles]);
 
   if (isProductsLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   return (
     <div className='App'>

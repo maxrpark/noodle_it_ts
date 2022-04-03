@@ -1,5 +1,5 @@
 import React from 'react';
-import { NoodleDetails } from '../context/globalContext';
+import { NoodleDetails } from '../../context/globalContext';
 import { Link } from 'react-router-dom';
 
 type Props = {

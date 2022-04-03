@@ -8,9 +8,6 @@ import simplereview from 'simplereview';
 // Components
 import Card from '../components/Card';
 
-// variables
-// const baseUrl = 'https://noodles-api.herokuapp.com/api/v1/brand/';
-
 const Brand: React.FC = () => {
   const { slug } = useParams();
   const { getNoodles, noodles, isProductsLoading, URL_NOODLES } =

@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NoodleDetails } from '../context/globalContext';
+import { NoodleDetails } from '../../context/globalContext';
 import styled from 'styled-components';
 
 // Component
-import NoodleTopSection from '../components/NoodleTopSection';
-import NoodleInfo from '../components/NoodleInfo';
-import Carrousel from '../components/Carrousel';
+
+import { Carrousel, NoodleInfo, NoodleTopSection } from '../../components/';
 type Props = {
   noodle: NoodleDetails;
 };

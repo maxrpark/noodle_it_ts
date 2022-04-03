@@ -1,11 +1,3 @@
-.app {
-  min-height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-  flex-direction: column;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +12,15 @@
   --box-shadow-1: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   --box-shadow-2: rgba(0, 0, 0, 0.2) 0px 6px 15px;
   --transition-1: all 0.3s ease-in-out;
+
+  /* theme */
+  --backgroung-color: #eeebd0;
+  --color-primary: #ffffff;
 }
+body {
+  background-color: var(--backgroung-color);
+}
+/* Globals */
 a {
   text-decoration: none;
   color: var(--color-black-1);
@@ -36,6 +36,11 @@ li {
   max-width: 960px;
   margin: 1rem auto;
   padding: 1rem;
+}
+.page-100 {
+  height: 100vh;
+  display: grid;
+  place-content: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -98,22 +103,8 @@ li {
   background: rgb(59, 147, 59);
 }
 
-/* Footer */
-footer {
-  height: 100px;
-  color: var(--primary-white);
-  background-color: var(--primary-color-4);
-  display: grid;
-  place-content: center;
-  margin-top: 2rem;
-  gap: 0.5rem;
-  text-align: center;
-}
-footer a {
-  color: var(--primary-white);
-  text-decoration: underline;
-}
-footer a:hover {
-  color: var(--primary-color-2);
-  letter-spacing: normal;
+/* heart */
+.heart {
+  color: crimson;
+  font-size: 2rem;
 }
