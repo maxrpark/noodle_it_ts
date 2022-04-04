@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { NoodleDetails } from '../context/globalContext';
 import { userDetails } from '../context/userContext';
 import { Link } from 'react-router-dom';
@@ -8,14 +8,14 @@ import { useUserContext } from '../context/userContext';
 
 type Props = {
   user: userDetails;
-  favoritesNoodles: NoodleDetails[];
+  noodles: NoodleDetails[];
 };
-const CardSmall: React.FC<Props> = ({ user, favoritesNoodles }) => {
-  const { isFavoriteNoodle, setUserFavoriteList } = useUserContext();
+const CardSmall: React.FC<Props> = ({ user, noodles }) => {
+  const { setUserFavoriteList } = useUserContext();
   return (
     <Wrapper>
       <div className='favorites-noodles'>
-        {favoritesNoodles.map((noodle: NoodleDetails) => {
+        {noodles.map((noodle: NoodleDetails) => {
           return (
             <>
               <div className='single-noodle' key={noodle.id}>
@@ -26,18 +26,21 @@ const CardSmall: React.FC<Props> = ({ user, favoritesNoodles }) => {
                     alt={noodle.name}
                   />
                 </Link>
+
                 <div className='info'>
                   <p>{noodle.name}</p>
-                  <span
-                    className='heart'
-                    onClick={() => setUserFavoriteList(user.user_name, noodle)}
-                  >
-                    {isFavoriteNoodle ? (
+                  {!noodles ? (
+                    <p>{noodle.price_per_package}</p>
+                  ) : (
+                    <span
+                      className='heart'
+                      onClick={() =>
+                        setUserFavoriteList(user.user_name, noodle)
+                      }
+                    >
                       <AiFillHeart className='heart fill' />
-                    ) : (
-                      <AiOutlineHeart className='heart empty' />
-                    )}
-                  </span>
+                    </span>
+                  )}
                 </div>
               </div>
             </>

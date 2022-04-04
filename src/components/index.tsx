@@ -1,5 +1,5 @@
 import Card from './Card';
-import CardsDashboard from './CardsDashboard';
+import CardSmall from './CardSmall';
 import Footer from './Footer';
 import ToogleTheme from './ToogleTheme';
 import Loading from './Loading';
@@ -13,7 +13,7 @@ import SingleNoodleMain from './SingleNoodle/SingleNoodleMain';
 
 export {
   Card,
-  CardsDashboard,
+  CardSmall,
   Footer,
   ToogleTheme,
   Loading,

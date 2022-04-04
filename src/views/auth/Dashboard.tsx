@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { useUserContext } from '../../context/userContext';
 
-import { Loading, CardsDashboard } from '../../components';
+import { Loading, CardSmall } from '../../components';
 
 const Dashboard: React.FC = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
@@ -26,7 +26,7 @@ const Dashboard: React.FC = ({}) => {
         <div>
           <h2>Welcome, {user.user_name}</h2>
         </div>
-        <CardsDashboard user={user} favoritesNoodles={favoritesNoodles} />
+        <CardSmall user={user} noodles={favoritesNoodles} />
       </Wrapper>
     );
   } else {
