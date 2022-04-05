@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useUserContext } from '../../context/userContext';
 
@@ -29,7 +30,15 @@ const LogIn: React.FC = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    userLoggedIn(formData);
+    if (!formData.email && !formData.password) {
+      console.log('Please enter email and password');
+    } else if (!formData.email) {
+      console.log('Please enter email');
+    } else if (!formData.password) {
+      console.log('Please enter email');
+    } else {
+      userLoggedIn(formData);
+    }
   };
 
   useEffect(() => {
@@ -39,28 +48,39 @@ const LogIn: React.FC = () => {
   }, [userAuth]);
 
   return (
-    <div>
+    <div className='page-100'>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Email</span>
+      <form className='user-form' onSubmit={handleSubmit}>
+        <div className='form-control'>
+          <label>
+            <span>Email</span>
+          </label>
           <input
             type='text'
             name='email'
             value={formData.email}
             onChange={handleChange}
           />
-        </label>
-        <label>
-          <span>Password</span>
+        </div>
+        <div className='form-control'>
+          <label>
+            <span>Password</span>
+          </label>
           <input
             type='password'
             name='password'
             value={formData.password}
             onChange={handleChange}
           />
-        </label>
-        <button type='submit'>Log In</button>
+        </div>
+        <button className='form-btn' type='submit'>
+          Log In
+        </button>
+        <p className='form-link'>
+          Don't an account already?
+          <span> </span>
+          <Link to={'/register'}>Register</Link>
+        </p>
       </form>
     </div>
   );

@@ -17,7 +17,7 @@ const Home: React.FC = () => {
     return <Loading />;
   }
   return (
-    <div className='App'>
+    <div className='page-100'>
       {noodles.map((noodle: NoodleDetails) => {
         return <Card key={noodle.id} noodle={noodle} />;
       })}

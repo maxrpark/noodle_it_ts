@@ -8,9 +8,11 @@ const Navbar: React.FC = () => {
   return (
     <div>
       <ToogleTheme />
-      <NavLink to={'/login'}>LogIn</NavLink>
-      <span> || </span>
       <NavLink to={'/'}>Home</NavLink>
+      <span> || </span>
+      <NavLink to={'/register'}>Register</NavLink>
+      <span> || </span>
+      <NavLink to={'/login'}>LogIn</NavLink>
     </div>
   );
 };

@@ -22,12 +22,12 @@ const Dashboard: React.FC = ({}) => {
 
   if (user && showFav) {
     return (
-      <Wrapper>
-        <div>
+      <div className='page-100'>
+        <Wrapper>
           <h2>Welcome, {user.user_name}</h2>
-        </div>
-        <CardSmall user={user} noodles={favoritesNoodles} />
-      </Wrapper>
+          <CardSmall user={user} noodles={favoritesNoodles} />
+        </Wrapper>
+      </div>
     );
   } else {
     return <Loading />;
