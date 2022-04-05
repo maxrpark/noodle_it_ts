@@ -89,7 +89,7 @@ const Wrapper = styled.div`
     margin: 0.5rem 0;
   }
   .info span {
-    color: crimson;
+    color: ${(props) => props.theme.specialColor};
     font-weight: bold;
     text-transform: capitalize;
   }

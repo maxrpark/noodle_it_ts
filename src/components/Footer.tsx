@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   /* Footer */
   footer {
     height: 100px;
-    color: var(--primary-white);
+    color: ${(props) => props.theme.textColor};
     background-color: var(--primary-color-4);
     display: grid;
     place-content: center;

@@ -7,6 +7,9 @@ declare module 'styled-components' {
     mainColor: string;
     secondaryColor: string;
     textColor: string;
+    specialColor: string;
+    cardColor: string;
+    linkColors: string;
   }
 }
 
@@ -14,14 +17,21 @@ export const lightTheme: DefaultTheme = {
   mainColor: 'var(--main-light-color-1)',
   arrow: 'black',
   textColor: 'black',
-  secondaryColor: 'var(--main-dark-color-1)',
+  secondaryColor: 'var(--main-dark-color-3)',
+  specialColor: 'var(--special-color-1)',
+  cardColor: 'var( --primary-white)',
+
+  linkColors: '',
 };
 
 export const darkthem: DefaultTheme = {
   mainColor: 'var(--main-dark-color-2)',
   arrow: 'white',
-  textColor: 'white',
-  secondaryColor: 'var(--main-light-color-2)',
+  textColor: 'var(--text-color-dark-theme)',
+  secondaryColor: 'var(--main-light-color-3)',
+  specialColor: 'var(--special-color-1)',
+  cardColor: 'var(--main-dark-color-1)',
+  linkColors: '',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -54,7 +64,7 @@ body{
 /* Globals */
 a {
   text-decoration: none;
-  color: var(--color-black-1);
+  color: ${(props) => props.theme.textColor};
 }
 li {
   list-style: none;

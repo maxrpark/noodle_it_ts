@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NoodleDetails } from '../context/globalContext';
 import styled from 'styled-components';
-import simplereview from 'simplereview';
 
 type Props = {
   noodle: NoodleDetails;
@@ -41,7 +40,7 @@ const Wrapper = styled.div`
   margin: 1rem;
   border-radius: 5px;
   transition: var(--transition-1);
-  background: var(--color-primary);
+  background: ${(props) => props.theme.cardColor};
   :hover {
     box-shadow: var(--box-shadow-2);
     transform: translate(0, -2px);
