@@ -10,7 +10,7 @@ const products_reducer = (state: any, action: any) => {
       return {
         ...state,
         isProductsLoading: false,
-        noodles,
+        noodles: noodles,
       };
     case 'GET_PRODUCTS_ERROR':
       return {
