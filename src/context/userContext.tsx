@@ -55,7 +55,7 @@ export const UserProvider: React.FC = ({ children }) => {
 
   const logOutUser = async () => {
     try {
-      await axiosInstance.post('user/logout/blacklist/', {
+      await axiosInstance.post('/logout/blacklist/', {
         refresh_token: localStorage.getItem('refresh_token'),
       });
 

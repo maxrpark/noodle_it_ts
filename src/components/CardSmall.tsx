@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 
 type Props = {
-  user: userDetails;
+  user: userDetails | null;
   noodles: NoodleDetails[];
 };
 const CardSmall: React.FC<Props> = ({ user, noodles }) => {
@@ -30,7 +30,7 @@ const CardSmall: React.FC<Props> = ({ user, noodles }) => {
 
               <div className='info'>
                 <p>{noodle.name}</p>
-                {!noodles ? (
+                {!user ? (
                   <p>{noodle.price_per_package}</p>
                 ) : (
                   <span
