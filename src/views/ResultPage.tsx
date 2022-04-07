@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CardSmall } from '../components';
-import simplereview from 'simplereview';
-
+import { NoodleDetails } from '../context/globalContext';
 import axios from 'axios';
 
+interface StateInterface {
+  result: NoodleDetails[] | any;
+  query: string;
+}
+
 const ResultPage: React.FC = () => {
-  const { state } = useLocation() as any;
+  const { state } = useLocation() as { state: StateInterface };
   const [noodles, setNoodles] = useState([]);
   const [userQuery, setUserQuery] = useState('');
   const search = useRef<HTMLInputElement>(null);
 
-  const handleSearch = async (e: any) => {
+  const handleSearch = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setNoodles([]);
     if (search.current?.value.length) {
@@ -24,10 +28,10 @@ const ResultPage: React.FC = () => {
         if (response.data.length) {
           setNoodles(response.data);
         }
-        search.current.value = '';
       } catch (error) {
         console.log(error);
       }
+      search.current.value = '';
     }
   };
 
@@ -36,7 +40,7 @@ const ResultPage: React.FC = () => {
       setNoodles(state.result);
       setUserQuery(state.query);
     }
-  }, [search]);
+  }, [state, search]);
   return (
     <>
       <form onSubmit={handleSearch}>
