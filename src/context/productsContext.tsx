@@ -43,7 +43,7 @@ interface ProductContextInterface {
 
 const initialState = {
   noodles: [] as NoodleDetails[],
-  isProductsLoading: false,
+  isProductsLoading: true,
   isProductsError: false,
 
   isProductLoading: true,
