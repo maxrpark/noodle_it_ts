@@ -6,7 +6,7 @@ import simplereview from 'simplereview';
 
 const Home: React.FC = () => {
   const { noodles, isProductsLoading } = useProductsContext();
-  console.log(noodles);
+  console.log(isProductsLoading);
   useEffect(() => {
     if (noodles.length) {
       simplereview();
