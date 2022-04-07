@@ -67,6 +67,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
       dispatch({ type: 'GET_PRODUCTS_SUCCESS', payload: noodles });
       console.log(noodles);
     } catch (err) {
+      console.log(err);
       dispatch({ type: 'GET_PRODUCTS_ERROR' });
     }
   };
