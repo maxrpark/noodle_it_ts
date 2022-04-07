@@ -7,16 +7,16 @@ const products_reducer = (state: any, action: any) => {
       };
     case 'GET_PRODUCTS_SUCCESS':
       const noodles = action.payload;
+      console.log(noodles);
       return {
         ...state,
-        isProductsLoading: false,
         noodles: noodles,
+        isProductsLoading: false,
       };
     case 'GET_PRODUCTS_ERROR':
       return {
         ...state,
         isProductsLoading: false,
-        noodles,
       };
     // SINGLE_PRODUCT
     case 'GET_PRODUCT_START':
