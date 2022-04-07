@@ -59,6 +59,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(products_reducer, initialState);
 
   const getNoodles = async (url: string) => {
+    console.log('getNoodles');
     dispatch({ type: 'GET_PRODUCTS_START' });
     try {
       const response = await axios.get(url);
