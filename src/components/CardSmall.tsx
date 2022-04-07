@@ -19,7 +19,13 @@ const CardSmall: React.FC<Props> = ({ user, noodles }) => {
           return (
             <div className='single-noodle' key={noodle.id}>
               <Link to={`/noodle/${noodle.slug}`}>
-                <img className='img' src={noodle.images[0]} alt={noodle.name} />
+                {noodle.images && (
+                  <img
+                    className='img'
+                    src={noodle.images[0]}
+                    alt={noodle.name}
+                  />
+                )}
               </Link>
 
               <div className='info'>

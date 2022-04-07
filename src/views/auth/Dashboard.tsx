@@ -12,20 +12,24 @@ const Dashboard: React.FC = ({}) => {
 
   const showFavorites = () => {
     setTimeout(() => {
-      setShowFav(true); // fix
+      // setShowFav(true); // fix
       simplereview(); // fix
-    }, 100);
+    }, 500);
   };
   useEffect(() => {
     showFavorites();
   }, []);
 
-  if (user && showFav) {
+  if (user) {
     return (
       <div className='page-100'>
         <Wrapper>
           <h2>Welcome, {user.user_name}</h2>
-          <CardSmall user={user} noodles={favoritesNoodles} />
+          {favoritesNoodles.length > 0 ? (
+            <CardSmall user={user} noodles={favoritesNoodles} />
+          ) : (
+            'favorites'
+          )}
         </Wrapper>
       </div>
     );
