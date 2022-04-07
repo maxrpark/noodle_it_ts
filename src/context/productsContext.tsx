@@ -11,8 +11,6 @@ interface Brand {
   slug: string;
 }
 
-// const URL_NOODLES = 'https://noodles-api.herokuapp.com/api/v1/';
-
 export interface NoodleDetails {
   id: number;
   name: string;

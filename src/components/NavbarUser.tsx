@@ -23,7 +23,15 @@ const NavbarUser: React.FC = () => {
           'https://noodles-api.herokuapp.com/api/v1/search/?query=' +
             search.current.value
         );
-        console.log(response.data);
+        const data = {
+          result: response.data,
+          query: search.current.value,
+        };
+        if (response.data.length) {
+          history('/search', { state: data });
+        } else {
+          alert('No results found');
+        }
       } catch (error) {}
     }
   };

@@ -6,7 +6,15 @@ import { useUserContext } from './context/userContext';
 import { CommonLayout, UsersShareLayout } from './Layouts/';
 
 // views
-import { Brand, Category, Error, Home, Noodle, Tags } from './views';
+import {
+  Brand,
+  Category,
+  Error,
+  Home,
+  Noodle,
+  Tags,
+  ResultPage,
+} from './views';
 // auth views
 import {
   Dashboard,
@@ -41,6 +49,7 @@ function App() {
               <Route path='/brand/:slug' element={<Brand />} />
               <Route path='/category/:slug' element={<Category />} />
               <Route path='/tags/:slug' element={<Tags />} />
+              <Route path='/search' element={<ResultPage />} />
               <Route path='/register' element={<UsersShareLayout />}>
                 <Route
                   index
