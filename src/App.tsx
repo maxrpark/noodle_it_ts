@@ -27,7 +27,6 @@ import { GlobalStyle, lightTheme, darkthem } from './Layouts/theme';
 function App() {
   const { userAuth } = useUserContext();
   const { theme } = useGlobalContext();
-  console.log(theme);
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkthem}>
       <GlobalStyle />

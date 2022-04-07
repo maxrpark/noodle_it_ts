@@ -93,7 +93,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const getUserDetails = async () => {
     try {
       const res = await axios.get(
-        `${BACK_END_URL}user/user-details/${state.userAuth.user_id}`
+        `${BACK_END_URL}user-details/${state.userAuth.user_id}`
       );
       dispach({ type: 'GET_USER_DETAILS', payload: res.data });
       getUserFavoriteList();
@@ -118,7 +118,7 @@ export const UserProvider: React.FC = ({ children }) => {
     try {
       axios({
         method: 'post',
-        url: `${BACK_END_URL}user/user-favorites/${user}/${noodle.slug}/`,
+        url: `${BACK_END_URL}user-favorites/${user}/${noodle.slug}/`,
         xsrfCookieName: 'csrftoken',
         xsrfHeaderName: 'X-CSRFTOKEN',
         withCredentials: true,
