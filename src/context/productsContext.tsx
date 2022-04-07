@@ -6,7 +6,6 @@ import { URL_NOODLES } from '../utils/variables';
 
 import simpleSlider from '@maxcoding/simpleslider';
 import simplereview from 'simplereview';
-import { json } from 'stream/consumers';
 interface Brand {
   name: string;
   slug: string;
@@ -62,14 +61,11 @@ export const ProductsProvider: React.FC = ({ children }) => {
   const getNoodles = async (url: string) => {
     dispatch({ type: 'GET_PRODUCTS_START' });
     try {
-      // create get fetch request
-
-      const response = await fetch(url);
-      const noodles = await response.json();
+      const response = await axios.get(url);
+      const noodles = response.data;
       dispatch({ type: 'GET_PRODUCTS_SUCCESS', payload: noodles });
       console.log(noodles);
     } catch (err) {
-      console.log(err);
       console.log(err);
       dispatch({ type: 'GET_PRODUCTS_ERROR' });
     }
