@@ -10,6 +10,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (noodles.length) {
       simplereview();
+      console.log(noodles);
     }
   }, [noodles]);
 
