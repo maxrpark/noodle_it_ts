@@ -27,6 +27,7 @@ const products_reducer = (state: any, action: any) => {
       };
     case 'GET_PRODUCT_SUCCESS':
       const noodle = action.payload;
+      console.log(noodle);
       return {
         ...state,
         noodle: noodle,
