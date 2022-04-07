@@ -25,11 +25,8 @@ const Dashboard: React.FC = ({}) => {
       <div className='page-100'>
         <Wrapper>
           <h2>Welcome, {user.user_name}</h2>
-          {favoritesNoodles.length > 0 ? (
-            <CardSmall user={user} noodles={favoritesNoodles} />
-          ) : (
-            'favorites'
-          )}
+
+          <CardSmall user={user} noodles={favoritesNoodles} />
         </Wrapper>
       </div>
     );
