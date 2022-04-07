@@ -62,7 +62,6 @@ export const ProductsProvider: React.FC = ({ children }) => {
       const response = await axios.get(url);
       const noodles = response.data;
       dispatch({ type: 'GET_PRODUCTS_SUCCESS', payload: noodles });
-      console.log(noodles);
     } catch (err) {
       console.log(err);
       dispatch({ type: 'GET_PRODUCTS_ERROR' });
