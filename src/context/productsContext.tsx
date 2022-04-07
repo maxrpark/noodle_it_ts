@@ -81,7 +81,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    getNoodles(URL_NOODLES + 'noodles');
+    getNoodles(URL_NOODLES + 'noodles/');
   }, []);
 
   useEffect(() => {}, []);
