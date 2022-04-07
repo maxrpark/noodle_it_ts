@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       console.log(noodles);
     }
   }, [noodles]);
-
+  console.log(noodles);
   if (isProductsLoading) {
     return <Loading />;
   }
