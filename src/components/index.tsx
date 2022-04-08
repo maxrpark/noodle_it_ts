@@ -5,6 +5,7 @@ import ToogleTheme from './ToogleTheme';
 import Loading from './Loading';
 import Navbar from './Navbar';
 import NavbarUser from './NavbarUser';
+import HomeHero from './HomeHero';
 
 import Carrousel from './SingleNoodle/Carrousel';
 import NoodleInfo from './SingleNoodle/NoodleInfo';
@@ -23,4 +24,5 @@ export {
   Carrousel,
   NoodleTopSection,
   SingleNoodleMain,
+  HomeHero,
 };

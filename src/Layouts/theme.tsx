@@ -36,6 +36,12 @@ export const darkthem: DefaultTheme = {
 
 export const GlobalStyle = createGlobalStyle`
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --color-black-1: #1d1d1d;
   --border-radius-1: 5px;
@@ -43,6 +49,7 @@ export const GlobalStyle = createGlobalStyle`
   --box-shadow-1: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   --box-shadow-2: rgba(0, 0, 0, 0.2) 0px 6px 15px;
   --transition-1: all 0.3s ease-in-out;
+  --primary-font-family: 'Poppins', sans-serif;
 
   /* theme */
   --backgroung-color: #eeebd0;
@@ -67,8 +74,10 @@ export const GlobalStyle = createGlobalStyle`
 
 body{
   background: ${(props) => props.theme.mainColor};
+  font-family: var(--primary-font-family);
   transition: all 0.3s ease-in-out;
   color: ${(props) => props.theme.textColor}
+  
 }
 
 .description{
@@ -79,14 +88,6 @@ body{
   border-color: ${(props) => props.theme.textColor} !important;
   cursor: pointer;
 }
-
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 
 
 /* Globals */
@@ -239,5 +240,12 @@ li {
   }
   .form-link a{
     color: var(--special-color-1);
+  }
+
+  .container{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    padding: 1rem;
   }
 `;

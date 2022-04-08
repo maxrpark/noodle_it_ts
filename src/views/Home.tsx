@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { NoodleDetails } from '../context/globalContext';
 import { useProductsContext } from '../context/productsContext';
-import { Card, Loading } from '../components';
+import { Card, Loading, HomeHero } from '../components';
 import simplereview from 'simplereview';
 
 const Home: React.FC = () => {
@@ -13,14 +13,19 @@ const Home: React.FC = () => {
     }
   }, [noodles]);
 
+  console.log(noodles);
+
   if (isProductsLoading) {
     return <Loading />;
   }
   return (
-    <div className='page-100'>
-      {noodles.map((noodle: NoodleDetails) => {
-        return <Card key={noodle.id} noodle={noodle} />;
-      })}
+    <div>
+      <HomeHero />
+      <div className='container'>
+        {noodles.map((noodle: NoodleDetails) => {
+          return <Card key={noodle.id} noodle={noodle} />;
+        })}
+      </div>
     </div>
   );
 };

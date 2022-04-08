@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context/globalContext';
 import { BsFillSunFill, BsFillMoonStarsFill } from 'react-icons/bs';
 type Props = {};
 
-const ToogleTheme = (props: Props) => {
+const ToogleTheme: React.FC<Props> = (props: Props) => {
   const { toogleTheme, theme } = useGlobalContext();
 
   return (
