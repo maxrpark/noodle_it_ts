@@ -8,20 +8,13 @@ type Props = {};
 const HomeHero: React.FC<Props> = (props: Props) => {
   return (
     <Wrapper>
-      <video
-        className='hero-video'
-        // controls
-        autoPlay
-        muted
-        loop
-        src={videoHero}
-      />
+      <video className='hero-video' autoPlay muted loop src={videoHero} />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  border: 2px solid red;
+  border: 2px solid black;
   height: 70vh;
   width: 100%;
   position: relative;
@@ -32,6 +25,10 @@ const Wrapper = styled.div`
     height: 100%;
     width: 100%;
     object-fit: cover;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 

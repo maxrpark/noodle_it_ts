@@ -8,7 +8,7 @@ import { Loading } from '../components';
 
 const Category: React.FC = () => {
   const { slug } = useParams();
-  const fetchUrl = `categor/${slug}`;
+  const fetchUrl = `categories/${slug}`;
   const { isLoading, noodles } = useFetch(fetchUrl);
 
   if (isLoading) {

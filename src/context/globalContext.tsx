@@ -56,10 +56,9 @@ const AppProvider: React.FC = ({ children }) => {
   );
 
   const toogleTheme = () => {
-    setTheme((oldValue) => {
-      console.log(oldValue);
+    setTheme((oldTheme) => {
       let newValue;
-      if (oldValue === 'light') {
+      if (oldTheme === 'light') {
         newValue = 'dark';
       } else {
         newValue = 'light';
@@ -67,8 +66,6 @@ const AppProvider: React.FC = ({ children }) => {
       localStorage.setItem('theme', newValue);
       return newValue;
     });
-    // localStorage.setItem('theme', theme!);
-    // console.log(theme);
   };
 
   const closeModal = () => {
