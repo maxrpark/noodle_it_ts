@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import simplereview from 'simplereview';
 import simpleSlider from '@maxcoding/simpleslider';
 import axios from 'axios';
+import { URL_NOODLES } from '../utils/variables';
 
 export const useFetch = (url: string) => {
   const [noodles, setNoodles] = useState([]);
@@ -10,7 +11,7 @@ export const useFetch = (url: string) => {
 
   const getData = async () => {
     setIsLoading(true);
-    const response = axios(url);
+    const response = axios(URL_NOODLES + url);
     const data = await response;
     if (data && !data.data.error) {
       setNoodles(data.data);

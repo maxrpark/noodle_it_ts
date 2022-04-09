@@ -1,32 +1,19 @@
-import { useEffect } from 'react';
 import { NoodleDetails } from '../context/globalContext';
 import { useParams } from 'react-router-dom';
 
-import { useProductsContext } from '../context/productsContext';
-import simplereview from 'simplereview';
+import { useFetch } from '../customHooks/useFetch';
 
 // Components
 import Card from '../components/Card';
+import { Loading } from '../components';
 
 const Brand: React.FC = () => {
   const { slug } = useParams();
-  const { getNoodles, noodles, isProductsLoading, URL_NOODLES } =
-    useProductsContext();
-  const fetchUrl = `${URL_NOODLES}brand/${slug}`;
+  const fetchUrl = `brand/${slug}`;
+  const { isLoading, noodles } = useFetch(fetchUrl);
 
-  useEffect(() => {
-    getNoodles(fetchUrl);
-  }, []);
-
-  useEffect(() => {
-    if (noodles.length) {
-      simplereview();
-      console.log('fix');
-    }
-  }, [noodles]);
-
-  if (isProductsLoading) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <Loading />;
   }
   return (
     <div className='App'>
