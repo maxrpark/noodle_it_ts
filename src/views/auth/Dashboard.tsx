@@ -8,11 +8,9 @@ import { Loading, CardSmall } from '../../components';
 
 const Dashboard: React.FC = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
-  const [showFav, setShowFav] = useState(false);
 
   const showFavorites = () => {
     setTimeout(() => {
-      // setShowFav(true); // fix
       simplereview(); // fix
     }, 500);
   };
@@ -25,7 +23,6 @@ const Dashboard: React.FC = ({}) => {
       <div className='page-100'>
         <Wrapper>
           <h2>Welcome, {user.user_name}</h2>
-
           <CardSmall user={user} noodles={favoritesNoodles} />
         </Wrapper>
       </div>

@@ -70,6 +70,7 @@ const AppProvider: React.FC = ({ children }) => {
 
   const closeModal = () => {
     dispatch({ type: 'IS_MODAL_OPEN' });
+    document.body.style.overflow = 'scroll';
   };
 
   const showImage = (e: React.MouseEvent<HTMLImageElement>) => {

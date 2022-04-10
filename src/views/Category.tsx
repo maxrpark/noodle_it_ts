@@ -1,10 +1,8 @@
-import { NoodleDetails } from '../context/globalContext';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../customHooks/useFetch';
 
 // Components
-import Card from '../components/Card';
-import { Loading } from '../components';
+import { Card, Loading } from '../components';
 
 const Category: React.FC = () => {
   const { slug } = useParams();
@@ -16,9 +14,7 @@ const Category: React.FC = () => {
   }
   return (
     <div className='App'>
-      {noodles.map((noodle: NoodleDetails) => {
-        return <Card key={noodle.id} noodle={noodle} />;
-      })}
+      <Card noodles={noodles} />
     </div>
   );
 };

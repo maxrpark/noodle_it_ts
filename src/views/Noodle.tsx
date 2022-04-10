@@ -44,14 +44,14 @@ const Noodle: React.FC = () => {
         <SingleNoodleMain noodle={noodle} key={noodle.id} />
         <div className='related-noodles'>
           <h2>Recommended By Category</h2>
-          {relatedByCategory.map((noodle: NoodleDetails) => {
+          {/* {relatedByCategory.map((noodle: NoodleDetails) => {
             return <Card key={noodle.id} noodle={noodle} />;
           })}
 
           <h2>Recommended By Brand</h2>
           {relatedByBrand.map((noodle: NoodleDetails) => {
             return <Card key={noodle.id} noodle={noodle} />;
-          })}
+          })} */}
         </div>
       </Wrapper>
     );
