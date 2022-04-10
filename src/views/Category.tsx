@@ -9,6 +9,8 @@ const Category: React.FC = () => {
   const fetchUrl = `categories/${slug}`;
   const { isLoading, noodles } = useFetch(fetchUrl);
 
+  console.log(noodles);
+
   if (isLoading) {
     return <Loading />;
   }

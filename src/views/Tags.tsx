@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../customHooks/useFetch';
 // Components
-
 import { Card, Loading } from '../components';
 
 const Tags: React.FC = () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import simplereview from 'simplereview';
 import simpleSlider from '@maxcoding/simpleslider';
-import axios from 'axios';
 import { URL_NOODLES } from '../utils/variables';
 
 export const useFetch = (url: string) => {

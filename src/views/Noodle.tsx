@@ -1,29 +1,45 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-
 import { useUserContext } from '../context/userContext';
 import { NoodleDetails } from '../context/globalContext';
 import { useProductsContext } from '../context/productsContext';
 
-import { relatedBrand, relatedCategory } from '../utils/helperFunctions';
+import { relatedNoodles } from '../utils/helperFunctions';
 
 // components
-import { Card, Loading, SingleNoodleMain } from '../components/';
+import { CardSmall, Loading, SingleNoodleMain } from '../components/';
 
 const Noodle: React.FC = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
-  const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
   const { slug } = useParams();
 
-  const relatedByBrand = relatedBrand(noodles, noodle?.brand?.name);
-  const relatedByCategory = relatedCategory(noodles, noodle?.category);
+  const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
+  const [relatedNoodlesBrand, setRelatedNoodlesBrand] = useState(
+    [] as NoodleDetails[]
+  );
+  const [relatedNoodlesCategory, setRelatedNoodlesCategory] = useState(
+    [] as NoodleDetails[]
+  );
+
+  const relatedByBrand = relatedNoodles(noodles, 'brand', noodle?.brand?.name);
+
+  const relatedByCategory = relatedNoodles(
+    noodles,
+    'category',
+    noodle?.category
+  );
 
   useEffect(() => {
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
   }, [slug]);
+
+  useEffect(() => {
+    setRelatedNoodlesBrand(relatedByBrand);
+    setRelatedNoodlesCategory(relatedByCategory);
+  }, [noodle, noodles]); // fix
 
   if (isProductLoading) {
     return <Loading />;
@@ -44,14 +60,11 @@ const Noodle: React.FC = () => {
         <SingleNoodleMain noodle={noodle} key={noodle.id} />
         <div className='related-noodles'>
           <h2>Recommended By Category</h2>
-          {/* {relatedByCategory.map((noodle: NoodleDetails) => {
-            return <Card key={noodle.id} noodle={noodle} />;
-          })}
-
+          {/* <Card noodles={relatedNoodlesCategory} /> */}
+          <CardSmall user={null} noodles={relatedNoodlesCategory} />
           <h2>Recommended By Brand</h2>
-          {relatedByBrand.map((noodle: NoodleDetails) => {
-            return <Card key={noodle.id} noodle={noodle} />;
-          })} */}
+          {/* <Card noodles={relatedNoodlesBrand} /> */}
+          <CardSmall user={null} noodles={relatedNoodlesBrand} />
         </div>
       </Wrapper>
     );

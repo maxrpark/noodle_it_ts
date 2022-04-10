@@ -19,7 +19,7 @@ const Card: React.FC<Props> = ({ noodles }) => {
             <img className='img' src={noodle.images[0]} alt={noodle.name} />
             <div className='bottom'>
               <div className='bottom__details'>
-                <p className='rating-container'>
+                <p className='rating-container' id={noodle.name}>
                   Rating:
                   <span
                     className='simpleReview'

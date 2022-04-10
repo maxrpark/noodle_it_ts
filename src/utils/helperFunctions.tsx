@@ -1,13 +1,21 @@
 import { NoodleDetails } from '../context/globalContext';
 
-const relatedBrand = (noodles: NoodleDetails[], filterByName: {}) =>
-  noodles
-    .filter((item: NoodleDetails) => item.brand.name === filterByName)
-    .slice(0, 3);
+const relatedNoodles = (
+  noodles: NoodleDetails[],
+  filterByName: string,
+  stype: string
+) => {
+  let relatedNoodles: NoodleDetails[] = [];
+  if (filterByName === 'brand') {
+    relatedNoodles = noodles
+      .filter((item: NoodleDetails) => item.brand.name === stype)
+      .slice(0, 3);
+  } else if (filterByName === 'category') {
+    relatedNoodles = noodles.filter(
+      (item: NoodleDetails) => item.category === stype
+    );
+  }
+  return relatedNoodles;
+};
 
-const relatedCategory = (noodles: NoodleDetails[], filterByName: {}) =>
-  noodles
-    .filter((item: NoodleDetails) => item.category === filterByName)
-    .slice(0, 3);
-
-export { relatedBrand, relatedCategory };
+export { relatedNoodles };
