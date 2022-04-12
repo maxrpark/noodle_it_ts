@@ -45,7 +45,7 @@ const Noodle: React.FC = () => {
     return <Loading />;
   } else {
     return (
-      <Wrapper>
+      <Wrapper className='section-center'>
         {user && (
           <div>
             <span onClick={() => setUserFavoriteList(user.user_name, noodle)}>
@@ -86,8 +86,7 @@ const Wrapper = styled.div`
     margin-bottom: 1rem;
   }
   .instructions {
-    max-width: 600px;
-    margin: 1rem;
+    max-width: 600px; // fix
   }
   .section-one {
     max-width: 600px;
@@ -116,5 +115,15 @@ const Wrapper = styled.div`
   .heart {
     color: crimson;
     font-size: 2rem;
+  }
+
+  // ingredients
+  .ingredients {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .icon-scale {
+    transform: translateY(-2px);
   }
 `;

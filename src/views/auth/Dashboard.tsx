@@ -34,33 +34,4 @@ const Dashboard: React.FC = ({}) => {
 
 export default Dashboard;
 
-const Wrapper = styled.div`
-  /* favorites-noodles */
-  .favorites-noodles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    justify-content: center;
-    align-items: center;
-  }
-  /* single noodle */
-  .single-noodle {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 0.5px solid #ccc;
-    background: var(--color-primary);
-  }
-  img {
-    height: 150px;
-    object-fit: cover;
-    justify-self: flex-start;
-  }
-  .info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.2rem;
-    position: relative;
-  }
-`;
+const Wrapper = styled.div``;

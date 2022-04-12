@@ -66,13 +66,24 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 0.5px solid #ccc;
     background: var(--color-primary);
+    overflow: hidden;
+    transition: var(--transition-1);
+    border-radius: 5px;
+
+    :hover {
+      transform: scale(1.04);
+      /* img {
+        filter: contrast(0.5);
+      } */
+    }
   }
+
   img {
     height: 150px;
     object-fit: cover;
     justify-self: flex-start;
+    transition: var(--transition-1);
   }
   .info {
     display: flex;

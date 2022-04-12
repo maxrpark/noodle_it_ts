@@ -1,6 +1,6 @@
 import React from 'react';
 import { NoodleDetails } from '../../context/globalContext';
-
+import { GiKitchenScale } from 'react-icons/gi';
 type Props = {
   noodle: NoodleDetails;
 };
@@ -34,7 +34,8 @@ const NoodleInfo: React.FC<Props> = ({ noodle }) => {
       <h3>Ingredients</h3>
       {noodle.ingredients.map((ingredient: string) => {
         return (
-          <p key={ingredient}>
+          <p className='ingredients' key={ingredient}>
+            <GiKitchenScale className='icon-scale' />
             <span>{ingredient}</span>
           </p>
         );

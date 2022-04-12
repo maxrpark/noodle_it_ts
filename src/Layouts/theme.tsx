@@ -117,6 +117,7 @@ li {
   margin:1rem ;
 }
 
+
 @media screen and (min-width: 768px) {
   .main-section {
     display: flex;

@@ -35,9 +35,6 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
           <h3>Instructions</h3>
           <p>{noodle.instructions}</p>
         </div>
-        <Link to='/'>
-          <button className='back'>Back</button>
-        </Link>
       </div>
     </Wrapper>
   );
