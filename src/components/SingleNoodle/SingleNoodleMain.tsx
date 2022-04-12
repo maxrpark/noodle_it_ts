@@ -32,7 +32,7 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
           <NoodleInfo noodle={noodle} />
         </div>
         <div className='instructions'>
-          <h3>Instructions</h3>
+          <h3 className='noodles-section-title'>Instructions</h3>
           <p>{noodle.instructions}</p>
         </div>
       </div>
@@ -42,6 +42,9 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
 
 export default SingleNoodleMain;
 const Wrapper = styled.div`
+  background-color: white;
+  box-shadow: var(--box-shadow-1);
+  padding: 1rem;
   .model-img {
     width: 100%;
     height: 100%;
@@ -59,5 +62,8 @@ const Wrapper = styled.div`
     height: 90%;
     padding: 1rem;
     object-fit: contain;
+  }
+  .tags-container {
+    margin: 1rem;
   }
 `;

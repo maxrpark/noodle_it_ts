@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useUserContext } from '../context/userContext';
 import { NoodleDetails } from '../context/globalContext';
 import { useProductsContext } from '../context/productsContext';
@@ -14,9 +13,8 @@ import { CardSmall, Loading, SingleNoodleMain } from '../components/';
 const Noodle: React.FC = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
-  const { slug } = useParams();
 
-  const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
+  const { slug } = useParams();
   const [relatedNoodlesBrand, setRelatedNoodlesBrand] = useState(
     [] as NoodleDetails[]
   );
@@ -45,26 +43,15 @@ const Noodle: React.FC = () => {
     return <Loading />;
   } else {
     return (
-      <Wrapper className='section-center'>
-        {user && (
-          <div>
-            <span onClick={() => setUserFavoriteList(user.user_name, noodle)}>
-              {isFavoriteNoodle ? (
-                <AiFillHeart className='heart fill' />
-              ) : (
-                <AiOutlineHeart className='heart empty' />
-              )}
-            </span>
-          </div>
-        )}
+      <Wrapper>
         <SingleNoodleMain noodle={noodle} key={noodle.id} />
         <div className='related-noodles'>
-          <h2>Recommended By Category</h2>
-          {/* <Card noodles={relatedNoodlesCategory} /> */}
-          <CardSmall user={null} noodles={relatedNoodlesCategory} />
-          <h2>Recommended By Brand</h2>
-          {/* <Card noodles={relatedNoodlesBrand} /> */}
-          <CardSmall user={null} noodles={relatedNoodlesBrand} />
+          <div className='recommended-section'>
+            <h3 className='recommended-title'>Recommended By Category</h3>
+            <CardSmall user={null} noodles={relatedNoodlesCategory} />
+            <h3 className='recommended-title'>Recommended By Brand</h3>
+            <CardSmall user={null} noodles={relatedNoodlesBrand} />
+          </div>
         </div>
       </Wrapper>
     );
@@ -81,6 +68,23 @@ const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
   }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+  }
+  .noodles-section-title {
+    margin: 1rem 0;
+    border-bottom: 2px solid white;
+    padding-bottom: 0.5rem;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
   .description {
     text-align: center;
     margin-bottom: 1rem;
@@ -93,7 +97,6 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     justify-content: center;
     align-items: center;
   }
@@ -125,5 +128,14 @@ const Wrapper = styled.div`
   }
   .icon-scale {
     transform: translateY(-2px);
+  }
+
+  // recommended
+  .recommended-section {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .recommended-title {
+    margin: 1rem 0;
   }
 `;

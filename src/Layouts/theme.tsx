@@ -102,11 +102,11 @@ li {
 .img {
   width: 100%;
 }
-.section-center {
+/* .section-center {
   max-width: 960px;
   margin: 1rem auto;
   padding: 1rem;
-}
+} */
 .page-100 {
   height: 100vh;
   display: flex;
@@ -125,6 +125,12 @@ li {
     /* align-items: center; */
     gap: 2rem;
   }
+
+  .section-center {
+  max-width: 960px;
+  margin: 1rem auto;
+  padding: 1rem;
+}
 }
 
 /* BTN */

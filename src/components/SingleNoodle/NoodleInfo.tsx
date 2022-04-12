@@ -8,19 +8,16 @@ type Props = {
 const NoodleInfo: React.FC<Props> = ({ noodle }) => {
   return (
     <section className='info'>
-      <div>
-        <h3>Price & Amount</h3>
-        <p>
-          Price Per package: <span> ${noodle.price_per_package}</span>
-        </p>
-        <p>
-          Price Per unit: <span> ${noodle.price_per_unite}</span>
-        </p>
-        <p>
-          Amount Per Package: <span>{noodle.amount_per_package}</span>
-        </p>
-      </div>
-
+      <h3 className='noodles-section-title'>Information</h3>
+      <p>
+        Price Per package: <span> ${noodle.price_per_package}</span>
+      </p>
+      <p>
+        Price Per unit: <span> ${noodle.price_per_unite}</span>
+      </p>
+      <p>
+        Amount Per Package: <span>{noodle.amount_per_package}</span>
+      </p>
       <p>
         Spicy Level: <span>{noodle.spicy_level}</span>{' '}
       </p>
@@ -31,7 +28,7 @@ const NoodleInfo: React.FC<Props> = ({ noodle }) => {
         Brand: <span>{noodle.brand.name}</span>{' '}
       </p>
 
-      <h3>Ingredients</h3>
+      <h3 className='noodles-section-title'>Ingredients</h3>
       {noodle.ingredients.map((ingredient: string) => {
         return (
           <p className='ingredients' key={ingredient}>

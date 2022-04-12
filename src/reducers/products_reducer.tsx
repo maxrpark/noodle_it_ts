@@ -7,6 +7,7 @@ const products_reducer = (state: any, action: any) => {
       };
     case 'GET_PRODUCTS_SUCCESS':
       const noodles = action.payload;
+
       return {
         ...state,
         noodles: noodles,

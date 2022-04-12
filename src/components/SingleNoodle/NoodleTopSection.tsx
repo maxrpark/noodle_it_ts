@@ -1,16 +1,33 @@
 import React from 'react';
 import { NoodleDetails } from '../../context/globalContext';
 import { Link } from 'react-router-dom';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+
+import { useUserContext } from '../../context/userContext';
 
 type Props = {
   noodle: NoodleDetails;
 };
 
 const NoodleTopSection: React.FC<Props> = ({ noodle }) => {
+  const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
   return (
     <>
       <div className='top'>
-        <h2>{noodle.name}</h2>
+        <div className='title'>
+          <h2>{noodle.name}</h2>
+          {user && (
+            <div>
+              <span onClick={() => setUserFavoriteList(user.user_name, noodle)}>
+                {isFavoriteNoodle ? (
+                  <AiFillHeart className='heart fill' />
+                ) : (
+                  <AiOutlineHeart className='heart empty' />
+                )}
+              </span>
+            </div>
+          )}
+        </div>
         <span
           className='simpleReview'
           resultvalue={noodle.rating}
