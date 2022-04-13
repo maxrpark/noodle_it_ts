@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-
 import { useFetch } from '../customHooks/useFetch';
 
 // Components
@@ -14,7 +13,8 @@ const Brand: React.FC = () => {
     return <Loading />;
   }
   return (
-    <div className='App'>
+    <div className='section-center'>
+      <h1>{slug}</h1>
       <Card noodles={noodles} />
     </div>
   );

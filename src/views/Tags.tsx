@@ -12,7 +12,8 @@ const Tags: React.FC = () => {
     return <Loading />;
   }
   return (
-    <div className='App'>
+    <div className='section-center'>
+      <h1>{slug}</h1>
       <Card noodles={noodles} />
     </div>
   );

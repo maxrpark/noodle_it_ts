@@ -5,6 +5,21 @@ const products_reducer = (state: any, action: any) => {
         ...state,
         isProductsLoading: true,
       };
+    case 'GET_CATEGORIES_LIST':
+      const categoriesList = action.payload;
+      return {
+        ...state,
+        noodlesCategoryList: categoriesList,
+        isProductsLoading: false,
+      };
+    case 'GET_BRAND_LIST':
+      const noodlesBrandList = action.payload;
+
+      return {
+        ...state,
+        noodlesBrandList: noodlesBrandList,
+        isProductsLoading: false,
+      };
     case 'GET_PRODUCTS_SUCCESS':
       const noodles = action.payload;
 

@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useUserContext } from '../context/userContext';
 import { NoodleDetails } from '../context/globalContext';
 import { useProductsContext } from '../context/productsContext';
 
 import { relatedNoodles } from '../utils/helperFunctions';
-
 // components
 import { CardSmall, Loading, SingleNoodleMain } from '../components/';
 
@@ -23,7 +21,6 @@ const Noodle: React.FC = () => {
   );
 
   const relatedByBrand = relatedNoodles(noodles, 'brand', noodle?.brand?.name);
-
   const relatedByCategory = relatedNoodles(
     noodles,
     'category',

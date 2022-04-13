@@ -7,15 +7,15 @@ import { Card, Loading } from '../components';
 const Category: React.FC = () => {
   const { slug } = useParams();
   const fetchUrl = `categories/${slug}`;
-  const { isLoading, noodles } = useFetch(fetchUrl);
 
-  console.log(noodles);
+  const { isLoading, noodles } = useFetch(fetchUrl);
 
   if (isLoading) {
     return <Loading />;
   }
   return (
-    <div className='App'>
+    <div className='section-center'>
+      <h1>{slug}</h1>
       <Card noodles={noodles} />
     </div>
   );
