@@ -20,10 +20,10 @@ const Home: React.FC = () => {
     <>
       <HomeHero />
       <Card noodles={noodles} />
-      <SectionTitle title={'Categories'} urlPath='brand' />
-      <CardList noodles={noodlesCategoryList} type={'brand'} />
-      <SectionTitle title={'Brands'} urlPath='hello' />
-      <CardList noodles={noodlesBrandList} type={'category'} />
+      <SectionTitle title={'Categories'} urlPath='category' />
+      <CardList noodles={noodlesCategoryList} type={'category'} />
+      <SectionTitle title={'Brands'} urlPath='brand' />
+      <CardList noodles={noodlesBrandList} type={'brand'} />
     </>
   );
 };

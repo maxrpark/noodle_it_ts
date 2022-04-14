@@ -17,7 +17,6 @@ const ListPage: React.FC = () => {
     if (slug === 'brand') {
       setNoodles(noodlesBrandList);
       setIsLoading(false);
-      console.log('brand');
     }
   }, [slug]);
 
