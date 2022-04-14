@@ -102,20 +102,19 @@ li {
 .img {
   width: 100%;
 }
-/* .section-center {
-  max-width: 960px;
-  margin: 1rem auto;
-  padding: 1rem;
-} */
+
 .page-100 {
   height: 100vh;
+  margin:1rem ;
+}
+.center{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  margin:1rem ;
 }
+
+
 
 
 @media screen and (min-width: 768px) {
@@ -255,4 +254,40 @@ li {
     flex-direction: column;
     padding: 1rem;
   }
+
+
+  // noodles cards
+ .single-card {
+    width: 100%;
+    max-width: 300px;
+    box-shadow: var(--box-shadow-1);
+    border-radius: 5px;
+    transition: var(--transition-1);
+    background: ${(props) => props.theme.cardColor};
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
+    :hover {
+      box-shadow: var(--box-shadow-2);
+      transform: translate(0, -2px);
+    }
+  }
+    .card-img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    justify-self: flex-start;
+    transition: var(--transition-1);
+  }
+
+    .info {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2rem;
+    position: relative;
+  }
+
 `;

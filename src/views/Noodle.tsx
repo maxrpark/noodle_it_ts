@@ -97,10 +97,10 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
   }
-  .info p {
+  .single-noodle-info p {
     margin: 0.5rem 0;
   }
-  .info span {
+  .single-noodle-info span {
     color: ${(props) => props.theme.specialColor};
     font-weight: bold;
     text-transform: capitalize;

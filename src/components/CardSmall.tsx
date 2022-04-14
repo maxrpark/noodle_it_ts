@@ -17,11 +17,11 @@ const CardSmall: React.FC<Props> = ({ user, noodles }) => {
       <div className='favorites-noodles'>
         {noodles.map((noodle: NoodleDetails) => {
           return (
-            <div className='single-noodle' key={noodle.id}>
-              <Link to={`/noodle/${noodle.slug}`}>
+            <div className='single-card' key={noodle.id}>
+              <Link className='card-link' to={`/noodle/${noodle.slug}`}>
                 {noodle.images && (
                   <img
-                    className='img'
+                    className='card-img'
                     src={noodle.images[0]}
                     alt={noodle.name}
                   />
@@ -60,36 +60,11 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 2rem;
   }
-  /* single noodle */
-  .single-noodle {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: var(--color-primary);
-    overflow: hidden;
-    transition: var(--transition-1);
-    border-radius: 5px;
 
-    :hover {
-      transform: scale(1.04);
-      /* img {
-        filter: contrast(0.5);
-      } */
-    }
-  }
-
-  img {
-    height: 150px;
-    object-fit: cover;
-    justify-self: flex-start;
-    transition: var(--transition-1);
+  .card-link {
+    max-height: 150px;
   }
   .info {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0.2rem;
-    position: relative;
   }
 `;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useProductsContext } from '../context/productsContext';
-import { Card, Loading, HomeHero, CardList } from '../components';
+import { Card, Loading, HomeHero, CardList, SectionTitle } from '../components';
 import simplereview from 'simplereview';
 
 const Home: React.FC = () => {
@@ -20,9 +20,9 @@ const Home: React.FC = () => {
     <>
       <HomeHero />
       <Card noodles={noodles} />
-      <h2>Categories</h2>
+      <SectionTitle title={'Categories'} urlPath='brand' />
       <CardList noodles={noodlesCategoryList} type={'brand'} />
-      <h2>Brands</h2>
+      <SectionTitle title={'Brands'} urlPath='hello' />
       <CardList noodles={noodlesBrandList} type={'category'} />
     </>
   );

@@ -42,14 +42,14 @@ const ResultPage: React.FC = () => {
     }
   }, [state, search]);
   return (
-    <>
+    <div className='section-center page-100'>
       <form onSubmit={handleSearch}>
         <input type='text' ref={search} />
       </form>
       {userQuery.length ? <h1>Results for {userQuery}</h1> : <h1>Search</h1>}
       {noodles.length > 0 && <CardSmall user={null} noodles={noodles} />}
       <div></div>
-    </>
+    </div>
   );
 };
 

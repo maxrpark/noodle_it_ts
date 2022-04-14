@@ -48,7 +48,7 @@ const LogIn: React.FC = () => {
   }, [userAuth]);
 
   return (
-    <div className='page-100'>
+    <div className='page-100 center'>
       <h1>Log In</h1>
       <form className='user-form' onSubmit={handleSubmit}>
         <div className='form-control'>

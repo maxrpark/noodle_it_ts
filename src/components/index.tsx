@@ -7,6 +7,7 @@ import Loading from './Loading';
 import Navbar from './Navbar';
 import NavbarUser from './NavbarUser';
 import HomeHero from './HomeHero';
+import SectionTitle from './SectionTitle';
 
 import Carrousel from './SingleNoodle/Carrousel';
 import NoodleInfo from './SingleNoodle/NoodleInfo';
@@ -27,4 +28,5 @@ export {
   NoodleTopSection,
   SingleNoodleMain,
   HomeHero,
+  SectionTitle,
 };

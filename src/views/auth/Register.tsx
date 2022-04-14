@@ -40,7 +40,7 @@ const Register: React.FC = () => {
     }
   };
   return (
-    <div className='page-100'>
+    <div className='page-100 center'>
       <h1>Register</h1>
       <form className='user-form'>
         <div className='form-control'>

@@ -7,7 +7,7 @@ type Props = {
 
 const NoodleInfo: React.FC<Props> = ({ noodle }) => {
   return (
-    <section className='info'>
+    <section className='single-noodle-info'>
       <h3 className='noodles-section-title'>Information</h3>
       <p>
         Price Per package: <span> ${noodle.price_per_package}</span>

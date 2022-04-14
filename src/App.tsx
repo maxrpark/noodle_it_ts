@@ -14,6 +14,7 @@ import {
   Noodle,
   Tags,
   ResultPage,
+  ListPage,
 } from './views';
 // auth views
 import {
@@ -49,6 +50,7 @@ function App() {
               <Route path='/brand/:slug' element={<Brand />} />
               <Route path='/category/:slug' element={<Category />} />
               <Route path='/tags/:slug' element={<Tags />} />
+              <Route path='/list-page/:slug' element={<ListPage />} />
               <Route path='/search' element={<ResultPage />} />
               <Route path='/register' element={<UsersShareLayout />}>
                 <Route

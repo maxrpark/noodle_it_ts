@@ -5,5 +5,6 @@ import Category from './Category';
 import Tags from './Tags';
 import Error from './Error';
 import ResultPage from './ResultPage';
+import ListPage from './ListPage';
 
-export { Home, Noodle, Brand, Category, Tags, Error, ResultPage };
+export { Home, Noodle, Brand, Category, Tags, Error, ResultPage, ListPage };

@@ -10,7 +10,7 @@ const image =
 
 type Props = {
   noodles: List[];
-  type: string;
+  type: string | undefined;
 };
 
 const CardList: React.FC<Props> = ({ noodles, type }) => {
@@ -19,18 +19,20 @@ const CardList: React.FC<Props> = ({ noodles, type }) => {
       <Wrapper className='container'>
         {noodles.map((noodle) => {
           return (
-            <Link key={noodle.id} to={`${type}/${noodle.name}`}>
-              <div className='top'>
-                <p>{noodle.name}</p>
-              </div>
-              {/* <img className='img' src={''} alt={noodle.name} /> */}
+            <Link
+              className='single-card'
+              key={noodle.id}
+              to={`${type}/${noodle.slug}`}
+            >
               <img
-                className='img'
+                className='card-img'
                 src={noodle.image ? noodle.image : image}
                 alt={noodle.name}
               />
-              <div className='bottom'>
-                <div className='bottom__details'></div>
+              <div className='info'>
+                <div className='bottom__details'>
+                  <p>{noodle.name}</p>
+                </div>
               </div>
             </Link>
           );
@@ -41,35 +43,7 @@ const CardList: React.FC<Props> = ({ noodles, type }) => {
 };
 
 const Wrapper = styled.div`
-  a {
-    width: 100%;
-    max-width: 400px;
-    box-shadow: var(--box-shadow-1);
-    border-radius: 5px;
-    transition: var(--transition-1);
-    background: ${(props) => props.theme.cardColor};
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    overflow: hidden;
-    :hover {
-      box-shadow: var(--box-shadow-2);
-      transform: translate(0, -2px);
-    }
-  }
-  .top {
-    padding: 1rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 30px;
-    text-transform: capitalize;
-  }
-  .img {
-    height: 200px;
-    /* object-fit: contain; */
-    object-fit: cover;
-  }
+  // move styles to theme file
 `;
 
 export default CardList;
