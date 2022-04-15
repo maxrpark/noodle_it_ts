@@ -11,14 +11,17 @@ const ListPage: React.FC = () => {
   const [noodles, setNoodles] = useState([] as any);
   const [isLoading, setIsLoading] = useState(true);
 
-  // console.log(noodlesBrandList);
-
   useEffect(() => {
     if (slug === 'brand') {
       setNoodles(noodlesBrandList);
       setIsLoading(false);
     }
-  }, [slug]);
+    if (slug === 'category') {
+      setNoodles(noodlesCategoryList);
+      setIsLoading(false);
+    }
+    console.log(noodles);
+  }, [noodlesCategoryList, noodlesBrandList]);
 
   if (isLoading) {
     return <Loading />;
