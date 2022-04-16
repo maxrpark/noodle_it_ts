@@ -13,23 +13,28 @@ type Props = {
 const CardSmall: React.FC<Props> = ({ user, noodles }) => {
   const { setUserFavoriteList } = useUserContext();
   return (
-    <Wrapper>
-      <div className='favorites-noodles'>
-        {noodles.map((noodle: NoodleDetails) => {
-          return (
-            <div className='single-card' key={noodle.id}>
-              <Link className='card-link' to={`/noodle/${noodle.slug}`}>
-                {noodle.images && (
-                  <img
-                    className='card-img'
-                    src={noodle.images[0]}
-                    alt={noodle.name}
-                  />
-                )}
-              </Link>
-
-              <div className='info'>
+    <Wrapper className='cards-layout'>
+      {noodles.map((noodle: NoodleDetails) => {
+        return (
+          <div className='single-card' key={noodle.id}>
+            <Link className='card-link' to={`/noodle/${noodle.slug}`}>
+              <div className='top'>
                 <p>{noodle.name}</p>
+              </div>
+              {noodle.images && (
+                <img
+                  className='card-img'
+                  src={noodle.images[0]}
+                  alt={noodle.name}
+                />
+              )}
+            </Link>
+
+            <div className='bottom'>
+              <div className='bottom__details'>
+                <p className={`special-link ${noodle.category}`}>
+                  {noodle.category}
+                </p>
                 {!user ? (
                   <p>{noodle.price_per_package}</p>
                 ) : (
@@ -42,9 +47,9 @@ const CardSmall: React.FC<Props> = ({ user, noodles }) => {
                 )}
               </div>
             </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
     </Wrapper>
   );
 };
@@ -62,9 +67,32 @@ const Wrapper = styled.div`
   }
 
   .card-link {
-    max-height: 150px;
+    /* max-height: 150px; */
+    display: flex;
+    flex-direction: column;
   }
   .info {
-    justify-content: space-between;
+    justify-content: space-around;
+    font-size: 12px;
+  }
+
+  .top {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30px;
+    text-transform: capitalize;
+    font-size: 14px;
+  }
+
+  .bottom {
+    height: 100%;
+    padding: 0.5rem;
+    &__details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 `;

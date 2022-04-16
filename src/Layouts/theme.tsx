@@ -154,13 +154,17 @@ li {
 .special-link {
   color: #fff;
   height: 30px;
-  font-size: 1.2rem;
+  font-size: .9rem;
   font-weight: bold;
   background: #000;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.3rem;
   border-radius: var(--border-radius-1);
   box-shadow: var(--box-shadow-1);
+  -webkit-transition: var(--transition-1);
   transition: var(--transition-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .related-links,
 .tags-container {
@@ -202,11 +206,15 @@ li {
 .vegan {
   background: rgb(59, 147, 59);
 }
+.bibimmyeon {
+  background: rgba(5, 113, 110, 0.821);
+}
 
 /* heart */
 .heart {
   color: crimson;
   font-size: 2rem;
+      display: flex;
 }
 
 // form
@@ -257,6 +265,12 @@ li {
 
 
   // noodles cards
+  .cards-layout{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  place-content: center;
+  gap:1rem;
+  }
  .single-card {
     width: 100%;
     max-width: 300px;

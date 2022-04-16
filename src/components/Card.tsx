@@ -9,7 +9,7 @@ type Props = {
 
 const Card: React.FC<Props> = ({ noodles }) => {
   return (
-    <Wrapper className='container'>
+    <Wrapper className='cards-layout'>
       {noodles.map((noodle: NoodleDetails) => {
         return (
           <Link
@@ -56,6 +56,7 @@ const Wrapper = styled.div`
     align-items: center;
     height: 30px;
     text-transform: capitalize;
+    font-size: 14px;
   }
 
   .bottom {

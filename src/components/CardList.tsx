@@ -16,7 +16,7 @@ type Props = {
 const CardList: React.FC<Props> = ({ noodles, type }) => {
   return (
     <>
-      <Wrapper className='container'>
+      <Wrapper className='cards-layout'>
         {noodles.map((noodle) => {
           return (
             <Link
