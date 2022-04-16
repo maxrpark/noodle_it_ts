@@ -19,11 +19,13 @@ const Home: React.FC = () => {
   return (
     <>
       <HomeHero />
-      <Card noodles={noodles} />
-      <SectionTitle title={'Categories'} urlPath='category' />
-      <CardList noodles={noodlesCategoryList} type={'category'} />
-      <SectionTitle title={'Brands'} urlPath='brand' />
-      <CardList noodles={noodlesBrandList} type={'brand'} />
+      <div className='section-center'>
+        <Card noodles={noodles} />
+        <SectionTitle title={'Categories'} urlPath='category' />
+        <CardList noodles={noodlesCategoryList} type={'category'} />
+        <SectionTitle title={'Brands'} urlPath='brand' />
+        <CardList noodles={noodlesBrandList} type={'brand'} />
+      </div>
     </>
   );
 };

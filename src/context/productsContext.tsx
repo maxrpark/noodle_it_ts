@@ -82,7 +82,6 @@ export const ProductsProvider: React.FC = ({ children }) => {
       .then(([res1, res2, res3]) => {
         const noodles = res1.data;
         dispatch({ type: 'GET_PRODUCTS_SUCCESS', payload: noodles });
-
         const brandlist = res2.data;
         dispatch({ type: 'GET_BRAND_LIST', payload: brandlist });
 

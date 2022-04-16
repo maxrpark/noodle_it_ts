@@ -20,12 +20,14 @@ const PageTitle: React.FC<Props> = ({ title, children, image }) => {
 
 const Wrapper = styled.div`
   text-align: center;
-  height: 200px;
-  background: blue;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   h2 {
     /* display: none; */
   }

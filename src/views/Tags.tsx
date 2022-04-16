@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../customHooks/useFetch';
 // Components
-import { Card, Loading } from '../components';
+import { Card, Loading, PageTitle } from '../components';
 
 const Tags: React.FC = () => {
   const { slug } = useParams();
@@ -12,10 +12,12 @@ const Tags: React.FC = () => {
     return <Loading />;
   }
   return (
-    <div className='section-center'>
-      <h1>{slug}</h1>
-      <Card noodles={noodles} />
-    </div>
+    <>
+      <PageTitle title={slug} image={''} />
+      <div className='section-center page-100'>
+        <Card noodles={noodles} />
+      </div>
+    </>
   );
 };
 

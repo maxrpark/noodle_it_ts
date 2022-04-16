@@ -11,6 +11,7 @@ type Props = {
 
 const NoodleTopSection: React.FC<Props> = ({ noodle }) => {
   const { user, isFavoriteNoodle, setUserFavoriteList } = useUserContext();
+
   return (
     <>
       <div className='top'>

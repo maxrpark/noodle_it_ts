@@ -105,7 +105,6 @@ li {
 
 .page-100 {
   height: 100vh;
-  margin:1rem ;
 }
 .center{
   display: flex;
@@ -270,6 +269,7 @@ li {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   place-content: center;
   gap:1rem;
+  width: 100%;
   }
  .single-card {
     width: 100%;

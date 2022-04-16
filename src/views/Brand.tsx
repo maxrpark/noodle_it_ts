@@ -24,13 +24,12 @@ const Brand: React.FC = () => {
 
   useEffect(() => {
     noodlesBrandList.find((brand) => {
-      console.log(brand.slug);
-      console.log(slug);
       if (brand.slug === slug) {
         setBrandDetails(brand);
       }
     });
-  }, []);
+    console.log(brandDetails);
+  }, [noodlesBrandList]);
 
   if (isLoading) {
     return <Loading />;
