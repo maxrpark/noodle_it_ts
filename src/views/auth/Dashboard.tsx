@@ -20,7 +20,7 @@ const Dashboard: React.FC = ({}) => {
 
   if (user) {
     return (
-      <div className='page-100'>
+      <div className='section-center page-100'>
         <Wrapper>
           <h2>Welcome, {user.user_name}</h2>
           <CardSmall user={user} noodles={favoritesNoodles} />

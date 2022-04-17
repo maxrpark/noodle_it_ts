@@ -282,6 +282,7 @@ li {
     justify-content: space-between;
     flex-direction: column;
     overflow: hidden;
+    margin: 0 auto;
     :hover {
       box-shadow: var(--box-shadow-2);
       transform: translate(0, -2px);
