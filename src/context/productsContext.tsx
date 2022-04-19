@@ -90,7 +90,6 @@ export const ProductsProvider: React.FC = ({ children }) => {
           type: 'GET_CATEGORIES_LIST',
           payload: categoriesList,
         });
-        console.log(state);
       })
       .catch((err) => {
         dispatch({ type: 'GET_PRODUCTS_ERROR' });

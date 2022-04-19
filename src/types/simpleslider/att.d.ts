@@ -6,5 +6,6 @@ declare module 'react' {
     arrowsize?: any;
     arrowWeight?: any;
     arrowweight?: any;
+    height?: any;
   }
 }

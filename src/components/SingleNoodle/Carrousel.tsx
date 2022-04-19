@@ -13,7 +13,12 @@ const Carrousel: React.FC<Props> = ({ noodle }) => {
 
   return (
     <>
-      <section className='sliderContainer' arrowsize={3} arrowweight={10}>
+      <section
+        className='sliderContainer'
+        arrowsize={3}
+        arrowweight={10}
+        height={'400px'}
+      >
         {noodle.images.map((image: string) => {
           return (
             <div className='slide' key={image}>

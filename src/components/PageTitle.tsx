@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-bottom: 1rem;
   h2 {
     /* display: none; */
   }

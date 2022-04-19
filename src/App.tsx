@@ -12,6 +12,7 @@ import {
   Error,
   Home,
   Noodle,
+  Products,
   Tags,
   ResultPage,
   ListPage,
@@ -32,6 +33,18 @@ import { ThemeProvider } from 'styled-components';
 import { useGlobalContext } from './context/globalContext';
 
 import { GlobalStyle, lightTheme, darkthem } from './Layouts/theme';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const { userAuth } = useUserContext();
@@ -42,10 +55,12 @@ function App() {
       <div className='app'>
         {' '}
         <Router>
+          <ScrollToTop />
           {userAuth === null ? <Navbar /> : <NavbarUser />}
           <Routes>
             <Route path='/' element={<CommonLayout />}>
               <Route index element={<Home />} />
+              <Route path='/products/' element={<Products />} />
               <Route path='/noodle/:slug' element={<Noodle />} />
               <Route path='/brand/:slug' element={<Brand />} />
               <Route path='/category/:slug' element={<Category />} />

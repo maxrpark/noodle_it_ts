@@ -20,11 +20,12 @@ const Home: React.FC = () => {
     <>
       <HomeHero />
       <div className='section-center'>
-        <Card noodles={noodles} />
-        <SectionTitle title={'Categories'} urlPath='category' />
-        <CardList noodles={noodlesCategoryList} type={'category'} />
-        <SectionTitle title={'Brands'} urlPath='brand' />
-        <CardList noodles={noodlesBrandList} type={'brand'} />
+        <SectionTitle title={'Our Products'} urlPath='products' />
+        <Card noodles={noodles.slice(0, 6)} />
+        <SectionTitle title={'Categories'} urlPath='list-page/category' />
+        <CardList noodles={noodlesCategoryList.slice(0, 3)} type={'category'} />
+        <SectionTitle title={'Brands'} urlPath='list-page/brand' />
+        <CardList noodles={noodlesBrandList.slice(0, 3)} type={'brand'} />
       </div>
     </>
   );
