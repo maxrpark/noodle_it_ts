@@ -18,4 +18,25 @@ const relatedNoodles = (
   return relatedNoodles;
 };
 
-export { relatedNoodles };
+const getUniqueValues = (data: NoodleDetails[], type: string) => {
+  let unique = data.map((item: NoodleDetails | any) => item[type]);
+  if (type === 'brand') {
+    unique = unique.map((el: any) => {
+      return (el = el.name);
+    });
+  }
+  if (type === 'tags') {
+    let tagsList: any = [];
+    unique.map((el: any) => {
+      el.map((el: any) => {
+        tagsList.push(el);
+      });
+    });
+    unique = tagsList;
+    return ['all', ...new Set(unique)];
+  }
+
+  return ['all', ...new Set(unique)];
+};
+
+export { relatedNoodles, getUniqueValues };
