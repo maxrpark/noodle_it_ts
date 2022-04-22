@@ -26,14 +26,7 @@ const getUniqueValues = (data: NoodleDetails[], type: string) => {
     });
   }
   if (type === 'tags') {
-    let tagsList: any = [];
-    unique.map((el: any) => {
-      el.map((el: any) => {
-        tagsList.push(el);
-      });
-    });
-    unique = tagsList;
-    return ['all', ...new Set(unique)];
+    unique = unique.flat();
   }
 
   return ['all', ...new Set(unique)];

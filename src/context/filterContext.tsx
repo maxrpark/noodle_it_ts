@@ -11,7 +11,7 @@ interface FilterInterface {
   max_price: number;
   price: number;
   spicy_level: string;
-  tags: string;
+  tag: string;
 }
 interface FilterContextInterface {
   noodles: NoodleDetails[];
@@ -37,7 +37,7 @@ const inicialState = {
     max_price: 0,
     price: 0,
     spicy_level: 'all',
-    tags: 'all',
+    tag: 'all',
   },
   text: '',
 };
@@ -63,6 +63,15 @@ export const FilterProvider: React.FC = ({ children }) => {
 
     if (name === 'price') {
       value = Number(value);
+    }
+
+    if (name === 'tag') {
+      value = e.target.dataset.tag;
+    }
+
+    if (name === 'rating') {
+      value = e.target.dataset.rating;
+      // console.log(value);
     }
 
     dispatch({ type: 'UPDATE_FILTERS', payload: { name, value } });

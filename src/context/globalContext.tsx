@@ -22,6 +22,7 @@ export interface NoodleDetails {
   tags: string[];
   instructions: string;
   spicy_level: string;
+  spicy_level_number: number;
 }
 
 interface UseContextInterface {

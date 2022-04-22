@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFilterContext } from '../context/filterContext';
-import { CardSmall, Loading, CardList } from '../components';
-// import simplereview from 'simplereview';
+import { Loading, Card } from '../components';
+import simplereview from 'simplereview';
 import styled from 'styled-components';
 
 import { getUniqueValues } from '../utils/helperFunctions';
@@ -13,7 +13,16 @@ const Products: React.FC = (props: Props) => {
     all_products,
     filtered_products,
     sort,
-    filters: { text, category, brand, min_price, max_price, price },
+    filters: {
+      text,
+      category,
+      brand,
+      min_price,
+      max_price,
+      price,
+      tag,
+      rating,
+    },
     updateSort,
     updateFilters,
     clearFilters,
@@ -21,7 +30,13 @@ const Products: React.FC = (props: Props) => {
 
   const categories = getUniqueValues(all_products, 'category');
   const brands = getUniqueValues(all_products, 'brand');
-  // const tags = getUniqueValues(all_products, 'tags');
+  const tags = getUniqueValues(all_products, 'tags');
+  const ratingList = ['all', '1', '2', '3', '4', '5'];
+
+  useEffect(() => {
+    simplereview();
+    console.log('render');
+  }, [filtered_products]);
 
   if (all_products.length === 0) {
     return (
@@ -89,7 +104,7 @@ const Products: React.FC = (props: Props) => {
               name='brand'
               value={brand}
               onChange={updateFilters}
-              className='company'
+              className='brand'
             >
               {brands.map((c, index) => {
                 return (
@@ -115,15 +130,80 @@ const Products: React.FC = (props: Props) => {
             />
           </div>
           {/* end of price */}
+          {/* tags */}
+          <div className='form-control'>
+            <h5>Tags</h5>
+            <div className='tags'>
+              {tags.map((tag, index) => {
+                if (tag === 'all') {
+                  return (
+                    <button
+                      key={index}
+                      name='tag'
+                      onClick={updateFilters}
+                      data-tag='all'
+                    >
+                      {/* className={`${color === 'all' ? 'all-btn active' : 'all-btn'}`} */}
+                      all
+                    </button>
+                  );
+                }
+                return (
+                  <button
+                    key={index}
+                    name='tag'
+                    data-tag={tag}
+                    onClick={updateFilters}
+                  >
+                    {/* className={`${ color === c ? 'color-btn active' : 'color-btn' }`} */}
+                    {/* {color === c ? <FaCheck /> : null} */}
+                    {tag}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          {/* end of tags */}
+          {/* rating */}
+          <div className='form-control'>
+            <h5>rating</h5>
+            <div className='rating'>
+              {ratingList.map((star, index) => {
+                if (star === 'all') {
+                  return (
+                    <button
+                      key={index}
+                      name='rating'
+                      onClick={updateFilters}
+                      data-rating='all'
+                    >
+                      {star}
+                    </button>
+                  );
+                }
+                return (
+                  <button
+                    key={index}
+                    name='rating'
+                    data-rating={star}
+                    onClick={updateFilters}
+                  >
+                    {star}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          {/* end of rating */}
         </form>
       </div>
       <button type='button' className='clear-btn' onClick={clearFilters}>
         {' '}
-        clear filters
+        clear all
       </button>
 
       <div className='section-center'>
-        <CardSmall user={null} noodles={filtered_products} />
+        <Card noodles={filtered_products} />
       </div>
     </Wrapper>
   );

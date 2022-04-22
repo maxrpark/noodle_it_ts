@@ -20,6 +20,22 @@ const Noodle: React.FC = () => {
     [] as NoodleDetails[]
   );
 
+  ///////////////
+  // move to helper functions
+  const [numberOfNoodlesIcons, setNumberOfNoodlesIcons] = useState(
+    [] as number[]
+  );
+
+  let spicyLevelArray: number[] = [];
+  const createSpicyLevelArray = (spicyLevelNumber: number) => {
+    for (let i = 0; i < spicyLevelNumber; i++) {
+      spicyLevelArray.push(i);
+    }
+    setNumberOfNoodlesIcons(spicyLevelArray);
+  };
+
+  ///////////////
+
   const relatedByBrand = relatedNoodles(noodles, 'brand', noodle?.brand?.name);
   const relatedByCategory = relatedNoodles(
     noodles,
@@ -28,6 +44,7 @@ const Noodle: React.FC = () => {
   );
 
   useEffect(() => {
+    createSpicyLevelArray(noodle?.spicy_level_number);
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
   }, [slug]);
 
