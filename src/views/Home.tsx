@@ -22,8 +22,11 @@ const Home: React.FC = () => {
       <div className='section-center'>
         <SectionTitle title={'Our Products'} urlPath='products' />
         <Card noodles={noodles.slice(0, 6)} />
-        <SectionTitle title={'Categories'} urlPath='list-page/category' />
-        <CardList noodles={noodlesCategoryList.slice(0, 3)} type={'category'} />
+        <SectionTitle title={'Categories'} urlPath='list-page/categories' />
+        <CardList
+          noodles={noodlesCategoryList.slice(0, 3)}
+          type={'categories'}
+        />
         <SectionTitle title={'Brands'} urlPath='list-page/brand' />
         <CardList noodles={noodlesBrandList.slice(0, 3)} type={'brand'} />
       </div>

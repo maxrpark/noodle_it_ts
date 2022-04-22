@@ -22,7 +22,7 @@ const CardList: React.FC<Props> = ({ noodles, type }) => {
             <Link
               className='single-card'
               key={noodle.id}
-              to={`${type}/${noodle.slug}`}
+              to={`/noodles/${type}/${noodle.slug}`}
             >
               <img
                 className='card-img'

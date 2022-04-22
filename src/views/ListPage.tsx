@@ -16,7 +16,7 @@ const ListPage: React.FC = () => {
       setNoodles(noodlesBrandList);
       setIsLoading(false);
     }
-    if (slug === 'category') {
+    if (slug === 'categories') {
       setNoodles(noodlesCategoryList);
       setIsLoading(false);
     }
@@ -30,7 +30,7 @@ const ListPage: React.FC = () => {
   return (
     <div className='section-center'>
       <h1>{slug}</h1>
-      <CardList noodles={noodles} type={`/${slug}`} />
+      <CardList noodles={noodles} type={`${slug}`} />
     </div>
   );
 };

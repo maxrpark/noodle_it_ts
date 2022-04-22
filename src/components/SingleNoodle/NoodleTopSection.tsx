@@ -36,13 +36,13 @@ const NoodleTopSection: React.FC<Props> = ({ noodle }) => {
         ></span>
         <div className='related-links'>
           <Link
-            to={`/category/${noodle.category}`}
+            to={`/noodles/categories/${noodle.category}`}
             className={`special-link ${noodle.category}`}
           >
             {noodle.category}
           </Link>
           <Link
-            to={`/brand/${noodle.brand.slug}`}
+            to={`/noodles/brand/${noodle.brand.slug}`}
             className={`special-link ${noodle.brand.name}`}
           >
             {noodle.brand.slug}

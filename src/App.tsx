@@ -7,8 +7,6 @@ import { CommonLayout, UsersShareLayout } from './Layouts/';
 
 // views
 import {
-  Brand,
-  Category,
   Error,
   Home,
   Noodle,
@@ -16,6 +14,7 @@ import {
   Tags,
   ResultPage,
   ListPage,
+  NoodlesType,
 } from './views';
 // auth views
 import {
@@ -61,9 +60,8 @@ function App() {
             <Route path='/' element={<CommonLayout />}>
               <Route index element={<Home />} />
               <Route path='/products/' element={<Products />} />
+              <Route path='/noodles/:query/:slug' element={<NoodlesType />} />
               <Route path='/noodle/:slug' element={<Noodle />} />
-              <Route path='/brand/:slug' element={<Brand />} />
-              <Route path='/category/:slug' element={<Category />} />
               <Route path='/tags/:slug' element={<Tags />} />
               <Route path='/list-page/:slug' element={<ListPage />} />
               <Route path='/search' element={<ResultPage />} />
