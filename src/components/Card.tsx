@@ -32,6 +32,7 @@ const Card: React.FC<Props> = ({ noodles }) => {
                   <span
                     className='simpleReview'
                     resultvalue={noodle.rating}
+                    id={noodle.slug}
                   ></span>
                 </p>
                 <p className={`special-link ${noodle.category}`}>

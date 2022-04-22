@@ -48,8 +48,10 @@ const filter_reducer = (state: any, action: any) => {
 
     case 'FILTER_PRODUCTS':
       const { all_products } = state;
-      const { text, category, brand, rating, price, tag } = state.filters;
+      const { text, category, brand, rating, price, tag, spicy_level } =
+        state.filters;
       let tempFilteredProducts = [...all_products];
+
       // search
       if (text) {
         tempFilteredProducts = tempFilteredProducts.filter((noodle) => {
@@ -77,6 +79,12 @@ const filter_reducer = (state: any, action: any) => {
       tempFilteredProducts = tempFilteredProducts.filter(
         (noodle) => noodle.price_per_package <= price
       );
+      // spicy_level
+      if (spicy_level !== 'all') {
+        tempFilteredProducts = tempFilteredProducts.filter(
+          (noodle) => noodle.spicy_level_number == spicy_level
+        );
+      }
       // tags
       if (tag !== 'all') {
         tempFilteredProducts = tempFilteredProducts.filter((noodle) => {
@@ -86,8 +94,6 @@ const filter_reducer = (state: any, action: any) => {
 
       // rating
       if (rating !== 'all') {
-        console.log(rating);
-
         tempFilteredProducts = tempFilteredProducts.filter(
           (noodle) => noodle.rating == rating
         );
@@ -96,8 +102,6 @@ const filter_reducer = (state: any, action: any) => {
       return { ...state, filtered_products: tempFilteredProducts };
 
     case 'CLEAR_FILTERS':
-      console.log('hey');
-      console.log(state.filters.tag);
       return {
         ...state,
         filters: {
@@ -107,6 +111,7 @@ const filter_reducer = (state: any, action: any) => {
           category: 'all',
           price: state.filters.max_price,
           tag: 'all',
+          spicy_level: 'all',
           rating: 'all',
         },
       };

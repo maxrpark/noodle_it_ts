@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useFilterContext } from '../context/filterContext';
 
+import { IconsList } from '../components/index';
+
 import styled from 'styled-components';
 import Sort from './Sort';
 
@@ -19,7 +21,7 @@ const Filters: React.FC = (props: Props) => {
   const categories = getUniqueValues(all_products, 'category');
   const brands = getUniqueValues(all_products, 'brand');
   const tags = getUniqueValues(all_products, 'tags');
-  const ratingList = ['all', '1', '2', '3', '4', '5'];
+  const rankingList = ['all', '1', '2', '3', '4', '5'];
   return (
     <Wrapper>
       <div className='filter-section'>
@@ -131,7 +133,7 @@ const Filters: React.FC = (props: Props) => {
           <div className='form-control'>
             <h5>rating</h5>
             <div className='rating'>
-              {ratingList.map((star, index) => {
+              {rankingList.map((star, index) => {
                 if (star === 'all') {
                   return (
                     <button
@@ -150,10 +152,44 @@ const Filters: React.FC = (props: Props) => {
                     type='button'
                     key={index}
                     name='rating'
-                    data-rating={star}
                     onClick={updateFilters}
+                    data-rating={star}
                   >
-                    {star}
+                    {/* {star} */}
+                    <IconsList iconType={''} numberOfIcons={+star} />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          {/* end of rating */}
+          {/* Spicy */}
+          <div className='form-control'>
+            <h5>Spacy</h5>
+            <div className='rating'>
+              {rankingList.map((pepper, index) => {
+                if (pepper === 'all') {
+                  return (
+                    <button
+                      type='button'
+                      key={index}
+                      name='spicy_level'
+                      onClick={updateFilters}
+                      data-spicy_level='all'
+                    >
+                      {pepper}
+                    </button>
+                  );
+                }
+                return (
+                  <button
+                    type='button'
+                    key={index}
+                    name='spicy_level'
+                    onClick={updateFilters}
+                    data-spicy_level={pepper}
+                  >
+                    <IconsList iconType={'pepper'} numberOfIcons={+pepper} />
                   </button>
                 );
               })}

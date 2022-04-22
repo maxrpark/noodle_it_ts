@@ -79,6 +79,9 @@ body{
   color: ${(props) => props.theme.textColor}
   
 }
+.icons{
+   pointer-events: none;
+}
 
 .description{
  color: ${(props) => props.theme.textColor}

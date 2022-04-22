@@ -11,24 +11,7 @@ const Products: React.FC = (props: Props) => {
 
   useEffect(() => {
     simplereview();
-
-    // const arrayOfCards = gsap.utils.toArray('.single-card');
-    // if (filtered_products.length) {
-    //   gsap.set(arrayOfCards, {
-    //     duration: 0.2,
-    //     scale: 0.9,
-    //     opacity: 0,
-    //   });
-    //   let tl = gsap.timeline();
-    //   tl.to(arrayOfCards, {
-    //     scale: 1,
-    //     opacity: 1,
-    //     stagger: 0.17,
-    //     ease: 'easyInOut',
-    //   });
-    // }
-    console.log('hello');
-  }, [filtered_products]);
+  }, [all_products, filtered_products]);
 
   if (all_products.length === 0) {
     return (
