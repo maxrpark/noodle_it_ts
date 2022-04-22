@@ -9,6 +9,8 @@ import NavbarUser from './NavbarUser';
 import HomeHero from './HomeHero';
 import PageTitle from './PageTitle';
 import SectionTitle from './SectionTitle';
+import Filters from './Filters';
+import Sort from './Sort';
 
 import Carrousel from './SingleNoodle/Carrousel';
 import NoodleInfo from './SingleNoodle/NoodleInfo';
@@ -31,4 +33,6 @@ export {
   HomeHero,
   SectionTitle,
   PageTitle,
+  Filters,
+  Sort,
 };

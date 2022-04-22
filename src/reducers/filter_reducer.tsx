@@ -103,11 +103,11 @@ const filter_reducer = (state: any, action: any) => {
         filters: {
           ...state.filters,
           text: '',
-          company: 'all',
+          brand: 'all',
           category: 'all',
           price: state.filters.max_price,
-          shipping: false,
           tag: 'all',
+          rating: 'all',
         },
       };
     default:
