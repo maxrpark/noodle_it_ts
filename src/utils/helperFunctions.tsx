@@ -7,15 +7,15 @@ const relatedNoodles = (
 ) => {
   let relatedNoodles: NoodleDetails[] = [];
   if (filterByName === 'brand') {
-    relatedNoodles = noodles
-      .filter((item: NoodleDetails) => item.brand.name === stype)
-      .slice(0, 3);
+    relatedNoodles = noodles.filter(
+      (item: NoodleDetails) => item.brand.name === stype
+    );
   } else if (filterByName === 'category') {
     relatedNoodles = noodles.filter(
       (item: NoodleDetails) => item.category === stype
     );
   }
-  return relatedNoodles;
+  return relatedNoodles.slice(0, 3);
 };
 
 const getUniqueValues = (data: NoodleDetails[], type: string) => {

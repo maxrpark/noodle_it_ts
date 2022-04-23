@@ -17,7 +17,6 @@ const NavbarUser: React.FC = () => {
   const handleSearch = async (e: any) => {
     e.preventDefault();
     if (search.current?.value.length) {
-      console.log(search.current.value);
       try {
         const response = await axios.get(
           'https://noodles-api.herokuapp.com/api/v1/search/?query=' +

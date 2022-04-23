@@ -36,8 +36,10 @@ const Wrapper = styled.div`
   /* Footer */
   footer {
     height: 100px;
-    color: ${(props) => props.theme.textColor};
-    background-color: var(--primary-color-4);
+    /* color: ${(props) => props.theme.textColor}; */
+    color: var(--color-white-1);
+    background-color: var(--color-black-1);
+    /* background-color: ${(props) => props.theme.mainColor}; */
     display: grid;
     place-content: center;
     margin-top: 2rem;
@@ -45,11 +47,7 @@ const Wrapper = styled.div`
     text-align: center;
   }
   footer a {
-    color: var(--primary-white);
+    color: crimson;
     text-decoration: underline;
-  }
-  footer a:hover {
-    color: var(--primary-color-2);
-    letter-spacing: normal;
   }
 `;

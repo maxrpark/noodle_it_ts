@@ -22,6 +22,10 @@ const Filters: React.FC = (props: Props) => {
   const brands = getUniqueValues(all_products, 'brand');
   const tags = getUniqueValues(all_products, 'tags');
   const rankingList = ['all', '1', '2', '3', '4', '5'];
+  useEffect(() => {
+    clearFilters();
+  }, []);
+
   return (
     <Wrapper>
       <div className='filter-section'>

@@ -20,7 +20,7 @@ const NoodleInfo: React.FC<Props> = ({ noodle }) => {
       <p>
         Amount Per Package: <span>{noodle.amount_per_package}</span>
       </p>
-      <div>
+      <div className='spicy-level'>
         Spicy Level:{' '}
         <IconsList
           iconType={'pepper'}

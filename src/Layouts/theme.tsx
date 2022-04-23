@@ -21,7 +21,7 @@ export const lightTheme: DefaultTheme = {
   specialColor: 'var(--special-color-1)',
   cardColor: 'var( --primary-white)',
 
-  linkColors: '',
+  linkColors: 'var(--special-color-1)',
 };
 
 export const darkthem: DefaultTheme = {
@@ -31,7 +31,7 @@ export const darkthem: DefaultTheme = {
   secondaryColor: 'var(--main-light-color-3)',
   specialColor: 'var(--special-color-1)',
   cardColor: 'var(--main-dark-color-1)',
-  linkColors: '',
+  linkColors: 'var(--special-color-1)',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -43,6 +43,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 :root {
+  --color-white-1: #fff;
   --color-black-1: #1d1d1d;
   --border-radius-1: 5px;
   --border-radius-2: 10px;
@@ -98,6 +99,12 @@ a {
   text-decoration: none;
   color: ${(props) => props.theme.textColor};
 }
+.link{
+  color: ${(props) => props.theme.linkColors};
+  :hover{
+    opacity: 0.8;
+  }
+}
 li {
   list-style: none;
 }
@@ -107,7 +114,7 @@ li {
 }
 
 .page-100 {
-  height: 100vh;
+  min-height: 100vh;
 }
 .center{
   display: flex;
@@ -210,6 +217,9 @@ li {
 }
 .bibimmyeon {
   background: rgba(5, 113, 110, 0.821);
+}
+.spicy {
+  background: #ff0000de;
 }
 
 /* heart */

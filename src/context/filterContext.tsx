@@ -71,11 +71,9 @@ export const FilterProvider: React.FC = ({ children }) => {
 
     if (name === 'rating') {
       value = e.target.dataset.rating;
-      console.log(value);
     }
     if (name === 'spicy_level') {
       value = e.target.dataset.spicy_level;
-      console.log(value);
     }
 
     dispatch({ type: 'UPDATE_FILTERS', payload: { name, value } });

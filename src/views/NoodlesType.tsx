@@ -36,7 +36,6 @@ const NoodlesType: React.FC = () => {
         }
       });
     }
-    console.log(resultDetails);
   }, [noodlesBrandList]);
 
   if (isLoading) {

@@ -20,7 +20,6 @@ const ListPage: React.FC = () => {
       setNoodles(noodlesCategoryList);
       setIsLoading(false);
     }
-    console.log(noodles);
   }, [noodlesCategoryList, noodlesBrandList]);
 
   if (isLoading) {

@@ -9,17 +9,28 @@ type Props = {
 
 const SectionTitle: React.FC<Props> = ({ title, urlPath }) => {
   return (
-    <Wrapper className='container'>
-      <h2>{title}</h2>
-      <Link to={`/${urlPath}`}>{title}</Link>
+    <Wrapper>
+      <h2 className=''>{title}</h2>
+      <Link className='link' to={`/${urlPath}`}>
+        see all
+      </Link>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  .title {
-    font-size: 1.5rem;
-    margin: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  h2 {
+    font-size: 1.25rem;
+  }
+  a {
+    text-transform: capitalize;
+    text-decoration: underline;
   }
 `;
 

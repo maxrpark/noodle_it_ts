@@ -21,7 +21,7 @@ const Products: React.FC = (props: Props) => {
     );
   }
   return (
-    <Wrapper>
+    <Wrapper className='page-100'>
       <div className='section-center'>
         <Filters />
         <Card noodles={filtered_products} />
@@ -30,11 +30,6 @@ const Products: React.FC = (props: Props) => {
   );
 };
 
-const Wrapper = styled.div`
-  /* .single-card {
-    opacity: 0;
-    transform: scale(0.9);
-  } */
-`;
+const Wrapper = styled.div``;
 
 export default Products;

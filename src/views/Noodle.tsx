@@ -6,7 +6,12 @@ import { useProductsContext } from '../context/productsContext';
 
 import { relatedNoodles } from '../utils/helperFunctions';
 // components
-import { CardSmall, Loading, SingleNoodleMain } from '../components/';
+import {
+  CardSmall,
+  Loading,
+  SingleNoodleMain,
+  SectionTitle,
+} from '../components/';
 
 const Noodle: React.FC = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
@@ -44,9 +49,15 @@ const Noodle: React.FC = () => {
         <SingleNoodleMain noodle={noodle} key={noodle.id} />
         <div className='related-noodles'>
           <div className='recommended-section'>
-            <h3 className='recommended-title'>Recommended By Category</h3>
+            <SectionTitle
+              title={'Recommended By Category'}
+              urlPath={`noodles/categories/${noodle.category}`}
+            />
             <CardSmall user={null} noodles={relatedNoodlesCategory} />
-            <h3 className='recommended-title'>Recommended By Brand</h3>
+            <SectionTitle
+              title={'Recommended By Brand'}
+              urlPath={`noodles/brand/${noodle.brand.slug}`}
+            />
             <CardSmall user={null} noodles={relatedNoodlesBrand} />
           </div>
         </div>
@@ -134,5 +145,12 @@ const Wrapper = styled.div`
   }
   .recommended-title {
     margin: 1rem 0;
+  }
+  /* /spicy-level */
+  .spicy-level {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.2rem;
   }
 `;
