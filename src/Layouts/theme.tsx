@@ -285,7 +285,7 @@ li {
   }
  .single-card {
     width: 100%;
-    max-width: 300px;
+    /* height: 250px; */
     box-shadow: var(--box-shadow-1);
     border-radius: 5px;
     transition: var(--transition-1);
@@ -302,10 +302,13 @@ li {
   }
     .card-img {
     width: 100%;
-    max-height: 150px;
+    height: 200px;
+    /* max-height:250px; */
     object-fit: cover;
     justify-self: flex-start;
     transition: var(--transition-1);
+    overflow: hidden;
+  
   }
 
     .info {

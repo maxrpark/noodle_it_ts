@@ -3,11 +3,19 @@ import simplereview from 'simplereview';
 import styled from 'styled-components';
 
 import { useUserContext } from '../../context/userContext';
-
-import { Loading, CardSmall, SectionTitle } from '../../components';
+import { Loading, CardSmall, SectionTitle, PageTitle } from '../../components';
 
 const Dashboard: React.FC = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
+  const [showMoreFav, setShowMoreFav] = useState(3);
+
+  const toogleFavList = () => {
+    if (showMoreFav === 3) {
+      setShowMoreFav(favoritesNoodles.length);
+    } else {
+      setShowMoreFav(3);
+    }
+  };
 
   const showFavorites = () => {
     setTimeout(() => {
@@ -20,13 +28,20 @@ const Dashboard: React.FC = ({}) => {
 
   if (user) {
     return (
-      <div className='section-center page-100'>
-        <Wrapper>
+      <Wrapper>
+        <PageTitle title={'DashBoard'} image={''}></PageTitle>
+        <div className='section-center page-100'>
           <h2>Welcome, {user.user_name}</h2>
-          <SectionTitle title={'My Favorites'} urlPath='' />
-          <CardSmall user={user} noodles={favoritesNoodles} />
-        </Wrapper>
-      </div>
+          <div className='favSection'>
+            <SectionTitle title={'My Favorites'} urlPath='' />
+            <button onClick={toogleFavList}>show More</button>
+          </div>
+          <CardSmall
+            user={user}
+            noodles={favoritesNoodles.slice(0, showMoreFav)}
+          />
+        </div>
+      </Wrapper>
     );
   } else {
     return <Loading />;
@@ -35,4 +50,15 @@ const Dashboard: React.FC = ({}) => {
 
 export default Dashboard;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.main`
+  h2 {
+    text-align: center;
+  }
+  .favSection {
+    display: flex;
+    justify-content: space-between;
+  }
+  button {
+    margin: 1rem;
+  }
+`;

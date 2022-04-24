@@ -24,15 +24,13 @@ const NoodlesType: React.FC = () => {
   const [resultDetails, setResultDetails] = useState({} as ResultDetails);
   useEffect(() => {
     if (query === 'brand') {
-      noodlesBrandList.find((brand) => {
-        if (brand.slug === slug) {
-          setResultDetails(brand);
-        }
-      });
-    } else if (query === 'categories') {
-      noodlesCategoryList.find((category) => {
-        if (category.slug === slug) {
-          setResultDetails(category);
+      noodlesBrandList.find((type) => {
+        if (query === 'brand' && type.slug === slug) {
+          setResultDetails(type);
+        } else if (query === 'brand' && type.slug === slug) {
+          if (type.slug === slug) {
+            setResultDetails(type);
+          }
         }
       });
     }
