@@ -124,8 +124,6 @@ li {
 }
 
 
-
-
 @media screen and (min-width: 768px) {
   .main-section {
     display: flex;
@@ -283,6 +281,7 @@ li {
   place-content: center;
   gap:1rem;
   width: 100%;
+  padding: 1rem;
   }
  .single-card {
     width: 100%;
@@ -316,6 +315,10 @@ li {
     align-items: center;
     padding: 0.2rem;
     position: relative;
+  }
+
+    .bottom__details {
+    text-transform: capitalize;
   }
 
 `;

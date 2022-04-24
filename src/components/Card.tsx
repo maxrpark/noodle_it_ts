@@ -28,7 +28,7 @@ const Card: React.FC<Props> = ({ noodles }) => {
             <div className='bottom'>
               <div className='bottom__details'>
                 <p className='rating-container' id={noodle.name}>
-                  Rating:
+                  rating:
                   <span
                     className='simpleReview'
                     resultvalue={noodle.rating}
@@ -58,6 +58,9 @@ const Wrapper = styled.div`
     height: 30px;
     text-transform: capitalize;
     font-size: 14px;
+    p {
+      text-align: center;
+    }
   }
 
   .bottom {

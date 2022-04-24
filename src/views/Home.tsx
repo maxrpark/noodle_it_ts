@@ -20,7 +20,7 @@ const Home: React.FC = () => {
     <>
       <HomeHero />
       <div className='section-center'>
-        <SectionTitle title={'Our Products'} urlPath='products' />
+        <SectionTitle title={'All Products'} urlPath='products' />
         <Card noodles={noodles.slice(0, 6)} />
         <SectionTitle title={'Categories'} urlPath='list-page/categories' />
         <CardList

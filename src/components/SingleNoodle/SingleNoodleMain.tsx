@@ -22,7 +22,7 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
               <h3>Tags: </h3>
               {noodle.tags.map((tag: string) => {
                 return (
-                  <Link to={`/tags/${tag}`} className='tag' key={tag}>
+                  <Link to={`/noodles/tags/${tag}`} className='tag' key={tag}>
                     #{tag}
                   </Link>
                 );

@@ -42,14 +42,15 @@ const NoodlesType: React.FC = () => {
     return <Loading />;
   }
   return (
-    <>
-      <PageTitle title={resultDetails.name} image={resultDetails.image}>
+    <section className='page-100'>
+      {/* fix info  for tags */}
+      <PageTitle title={slug} image={resultDetails.image}>
         <p>{resultDetails.description}</p>
       </PageTitle>
       <div className='section-center'>
         <Card noodles={noodles} />
       </div>
-    </>
+    </section>
   );
 };
 

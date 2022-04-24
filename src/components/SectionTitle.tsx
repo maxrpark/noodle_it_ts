@@ -12,7 +12,7 @@ const SectionTitle: React.FC<Props> = ({ title, urlPath }) => {
     <Wrapper>
       <h2 className=''>{title}</h2>
       <Link className='link' to={`/${urlPath}`}>
-        see all
+        see more
       </Link>
     </Wrapper>
   );
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   padding: 1rem;
   h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
   a {
     text-transform: capitalize;
