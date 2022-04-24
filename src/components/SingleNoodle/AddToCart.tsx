@@ -33,7 +33,7 @@ const AddToCart: React.FC<Props> = ({}) => {
           increase={increase}
           decrease={decrease}
         />
-        <Link to='/cart' className='btn'>
+        <Link to={'#'} className='btn'>
           {/* onClick={() => addToCart(id, mainColor, amount, product)} */}
           add to cart
         </Link>
@@ -42,6 +42,13 @@ const AddToCart: React.FC<Props> = ({}) => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 export default AddToCart;
