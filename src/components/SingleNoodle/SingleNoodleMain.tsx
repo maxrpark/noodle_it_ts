@@ -5,7 +5,12 @@ import styled from 'styled-components';
 
 // Component
 
-import { Carrousel, NoodleInfo, NoodleTopSection } from '../../components/';
+import {
+  Carrousel,
+  NoodleInfo,
+  NoodleTopSection,
+  AddToCart,
+} from '../../components/';
 type Props = {
   noodle: NoodleDetails;
 };
@@ -35,6 +40,9 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
           <h3 className='noodles-section-title'>Instructions</h3>
           <p>{noodle.instructions}</p>
         </div>
+        <hr />
+        <h3 className='noodles-section-title'>Add To card</h3>
+        <AddToCart />
       </div>
     </Wrapper>
   );

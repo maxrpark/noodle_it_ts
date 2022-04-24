@@ -47,6 +47,7 @@ const Noodle: React.FC = () => {
     return (
       <Wrapper>
         <SingleNoodleMain noodle={noodle} key={noodle.id} />
+
         <div className='related-noodles'>
           <div className='recommended-section'>
             <SectionTitle

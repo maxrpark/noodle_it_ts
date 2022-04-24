@@ -12,13 +12,16 @@ import SectionTitle from './SectionTitle';
 import Filters from './Filters';
 import Sort from './Sort';
 import IconsList from './IconsList';
+import AmountButtons from './AmountButtons';
 
+import AddToCart from './SingleNoodle/AddToCart';
 import Carrousel from './SingleNoodle/Carrousel';
 import NoodleInfo from './SingleNoodle/NoodleInfo';
 import NoodleTopSection from './SingleNoodle/NoodleTopSection';
 import SingleNoodleMain from './SingleNoodle/SingleNoodleMain';
 
 export {
+  AddToCart,
   Card,
   CardSmall,
   CardList,
@@ -37,4 +40,5 @@ export {
   Filters,
   Sort,
   IconsList,
+  AmountButtons,
 };
