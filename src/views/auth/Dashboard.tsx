@@ -34,7 +34,10 @@ const Dashboard: React.FC = ({}) => {
           <h2>Welcome, {user.user_name}</h2>
           <div className='favSection'>
             <SectionTitle title={'My Favorites'} urlPath='' />
-            <button onClick={toogleFavList}>show More</button>
+
+            <button className='link' onClick={toogleFavList}>
+              {showMoreFav === 3 ? 'Show More' : 'Show Less'}
+            </button>
           </div>
           <CardSmall
             user={user}
@@ -56,9 +59,13 @@ const Wrapper = styled.main`
   }
   .favSection {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
   button {
     margin: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
 `;

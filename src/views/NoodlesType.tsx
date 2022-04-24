@@ -41,7 +41,6 @@ const NoodlesType: React.FC = () => {
   }
   return (
     <section className='page-100'>
-      {/* fix info  for tags */}
       <PageTitle title={slug} image={resultDetails.image}>
         <p className='dsc'>{resultDetails.description}</p>
       </PageTitle>
