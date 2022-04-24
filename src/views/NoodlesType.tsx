@@ -20,8 +20,8 @@ const NoodlesType: React.FC = () => {
   const { slug, query } = useParams();
   const fetchUrl = `${query}/${slug}`;
   const { isLoading, noodles } = useFetch(fetchUrl);
-  const [resultDetails, setResultDetails] = useState({} as ResultDetails);
 
+  const [resultDetails, setResultDetails] = useState({} as ResultDetails);
   useEffect(() => {
     if (query === 'brand') {
       noodlesBrandList.find((brand) => {
@@ -36,7 +36,7 @@ const NoodlesType: React.FC = () => {
         }
       });
     }
-  }, [noodlesBrandList]);
+  }, [noodlesBrandList, noodlesCategoryList]);
 
   if (isLoading) {
     return <Loading />;
@@ -45,7 +45,7 @@ const NoodlesType: React.FC = () => {
     <section className='page-100'>
       {/* fix info  for tags */}
       <PageTitle title={slug} image={resultDetails.image}>
-        <p>{resultDetails.description}</p>
+        <p className='dsc'>{resultDetails.description}</p>
       </PageTitle>
       <div className='section-center'>
         <Card noodles={noodles} />

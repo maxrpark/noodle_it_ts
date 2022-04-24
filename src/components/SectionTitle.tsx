@@ -11,9 +11,11 @@ const SectionTitle: React.FC<Props> = ({ title, urlPath }) => {
   return (
     <Wrapper>
       <h2 className=''>{title}</h2>
-      <Link className='link' to={`/${urlPath}`}>
-        see more
-      </Link>
+      {urlPath && (
+        <Link className='link' to={`/${urlPath}`}>
+          see more
+        </Link>
+      )}
     </Wrapper>
   );
 };

@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import noodle_it_img from '../assets/media/noodle_it_img.jpg';
+
 // Components
-import { CardList, Loading } from '../components';
+import { CardList, Loading, PageTitle } from '../components';
 import { useProductsContext } from '../context/productsContext';
 
 const ListPage: React.FC = () => {
@@ -12,7 +14,7 @@ const ListPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (slug === 'brand') {
+    if (slug === 'brands') {
       setNoodles(noodlesBrandList);
       setIsLoading(false);
     }
@@ -27,10 +29,12 @@ const ListPage: React.FC = () => {
   }
 
   return (
-    <div className='section-center'>
-      <h1>{slug}</h1>
-      <CardList noodles={noodles} type={`${slug}`} />
-    </div>
+    <main className='page-100'>
+      <PageTitle title={slug} image={noodle_it_img} />
+      <div className='section-center'>
+        <CardList noodles={noodles} type={`${slug}`} />
+      </div>
+    </main>
   );
 };
 

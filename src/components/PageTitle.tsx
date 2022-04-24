@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import noodle_it_img from '../assets/media/noodle_it_img.jpg';
+
 type Props = {
   title: string | undefined;
   image: string | undefined;
@@ -8,8 +10,12 @@ type Props = {
 
 const PageTitle: React.FC<Props> = ({ title, children, image }) => {
   const style = image
-    ? { backgroundImage: `url(${image})` }
-    : { backgroundColor: '#f5f5f5' };
+    ? {
+        backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0.2), rgba(117, 19, 93, 0.33)), url(${image})`,
+      }
+    : {
+        backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0.2), rgba(117, 19, 93, 0.33)), url(${noodle_it_img})`,
+      };
   return (
     <Wrapper style={style}>
       <h1>{title}</h1>
@@ -29,8 +35,14 @@ const Wrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 1rem;
-  h2 {
-    /* display: none; */
+  h1 {
+    font-size: 10vw;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-transform: capitalize;
+  }
+  .dsc {
+    color: white;
   }
 `;
 

@@ -27,7 +27,7 @@ const Home: React.FC = () => {
           noodles={noodlesCategoryList.slice(0, 3)}
           type={'categories'}
         />
-        <SectionTitle title={'Brands'} urlPath='list-page/brand' />
+        <SectionTitle title={'Brands'} urlPath='list-page/brands' />
         <CardList noodles={noodlesBrandList.slice(0, 3)} type={'brand'} />
       </div>
     </>

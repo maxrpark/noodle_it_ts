@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { useUserContext } from '../../context/userContext';
 
-import { Loading, CardSmall } from '../../components';
+import { Loading, CardSmall, SectionTitle } from '../../components';
 
 const Dashboard: React.FC = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
@@ -23,6 +23,7 @@ const Dashboard: React.FC = ({}) => {
       <div className='section-center page-100'>
         <Wrapper>
           <h2>Welcome, {user.user_name}</h2>
+          <SectionTitle title={'My Favorites'} urlPath='' />
           <CardSmall user={user} noodles={favoritesNoodles} />
         </Wrapper>
       </div>
