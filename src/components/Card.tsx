@@ -28,7 +28,6 @@ const Card: React.FC<Props> = ({ noodles }) => {
             <div className='bottom'>
               <div className='bottom__details'>
                 <p className='rating-container' id={noodle.name}>
-                  rating:
                   <span
                     className='simpleReview'
                     resultvalue={noodle.rating}
