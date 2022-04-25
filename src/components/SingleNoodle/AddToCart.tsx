@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-// import { AmountButtons}
+import { useCartContext } from '../../context/cartContext';
 import { NoodleDetails } from '../../context/globalContext';
 import { AmountButtons } from '../../components/';
 import { Link } from 'react-router-dom';
@@ -11,13 +11,14 @@ type Props = {
 
 const AddToCart: React.FC<Props> = ({ noodle }) => {
   const [amount, setAmount] = useState(1);
-  const { id, name } = noodle;
+  const { addToCartFunc } = useCartContext();
+  const { id } = noodle;
 
-  const addToCartFunc = (id: any, name: any) => {
-    console.log('add to cart');
-    console.log(id);
-    console.log(name);
-  };
+  // const addToCartFunc = (id: any, name: any) => {
+  //   console.log('add to cart');
+  //   console.log(id);
+  //   console.log(name);
+  // };
 
   // useEffect
   const increase = () => {
@@ -44,7 +45,12 @@ const AddToCart: React.FC<Props> = ({ noodle }) => {
           increase={increase}
           decrease={decrease}
         />
-        <button onClick={() => addToCartFunc(id, name)}>Add to cart</button>
+        <button
+          className='btn'
+          onClick={() => addToCartFunc(id, noodle, amount)}
+        >
+          Add to cart
+        </button>
         {/* <Link to={'#'} className='btn' onClick={() => addToCartFunc(id, name)}>
           add to cart
         </Link> */}
