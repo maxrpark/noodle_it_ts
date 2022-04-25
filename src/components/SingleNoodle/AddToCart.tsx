@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import { AmountButtons}
+import { NoodleDetails } from '../../context/globalContext';
 import { AmountButtons } from '../../components/';
 import { Link } from 'react-router-dom';
 
-type Props = {};
+type Props = {
+  noodle: NoodleDetails;
+};
 
-const AddToCart: React.FC<Props> = ({}) => {
+const AddToCart: React.FC<Props> = ({ noodle }) => {
   const [amount, setAmount] = useState(1);
+  const { id, name } = noodle;
 
+  const addToCartFunc = (id: any, name: any) => {
+    console.log('add to cart');
+    console.log(id);
+    console.log(name);
+  };
+
+  // useEffect
   const increase = () => {
     setAmount((oldAmount) => {
       let tempAmount = oldAmount + 1;
@@ -33,10 +44,10 @@ const AddToCart: React.FC<Props> = ({}) => {
           increase={increase}
           decrease={decrease}
         />
-        <Link to={'#'} className='btn'>
-          {/* onClick={() => addToCart(id, mainColor, amount, product)} */}
+        <button onClick={() => addToCartFunc(id, name)}>Add to cart</button>
+        {/* <Link to={'#'} className='btn' onClick={() => addToCartFunc(id, name)}>
           add to cart
-        </Link>
+        </Link> */}
       </div>
     </Wrapper>
   );

@@ -42,7 +42,7 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
         </div>
         <hr />
         {/* <h3 className='noodles-section-title'>Add To card</h3> */}
-        <AddToCart />
+        <AddToCart noodle={noodle} />
       </div>
     </Wrapper>
   );

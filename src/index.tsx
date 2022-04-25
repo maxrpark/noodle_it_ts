@@ -6,6 +6,7 @@ import {
   ProductsProvider,
   UserProvider,
   FilterProvider,
+  CartProvider,
 } from './context';
 
 ReactDOM.render(
@@ -14,7 +15,9 @@ ReactDOM.render(
       <ProductsProvider>
         <UserProvider>
           <FilterProvider>
-            <App />
+            <CartProvider>
+              <App />
+            </CartProvider>
           </FilterProvider>
         </UserProvider>
       </ProductsProvider>
