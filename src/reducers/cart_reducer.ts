@@ -68,7 +68,6 @@ const cart_reducer = (state: any, action: any) => {
           total_amount: 0,
         }
       );
-      console.log(state);
       return { ...state, total_items, total_amount };
 
     default:

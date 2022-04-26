@@ -1,6 +1,7 @@
 import Card from './Card';
 import CardSmall from './CardSmall';
 import CardList from './CardList';
+import CartContent from './CartContent';
 import Footer from './Footer';
 import ToogleTheme from './ToogleTheme';
 import Loading from './Loading';
@@ -25,6 +26,7 @@ export {
   Card,
   CardSmall,
   CardList,
+  CartContent,
   Footer,
   ToogleTheme,
   Loading,

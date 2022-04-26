@@ -12,8 +12,15 @@ const getLocalStorage = () => {
   }
 };
 
+interface CartContent {
+  id: string;
+  image: string;
+  name: string;
+  price: string;
+}
 interface CartInterface {
-  cart: {};
+  // cart: CartContent[];
+  cart: CartContent[];
   total_items: number;
   total_amount: number;
   addToCartFunc: (
