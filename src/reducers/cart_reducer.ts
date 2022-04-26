@@ -28,13 +28,20 @@ const cart_reducer = (state: any, action: any) => {
         return { ...state, cart: [...state.cart, newItem] };
       }
 
-    case 'TOGGLE_CART_ITEM_AMOUNT':
+    case 'CLEAR_CART':
       return { ...state, cart: [] };
+
+    case 'REMOVE_CART_ITEM':
+      const tempCartState = state.cart.filter(
+        (item: any) => item.id !== action.payload
+      );
+      return { ...state, cart: tempCartState };
 
     case 'TOGGLE_CART_ITEM_AMOUNT':
       const { ID, value } = action.payload;
       const tempCart = state.cart.map((item: any) => {
         if (item.id === ID) {
+          console.log(ID);
           if (value === 'inc') {
             let newAmount = item.amount + 1;
             if (newAmount > item.max) {

@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useCartContext } from '../context/cartContext';
+import { AmountButtons } from '../components';
+import { FaTrash } from 'react-icons/fa';
 
 interface Props {
   cart: any;
@@ -14,6 +17,14 @@ interface CartContent {
 }
 
 const CartContent: React.FC<Props> = ({ cart }) => {
+  const { removeItem, toggleAmount } = useCartContext();
+
+  // const increase = (id) => {
+  //   toggleAmount(id, 'inc');
+  // };
+  // const decrease = () => {
+  //   toggleAmount(id, 'dec');
+  // };
   return (
     <Wrapper>
       {cart.map((item: CartContent) => {
@@ -22,6 +33,19 @@ const CartContent: React.FC<Props> = ({ cart }) => {
             <img src={item.image} alt='' />
             <p>{item.name}</p>
             <p>{item.amount}</p>
+            <AmountButtons
+              amount={+item.amount}
+              increase={() => toggleAmount(item.id, 'inc')}
+              decrease={() => toggleAmount(item.id, 'dec')}
+            />
+            {/* <h5 className='subtotal'>{formatPrice(price * amount)}</h5> */}
+            <button
+              type='button'
+              className='remove-btn'
+              onClick={() => removeItem(item.id)}
+            >
+              <FaTrash />
+            </button>
           </div>
         );
       })}

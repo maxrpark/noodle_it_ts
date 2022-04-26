@@ -29,7 +29,7 @@ interface CartInterface {
     amount: number
   ) => void;
   removeItem: (id: string | number) => void;
-  toggleAmount: (id: string | number, value: number) => void;
+  toggleAmount: (id: string | number, value: string) => void;
   clearCart: () => void;
 }
 
@@ -64,9 +64,8 @@ export const CartProvider: React.FC = ({ children }) => {
   };
 
   // toggle amount
-  const toggleAmount = (id: string | number, value: number) => {
-    console.log(id, value);
-    dispatch({ type: 'TOGGLE_CART_ITEM_AMOUNT', payload: { id, value } });
+  const toggleAmount = (ID: string | number, value: string) => {
+    dispatch({ type: 'TOGGLE_CART_ITEM_AMOUNT', payload: { ID, value } });
   };
   // clear cart
   const clearCart = () => {
