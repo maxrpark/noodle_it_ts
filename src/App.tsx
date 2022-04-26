@@ -12,6 +12,7 @@ import {
   Noodle,
   Products,
   ResultPage,
+  Cart,
   ListPage,
   NoodlesType,
 } from './views';
@@ -61,6 +62,7 @@ function App() {
               <Route path='/products/' element={<Products />} />
               <Route path='/noodles/:query/:slug' element={<NoodlesType />} />
               <Route path='/noodle/:slug' element={<Noodle />} />
+              <Route path='/cart' element={<Cart />} />
               <Route path='/list-page/:slug' element={<ListPage />} />
               <Route path='/search' element={<ResultPage />} />
               <Route path='/register' element={<UsersShareLayout />}>

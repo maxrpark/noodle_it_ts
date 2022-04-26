@@ -13,9 +13,9 @@ const getLocalStorage = () => {
 };
 
 interface CartInterface {
-  // cart: {};
-  // total_items: number;
-  // total_amount: number;
+  cart: {};
+  total_items: number;
+  total_amount: number;
   addToCartFunc: (
     id: string | number,
     noodle: NoodleDetails,
@@ -72,7 +72,7 @@ export const CartProvider: React.FC = ({ children }) => {
   }, [state.cart]);
   return (
     <CartContext.Provider
-      value={{ addToCartFunc, removeItem, toggleAmount, clearCart }}
+      value={{ ...state, addToCartFunc, removeItem, toggleAmount, clearCart }}
     >
       {children}
     </CartContext.Provider>
