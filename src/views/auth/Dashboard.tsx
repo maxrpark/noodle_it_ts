@@ -34,10 +34,11 @@ const Dashboard: React.FC = ({}) => {
           <h2>Welcome, {user.user_name}</h2>
           <div className='favSection'>
             <SectionTitle title={'My Favorites'} urlPath='' />
-
-            <button className='link' onClick={toogleFavList}>
-              {showMoreFav === 3 ? 'Show More' : 'Show Less'}
-            </button>
+            {favoritesNoodles.length > 3 && (
+              <button className='link' onClick={toogleFavList}>
+                {showMoreFav === 3 ? 'Show More' : 'Show Less'}
+              </button>
+            )}
           </div>
           <CardSmall
             user={user}

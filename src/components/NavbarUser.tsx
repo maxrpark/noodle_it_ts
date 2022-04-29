@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 import { ToogleTheme } from '../components';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -54,7 +54,9 @@ const NavbarUser: React.FC = () => {
         <button onClick={logOutUser}>Logout</button>
         <NavLink to={'/dashboard'}>Profile</NavLink>
         <ToogleTheme />
-        <FaShoppingCart />
+        <Link to={'/cart'}>
+          <FaShoppingCart />
+        </Link>
       </div>
     </Wrapper>
   );

@@ -24,6 +24,9 @@ const cart_reducer = (state: any, action: any) => {
           amount,
           image: noodle.images[0],
           price: noodle.price_per_package,
+          brand: noodle.brand.name,
+          category: noodle.category,
+          rating: noodle.rating,
         };
         return { ...state, cart: [...state.cart, newItem] };
       }
@@ -75,7 +78,36 @@ const cart_reducer = (state: any, action: any) => {
           total_amount: 0,
         }
       );
-      return { ...state, total_items, total_amount };
+
+      let user_descount = (state.descount / 100) * total_amount;
+      let total_amount_WD = total_amount - user_descount;
+
+      return {
+        ...state,
+        total_items,
+        total_amount,
+        total_with_descount: total_amount_WD,
+      };
+
+    case 'CHECK_COUPON':
+      let descount_value = 0;
+      if (action.payload === 'BUY_NOW') {
+        descount_value = 10;
+      } else if (action.payload === 'ON_FIRE') {
+        descount_value = 20;
+      } else if (action.payload === 'NOODLE_IT_CRAZY_DAYS') {
+        descount_value = 10;
+      }
+
+      let current_descount = (descount_value / 100) * state.total_amount;
+      let total_amount_with_discount = state.total_amount - current_descount;
+
+      return {
+        ...state,
+        descount: descount_value,
+        has_descount: true,
+        total_with_descount: total_amount_with_discount,
+      };
 
     default:
       return state;

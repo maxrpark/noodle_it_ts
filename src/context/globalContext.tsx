@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useContext, useReducer, useState } from 'react';
 import global_reducer from '../reducers/global_reducer';
 interface Brand {
@@ -28,6 +28,7 @@ export interface NoodleDetails {
 interface UseContextInterface {
   isModalOpen: boolean;
   selectedImg: string;
+  coupon_code: string;
   closeModal: () => void;
   showImage: (e: React.MouseEvent<HTMLImageElement>) => void;
   theme: string;
@@ -37,11 +38,13 @@ interface UseContextInterface {
 export interface InicialState {
   isModalOpen: boolean;
   selectedImg: string;
+  coupon_code: string;
 }
 
 const initialState: InicialState = {
   isModalOpen: false,
   selectedImg: '',
+  coupon_code: '',
 };
 
 const AppContext = React.createContext({} as UseContextInterface);
@@ -69,6 +72,22 @@ const AppProvider: React.FC = ({ children }) => {
     });
   };
 
+  const createCouponCode = () => {
+    const day = new Date().getDate();
+    let descountType;
+
+    if (day <= 10) {
+      descountType = 'BUY_NOW';
+    } else if (day > 10 && day <= 25) {
+      descountType = 'ON_FIRE';
+    } else {
+      descountType = 'CRAZY_DAYS';
+    }
+
+    const couponCode = `NOODLE_IT_${descountType}`;
+    dispatch({ type: 'COUPON_CODE', payload: couponCode });
+  };
+
   const closeModal = () => {
     dispatch({ type: 'IS_MODAL_OPEN' });
     document.body.style.overflow = 'scroll';
@@ -79,6 +98,10 @@ const AppProvider: React.FC = ({ children }) => {
     dispatch({ type: 'OPEN_WITH_IMG', payload: img.src });
     document.body.style.overflow = 'hidden';
   };
+
+  useEffect(() => {
+    createCouponCode();
+  }, []);
 
   return (
     <AppContext.Provider

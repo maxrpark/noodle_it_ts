@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useReducer } from 'react';
 
 import { NoodleDetails } from './productsContext';
+import { useGlobalContext } from '../context/globalContext';
 import cart_reducer from '../reducers/cart_reducer';
 
 const getLocalStorage = () => {
@@ -17,12 +18,18 @@ interface CartContent {
   image: string;
   name: string;
   price: string;
+  brand: string;
+  category: string;
+  rating: string;
+  amount: number;
 }
 interface CartInterface {
-  // cart: CartContent[];
   cart: CartContent[];
   total_items: number;
   total_amount: number;
+  total_with_descount: number;
+  descount: number;
+  has_descount: boolean;
   addToCartFunc: (
     id: string | number,
     noodle: NoodleDetails,
@@ -31,20 +38,23 @@ interface CartInterface {
   removeItem: (id: string | number) => void;
   toggleAmount: (id: string | number, value: string) => void;
   clearCart: () => void;
+  check_coupon: (userCodeInput: string) => void;
 }
 
 const initialState = {
   cart: getLocalStorage(),
-  // filtered_products: [] as NoodleDetails[],
   total_items: 0,
   total_amount: 0,
+  total_with_descount: 0,
+  has_descount: false,
+  descount: 0,
 };
 
 const CartContext = React.createContext({} as CartInterface);
 
 export const CartProvider: React.FC = ({ children }) => {
-  // add to cart
   const [state, dispatch] = useReducer(cart_reducer, initialState as any);
+  const { coupon_code } = useGlobalContext(); // check
 
   const addToCartFunc = (
     id: string | number,
@@ -53,7 +63,6 @@ export const CartProvider: React.FC = ({ children }) => {
   ) => {
     dispatch({
       type: 'ADD_TO_CART',
-
       payload: { id, amount, noodle },
     });
   };
@@ -72,13 +81,24 @@ export const CartProvider: React.FC = ({ children }) => {
     dispatch({ type: 'CLEAR_CART' });
   };
 
+  const check_coupon = (userCodeInput: string) => {
+    dispatch({ type: 'CHECK_COUPON', payload: userCodeInput });
+  };
+
   useEffect(() => {
     dispatch({ type: 'COUNT_CART_TOTALS' });
     localStorage.setItem('cart', JSON.stringify(state.cart));
-  }, [state.cart]);
+  }, [state.cart, state.total_with_descount]);
   return (
     <CartContext.Provider
-      value={{ ...state, addToCartFunc, removeItem, toggleAmount, clearCart }}
+      value={{
+        ...state,
+        addToCartFunc,
+        removeItem,
+        toggleAmount,
+        clearCart,
+        check_coupon,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -13,6 +13,11 @@ const global_reducer = (state: any, action: any) => {
         selectedImg: img,
         isModalOpen: true,
       };
+    case 'COUPON_CODE':
+      return {
+        ...state,
+        coupon_code: action.payload,
+      };
     default:
       return state;
   }
