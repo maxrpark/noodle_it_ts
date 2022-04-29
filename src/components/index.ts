@@ -5,10 +5,15 @@ import CardList from './CardList';
 import CartContent from './CartPage/CartContent';
 import CartDetails from './CartPage/CartDetails';
 import CartItem from './CartPage/CartItem';
+import ModalCart from './CartPage/ModalCart';
 
 import Footer from './Footer';
 import ToogleTheme from './ToogleTheme';
+
 import Loading from './Loading';
+import LogInComponent from './LogInComponent';
+import RegisterComponent from './RegisterComponent';
+
 import Navbar from './Navbar';
 import NavbarUser from './NavbarUser';
 import HomeHero from './HomeHero';
@@ -34,9 +39,12 @@ export {
   CartContent,
   CartDetails,
   CartItem,
+  ModalCart,
   //
   Footer,
   ToogleTheme,
+  RegisterComponent,
+  LogInComponent,
   Loading,
   Navbar,
   NavbarUser,

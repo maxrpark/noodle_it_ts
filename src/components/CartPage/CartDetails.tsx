@@ -19,9 +19,6 @@ const CartDetails: React.FC = (props: Props) => {
   const { coupon_code } = useGlobalContext();
   const [inputCode, setInputCode] = useState('');
 
-  // console.log(total_with_descount);
-  // console.log(total_amount);
-
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputCode.length) {
@@ -58,7 +55,7 @@ const CartDetails: React.FC = (props: Props) => {
           </h2>
         )}
         {user ? (
-          <Link to={'/'}>Check Out</Link>
+          <Link to={'/checkout'}>Check Out</Link>
         ) : (
           <Link to={'/login'}>LogIn</Link>
         )}
