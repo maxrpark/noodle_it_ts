@@ -15,6 +15,7 @@ import {
   Cart,
   ListPage,
   NoodlesType,
+  Checkout,
 } from './views';
 // auth views
 import {
@@ -65,6 +66,7 @@ function App() {
               <Route path='/cart' element={<Cart />} />
               <Route path='/list-page/:slug' element={<ListPage />} />
               <Route path='/search' element={<ResultPage />} />
+              {/* <Route path='/checkout' element={<Checkout />} /> */}
               <Route path='/register' element={<UsersShareLayout />}>
                 <Route
                   index
@@ -78,13 +80,22 @@ function App() {
               <Route path='/login' element={<LogIn />} />
               <Route path='*' element={<Error />} />
             </Route>
-            <Route path='/dashboard' element={<UsersShareLayout />}>
+            <Route element={<UsersShareLayout />}>
               <Route
-                index
+                path='/dashboard'
                 element={
                   <ProtectedRoute>
                     <Dashboard />
                   </ProtectedRoute>
+                }
+              />
+              <Route
+                path='/checkout'
+                element={
+                  <ProtectedRoute>
+                    <Checkout />
+                  </ProtectedRoute>
+                  //  <Route path='/checkout' element={<Checkout />} />
                 }
               />
             </Route>
