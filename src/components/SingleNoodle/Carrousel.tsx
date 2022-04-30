@@ -11,8 +11,6 @@ const Carrousel: React.FC<Props> = ({ noodle }) => {
   const { showImage, closeModal, selectedImg, isModalOpen, coupon_code } =
     useGlobalContext();
 
-  console.log(coupon_code);
-
   return (
     <>
       <section

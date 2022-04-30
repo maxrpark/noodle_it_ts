@@ -33,6 +33,7 @@ interface UseContextInterface {
   showImage: (e: React.MouseEvent<HTMLImageElement>) => void;
   theme: string;
   toogleTheme: () => void;
+  openModal: () => void;
 }
 
 export interface InicialState {
@@ -88,13 +89,19 @@ const AppProvider: React.FC = ({ children }) => {
     dispatch({ type: 'COUPON_CODE', payload: couponCode });
   };
 
+  const openModal = () => {
+    dispatch({ type: 'OPEN_MODAL' });
+    document.body.style.overflow = 'scroll';
+  };
+
   const closeModal = () => {
-    dispatch({ type: 'IS_MODAL_OPEN' });
+    dispatch({ type: 'CLOSE_MODAL' });
     document.body.style.overflow = 'scroll';
   };
 
   const showImage = (e: React.MouseEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
+    dispatch({ type: 'OPEN_MODAL' });
     dispatch({ type: 'OPEN_WITH_IMG', payload: img.src });
     document.body.style.overflow = 'hidden';
   };
@@ -109,6 +116,7 @@ const AppProvider: React.FC = ({ children }) => {
         ...state,
         closeModal,
         showImage,
+        openModal,
         theme,
         toogleTheme,
       }}

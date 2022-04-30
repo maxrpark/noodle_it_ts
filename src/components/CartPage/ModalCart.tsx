@@ -1,11 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LogInComponent, CartDetails } from '../../components';
+import { LogInComponent, RegisterComponent } from '../../components';
+import { useGlobalContext } from '../../context/globalContext';
+import { useUserContext } from '../../context/userContext';
 
 const ModalCart: React.FC = () => {
+  const { closeModal } = useGlobalContext();
+  const { isRegistrationForm } = useUserContext();
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if ((e.target as HTMLInputElement).classList.contains('main-wrapper')) {
+      closeModal();
+    }
+  };
   return (
-    <Wrapper>
-      <LogInComponent />
+    <Wrapper onClick={(e) => handleClick(e)} className='main-wrapper'>
+      {!isRegistrationForm ? <LogInComponent /> : <RegisterComponent />}
     </Wrapper>
   );
 };

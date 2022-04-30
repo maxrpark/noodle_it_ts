@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/auth_axios';
+import { useUserContext } from '../context/userContext';
 
 const RegisterComponent: React.FC = () => {
   const history = useNavigate();
+  const { showRegistration } = useUserContext();
   const [userInfo, setUserInfo] = useState({
     user_name: '',
     email: '',
@@ -31,8 +33,6 @@ const RegisterComponent: React.FC = () => {
           })
           .then((res) => {
             history('/login');
-            console.log(res);
-            console.log(res.data);
           });
       } catch (error) {
         // history.push('/');
@@ -83,6 +83,9 @@ const RegisterComponent: React.FC = () => {
           Register
         </button>
         <p className='form-link'>
+          <button type='button' onClick={showRegistration}>
+            register
+          </button>
           Already have an account? <Link to={'/login'}>LogIn</Link>
         </p>
       </form>

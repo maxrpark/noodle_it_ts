@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 import { ToogleTheme } from '../components';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useGlobalContext } from '../context/globalContext';
 
 import styled from 'styled-components';
 
@@ -10,7 +11,13 @@ import { FaBars } from 'react-icons/fa';
 import axios from 'axios';
 const NavbarUser: React.FC = () => {
   const { logOutUser, userAuth } = useUserContext();
+  const { closeModal } = useGlobalContext();
   const history = useNavigate();
+
+  const handleLogout = () => {
+    logOutUser();
+    closeModal();
+  };
 
   const search = useRef<HTMLInputElement>(null);
 
@@ -51,7 +58,7 @@ const NavbarUser: React.FC = () => {
         Noodle It!
       </NavLink>
       <div className='nav-items'>
-        <button onClick={logOutUser}>Logout</button>
+        <button onClick={() => handleLogout()}>Logout</button>
         <NavLink to={'/dashboard'}>Profile</NavLink>
         <ToogleTheme />
         <Link to={'/cart'}>

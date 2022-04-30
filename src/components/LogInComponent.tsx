@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useUserContext } from '../context/userContext';
@@ -14,8 +13,9 @@ const initialFormData = {
 };
 
 const LogInComponent: React.FC = () => {
-  const { userLoggedIn, userAuth } = useUserContext();
-  // const history = useNavigate();
+  const { userLoggedIn, userAuth, showRegistration } = useUserContext();
+  // const { showRegistration, isRegistrationForm } = useUserContext();
+
   const [formData, updateFormData] = useState(
     initialFormData as InitialFormData
   );
@@ -72,6 +72,9 @@ const LogInComponent: React.FC = () => {
         <p className='form-link'>
           Don't an account already?
           <span> </span>
+          <button type='button' onClick={showRegistration}>
+            register
+          </button>
           <Link to={'/register'}>Register</Link>
         </p>
       </form>

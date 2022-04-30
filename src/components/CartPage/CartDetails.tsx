@@ -15,8 +15,9 @@ const CartDetails: React.FC = (props: Props) => {
     descount,
     check_coupon,
   } = useCartContext();
+
   const { user } = useUserContext();
-  const { coupon_code } = useGlobalContext();
+  const { coupon_code, openModal } = useGlobalContext();
   const [inputCode, setInputCode] = useState('');
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,7 +31,6 @@ const CartDetails: React.FC = (props: Props) => {
         console.log('wrong code');
       }
       setInputCode('');
-      console.log(e);
     } else {
       console.log('enter something');
     }
@@ -57,7 +57,7 @@ const CartDetails: React.FC = (props: Props) => {
         {user ? (
           <Link to={'/checkout'}>Check Out</Link>
         ) : (
-          <Link to={'/login'}>LogIn</Link>
+          <button onClick={() => openModal()}>LogIng</button>
         )}
       </div>
     </Wrapper>

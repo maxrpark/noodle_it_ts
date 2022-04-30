@@ -1,17 +1,22 @@
 const global_reducer = (state: any, action: any) => {
   switch (action.type) {
-    case 'IS_MODAL_OPEN':
+    case 'OPEN_MODAL':
+      return {
+        ...state,
+        isModalOpen: true,
+      };
+    case 'CLOSE_MODAL':
       return {
         ...state,
         isModalOpen: false,
-        selectedImg: '',
+        // selectedImg: '',
       };
     case 'OPEN_WITH_IMG':
       const img = action.payload;
       return {
         ...state,
         selectedImg: img,
-        isModalOpen: true,
+        // isModalOpen: true,
       };
     case 'COUPON_CODE':
       return {

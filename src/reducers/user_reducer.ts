@@ -32,6 +32,12 @@ const user_reducer = (state: any, action: any) => {
         authTokens: authTokens,
         userAuth: userAuth,
       };
+    case 'TOOGLE_FORM':
+      let { isRegistrationForm } = state;
+      return {
+        ...state,
+        isRegistrationForm: !isRegistrationForm,
+      };
     case 'LOG_OUT_USER':
       return {
         ...state,

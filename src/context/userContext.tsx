@@ -36,6 +36,9 @@ type UserContextType = {
   setUserFavoriteList: (user: string, noodle: NoodleDetails) => void;
   isUserFavoriteNoodle: () => void;
   isAlreadyLogIn: boolean;
+
+  isRegistrationForm: Boolean;
+  showRegistration: () => void;
 };
 
 const initialState = {
@@ -45,6 +48,7 @@ const initialState = {
   userAuth: null as userDetails | null,
   favoritesNoodles: [] as NoodleDetails[],
   isFavoriteNoodle: false,
+  isRegistrationForm: false,
 };
 
 const UserContext = React.createContext({} as UserContextType);
@@ -100,6 +104,10 @@ export const UserProvider: React.FC = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const showRegistration = () => {
+    dispach({ type: 'TOOGLE_FORM' });
   };
 
   const logUserBackIn = () => {
@@ -163,6 +171,7 @@ export const UserProvider: React.FC = ({ children }) => {
         setUserFavoriteList,
 
         isUserFavoriteNoodle,
+        showRegistration,
       }}
     >
       {children}
