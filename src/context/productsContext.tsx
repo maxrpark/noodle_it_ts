@@ -2,14 +2,16 @@ import React, { useContext, useReducer, useEffect } from 'react';
 import products_reducer from '../reducers/products_reducer';
 import axios from 'axios';
 
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { URL_NOODLES } from '../utils/variables';
 
 import simpleSlider from '@maxcoding/simpleslider';
 import simplereview from 'simplereview';
-interface Brand {
-  name: string;
-  slug: string;
-}
+
+// interface Brand {
+//   name: string;
+//   slug: string;
+// }
 
 export interface List {
   id: number;
@@ -19,24 +21,24 @@ export interface List {
   image: string;
 }
 
-export interface NoodleDetails {
-  id: number;
-  name: string;
-  images: string[];
-  rating: number;
-  slug: string;
-  brand: Brand;
-  category: string;
-  price_per_package: string;
-  price_per_unite: string;
-  amount_per_package: number;
-  description: string;
-  ingredients: string[];
-  tags: string[];
-  instructions: string;
-  spicy_level: string;
-  spicy_level_number: number;
-}
+// export interface NoodleDetails {
+//   id: number;
+//   name: string;
+//   images: string[];
+//   rating: number;
+//   slug: string;
+//   brand: Brand;
+//   category: string;
+//   price_per_package: string;
+//   price_per_unite: string;
+//   amount_per_package: number;
+//   description: string;
+//   ingredients: string[];
+//   tags: string[];
+//   instructions: string;
+//   spicy_level: string;
+//   spicy_level_number: number;
+// }
 
 interface ProductContextInterface {
   URL_NOODLES: string;

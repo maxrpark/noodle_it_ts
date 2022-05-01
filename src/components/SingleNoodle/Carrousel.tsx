@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useGlobalContext, NoodleDetails } from '../../context/globalContext';
+import { useGlobalContext } from '../../context/globalContext';
+
+import { NoodleDetails } from '../../ts/interfaces/global_interfaces';
 
 type Props = {
   noodle: NoodleDetails;

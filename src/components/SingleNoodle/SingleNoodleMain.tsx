@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { NoodleDetails } from '../../context/globalContext';
+// import { NoodleDetails } from '../../context/globalContext';
+import { NoodleDetails } from '../../ts/interfaces/global_interfaces';
 import styled from 'styled-components';
 
 // Component

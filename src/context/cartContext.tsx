@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useReducer } from 'react';
 
-import { NoodleDetails } from './productsContext';
+// import { NoodleDetails } from './productsContext';
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { useGlobalContext } from '../context/globalContext';
 import cart_reducer from '../reducers/cart_reducer';
 
@@ -54,7 +55,6 @@ const CartContext = React.createContext({} as CartInterface);
 
 export const CartProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(cart_reducer, initialState as any);
-  const { coupon_code } = useGlobalContext(); // check
 
   const addToCartFunc = (
     id: string | number,

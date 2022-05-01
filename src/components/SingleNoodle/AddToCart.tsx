@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from '../../context/cartContext';
-import { NoodleDetails } from '../../context/globalContext';
+// import { NoodleDetails } from '../../context/globalContext';
+import { NoodleDetails } from '../../ts/interfaces/global_interfaces';
 import { AmountButtons } from '../../components/';
 import { Link } from 'react-router-dom';
 

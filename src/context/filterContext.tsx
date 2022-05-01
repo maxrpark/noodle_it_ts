@@ -1,7 +1,7 @@
 import React, { useContext, useReducer, useEffect } from 'react';
-import { useProductsContext, NoodleDetails } from './productsContext';
+import { useProductsContext } from './productsContext';
 import filter_reducer from '../reducers/filter_reducer';
-
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 interface FilterInterface {
   text: string;
   brand: string;

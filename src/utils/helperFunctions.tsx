@@ -1,4 +1,5 @@
-import { NoodleDetails } from '../context/globalContext';
+// import { NoodleDetails } from '../context/globalContext';
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 
 const relatedNoodles = (
   noodles: NoodleDetails[],

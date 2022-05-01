@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CardSmall } from '../components';
-import { NoodleDetails } from '../context/globalContext';
+// import { NoodleDetails } from '../context/globalContext';
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import axios from 'axios';
 
 interface StateInterface {

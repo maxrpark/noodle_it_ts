@@ -3,7 +3,9 @@ import user_reducer from '../reducers/user_reducer';
 import axiosInstance from '../utils/auth_axios';
 import axios from 'axios';
 import { BACK_END_URL } from '../utils/variables';
-import { NoodleDetails, useProductsContext } from '../context/productsContext';
+import { useProductsContext } from '../context/productsContext';
+
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 
 interface authTokensInt {
   access: string;

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { NoodleDetails } from '../context/globalContext';
+// import { NoodleDetails } from '../context/globalContext';
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { useProductsContext } from '../context/productsContext';
 
 import { relatedNoodles } from '../utils/helperFunctions';

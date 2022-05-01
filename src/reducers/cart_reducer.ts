@@ -91,12 +91,12 @@ const cart_reducer = (state: any, action: any) => {
 
     case 'CHECK_COUPON':
       let discount_value = 0;
-      if (action.payload === 'BUY_NOW') {
+      if (action.payload === 'NOODLE_IT_BUY_NOW') {
         discount_value = 10;
-      } else if (action.payload === 'ON_FIRE') {
+      } else if (action.payload === 'NOODLE_IT_ON_FIRE') {
         discount_value = 20;
       } else if (action.payload === 'NOODLE_IT_CRAZY_DAYS') {
-        discount_value = 10;
+        discount_value = 30;
       }
 
       let current_discount = (discount_value / 100) * state.total_amount;
