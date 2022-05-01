@@ -75,17 +75,17 @@ const AppProvider: React.FC = ({ children }) => {
 
   const createCouponCode = () => {
     const day = new Date().getDate();
-    let descountType;
+    let discountType;
 
     if (day <= 10) {
-      descountType = 'BUY_NOW';
+      discountType = 'BUY_NOW';
     } else if (day > 10 && day <= 25) {
-      descountType = 'ON_FIRE';
+      discountType = 'ON_FIRE';
     } else {
-      descountType = 'CRAZY_DAYS';
+      discountType = 'CRAZY_DAYS';
     }
 
-    const couponCode = `NOODLE_IT_${descountType}`;
+    const couponCode = `NOODLE_IT_${discountType}`;
     dispatch({ type: 'COUPON_CODE', payload: couponCode });
   };
 

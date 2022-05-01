@@ -6,6 +6,7 @@ import CartContent from './CartPage/CartContent';
 import CartDetails from './CartPage/CartDetails';
 import CartItem from './CartPage/CartItem';
 import ModalCart from './CartPage/ModalCart';
+import CheckoutForm from './CartPage/CheckoutForm';
 
 import Footer from './Footer';
 import ToogleTheme from './ToogleTheme';
@@ -40,6 +41,7 @@ export {
   CartDetails,
   CartItem,
   ModalCart,
+  CheckoutForm,
   //
   Footer,
   ToogleTheme,

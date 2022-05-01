@@ -27,9 +27,9 @@ interface CartInterface {
   cart: CartContent[];
   total_items: number;
   total_amount: number;
-  total_with_descount: number;
-  descount: number;
-  has_descount: boolean;
+  total_with_discount: number;
+  discount: number;
+  has_discount: boolean;
   addToCartFunc: (
     id: string | number,
     noodle: NoodleDetails,
@@ -45,9 +45,9 @@ const initialState = {
   cart: getLocalStorage(),
   total_items: 0,
   total_amount: 0,
-  total_with_descount: 0,
-  has_descount: false,
-  descount: 0,
+  total_with_discount: 0,
+  has_discount: false,
+  discount: 0,
 };
 
 const CartContext = React.createContext({} as CartInterface);
@@ -88,7 +88,7 @@ export const CartProvider: React.FC = ({ children }) => {
   useEffect(() => {
     dispatch({ type: 'COUNT_CART_TOTALS' });
     localStorage.setItem('cart', JSON.stringify(state.cart));
-  }, [state.cart, state.total_with_descount]);
+  }, [state.cart, state.total_with_discount]);
   return (
     <CartContext.Provider
       value={{

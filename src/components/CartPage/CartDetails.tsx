@@ -10,9 +10,9 @@ type Props = {};
 const CartDetails: React.FC = (props: Props) => {
   const {
     total_amount,
-    has_descount,
-    total_with_descount,
-    descount,
+    has_discount,
+    total_with_discount,
+    discount,
     check_coupon,
   } = useCartContext();
 
@@ -23,10 +23,10 @@ const CartDetails: React.FC = (props: Props) => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputCode.length) {
-      if (coupon_code === inputCode && !has_descount) {
+      if (coupon_code === inputCode && !has_discount) {
         check_coupon(inputCode);
-      } else if (coupon_code === inputCode && has_descount) {
-        console.log('descount already  in use');
+      } else if (coupon_code === inputCode && has_discount) {
+        console.log('discount already  in use');
       } else {
         console.log('wrong code');
       }
@@ -49,9 +49,9 @@ const CartDetails: React.FC = (props: Props) => {
             id='coupon'
           />
         </form>
-        {total_with_descount !== total_amount && (
+        {total_with_discount !== total_amount && (
           <h2>
-            With {descount}% descount : ${total_with_descount}
+            With {discount}% discount : ${total_with_discount}
           </h2>
         )}
         {user ? (
