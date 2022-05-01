@@ -1,0 +1,6 @@
+export enum ActionType {
+  OPEN_MODAL = 'OPEN_MODAL',
+  CLOSE_MODAL = 'CLOSE_MODAL',
+  OPEN_WITH_IMG = 'OPEN_WITH_IMG',
+  COUPON_CODE = 'COUPON_CODE',
+}

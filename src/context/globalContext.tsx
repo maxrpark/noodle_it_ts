@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useContext, useReducer, useState } from 'react';
 import global_reducer from '../reducers/global_reducer';
-// import { IGlobalState } from '../ts/interfaces/states/global_state';
+import { ActionType } from '../ts/states/action-types';
 
 interface UseContextInterface {
   isModalOpen: boolean;
@@ -26,12 +26,6 @@ const initialState: InicialState = {
   coupon_code: '',
 };
 
-enum ActionType {
-  OPEN_MODAL = 'OPEN_MODAL',
-  CLOSE_MODAL = 'CLOSE_MODAL',
-  OPEN_WITH_IMG = 'OPEN_WITH_IMG',
-  COUPON_CODE = 'COUPON_CODE',
-}
 const AppContext = React.createContext({} as UseContextInterface);
 
 const AppProvider: React.FC = ({ children }) => {
@@ -98,11 +92,11 @@ const AppProvider: React.FC = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
+        theme,
         closeModal,
         showImage,
         openModal,
         toogleTheme,
-        theme,
       }}
     >
       {children}
