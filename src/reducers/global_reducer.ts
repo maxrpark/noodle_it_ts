@@ -1,8 +1,8 @@
-import { IGlobalState } from '../ts/states/actions/global_state';
 import { ActionType } from '../ts/states/action-types';
-import { Actions } from '../ts/states/actions/global_state';
+import { Actions } from '../ts/states/actions/global_actions';
+import { InicialState } from '../context/globalContext';
 
-const global_reducer = (state: IGlobalState, action: Actions): IGlobalState => {
+const global_reducer = (state: InicialState, action: Actions): InicialState => {
   switch (action.type) {
     case ActionType.OPEN_MODAL:
       return {

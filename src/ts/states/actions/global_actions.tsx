@@ -1,11 +1,5 @@
 import { ActionType } from '../action-types';
 
-export interface IGlobalState {
-  isModalOpen: boolean;
-  selectedImg: string;
-  coupon_code: string;
-}
-
 interface OPEN_MODAL_ACTION {
   type: ActionType.OPEN_MODAL;
 }

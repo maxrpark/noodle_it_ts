@@ -4,14 +4,10 @@ import axios from 'axios';
 
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { URL_NOODLES } from '../utils/variables';
+import { ActionType } from '../ts/states/action-types';
 
 import simpleSlider from '@maxcoding/simpleslider';
 import simplereview from 'simplereview';
-
-// interface Brand {
-//   name: string;
-//   slug: string;
-// }
 
 export interface List {
   id: number;
@@ -21,26 +17,7 @@ export interface List {
   image: string;
 }
 
-// export interface NoodleDetails {
-//   id: number;
-//   name: string;
-//   images: string[];
-//   rating: number;
-//   slug: string;
-//   brand: Brand;
-//   category: string;
-//   price_per_package: string;
-//   price_per_unite: string;
-//   amount_per_package: number;
-//   description: string;
-//   ingredients: string[];
-//   tags: string[];
-//   instructions: string;
-//   spicy_level: string;
-//   spicy_level_number: number;
-// }
-
-interface ProductContextInterface {
+export interface ProductsInterface {
   URL_NOODLES: string;
   noodles: NoodleDetails[];
   isProductsLoading: boolean;
@@ -66,10 +43,28 @@ const initialState = {
   related_by_brand: [] as NoodleDetails[],
 };
 
-const ProductsContext = React.createContext({} as ProductContextInterface);
+export interface InitialState {
+  noodles: NoodleDetails[];
+  isProductsLoading: boolean;
+  isProductsError: boolean;
+
+  noodlesBrandList: List[];
+  noodlesCategoryList: List[];
+
+  isProductLoading: boolean;
+  isProductError: boolean;
+  noodle: NoodleDetails | any; // fix
+  related_by_category: NoodleDetails[];
+  related_by_brand: NoodleDetails[];
+}
+
+const ProductsContext = React.createContext({} as ProductsInterface);
 
 export const ProductsProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(products_reducer, initialState);
+  const [state, dispatch] = useReducer(
+    products_reducer,
+    initialState as InitialState
+  );
 
   const fetchUrlNoodles = `noodles/`;
   const fetchUrlBrand = `brand/list`;
@@ -80,35 +75,38 @@ export const ProductsProvider: React.FC = ({ children }) => {
   const fetchNoodles = axios.get(URL_NOODLES + fetchUrlNoodles);
 
   const getData = async () => {
-    dispatch({ type: 'GET_DATA_START' });
+    dispatch({ type: ActionType.GET_PRODUCTS_START });
     Promise.all([fetchNoodles, fetchBrands, fetchCategories])
       .then(([res1, res2, res3]) => {
         const noodles = res1.data;
-        dispatch({ type: 'GET_PRODUCTS_SUCCESS', payload: noodles });
+        dispatch({ type: ActionType.GET_PRODUCTS_SUCCESS, payload: noodles });
         const brandlist = res2.data;
-        dispatch({ type: 'GET_BRAND_LIST', payload: brandlist });
+        dispatch({ type: ActionType.GET_BRAND_LIST, payload: brandlist });
 
         const categoriesList = res3.data;
         dispatch({
-          type: 'GET_CATEGORIES_LIST',
+          type: ActionType.GET_CATEGORIES_LIST,
           payload: categoriesList,
         });
       })
       .catch((err) => {
-        dispatch({ type: 'GET_PRODUCTS_ERROR' });
+        dispatch({ type: ActionType.GET_PRODUCTS_ERROR });
         console.log(err);
       });
   };
 
   const getSingleNoodle = async (url: string) => {
-    dispatch({ type: 'GET_PRODUCT_START' });
+    dispatch({ type: ActionType.GET_PRODUCT_START });
     try {
       const response = await axios.get(url);
-      dispatch({ type: 'GET_PRODUCT_SUCCESS', payload: response.data });
+      dispatch({
+        type: ActionType.GET_PRODUCT_SUCCESS,
+        payload: response.data,
+      });
       simpleSlider();
       simplereview();
     } catch (err) {
-      dispatch({ type: 'GET_PRODUCT_ERROR' });
+      dispatch({ type: ActionType.GET_PRODUCT_ERROR });
     }
   };
 
@@ -116,7 +114,6 @@ export const ProductsProvider: React.FC = ({ children }) => {
     getData();
   }, []);
 
-  useEffect(() => {}, []);
   return (
     <ProductsContext.Provider
       value={{
