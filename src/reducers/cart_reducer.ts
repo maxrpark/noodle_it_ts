@@ -1,6 +1,10 @@
-const cart_reducer = (state: any, action: any) => {
+import { InitialState } from '../context/cartContext';
+import { ActionType } from '../ts/states/action-types';
+import { Actions } from '../ts/states/actions/cart_actions';
+
+const cart_reducer = (state: any, action: Actions) => {
   switch (action.type) {
-    case 'ADD_TO_CART':
+    case ActionType.ADD_TO_CART:
       const { id, amount, noodle } = action.payload;
       const tempItem = state.cart.find((i: any) => i.id === id);
       if (tempItem) {
@@ -31,16 +35,16 @@ const cart_reducer = (state: any, action: any) => {
         return { ...state, cart: [...state.cart, newItem] };
       }
 
-    case 'CLEAR_CART':
+    case ActionType.CLEAR_CART:
       return { ...state, cart: [] };
 
-    case 'REMOVE_CART_ITEM':
+    case ActionType.REMOVE_CART_ITEM:
       const tempCartState = state.cart.filter(
         (item: any) => item.id !== action.payload
       );
       return { ...state, cart: tempCartState };
 
-    case 'TOGGLE_CART_ITEM_AMOUNT':
+    case ActionType.TOGGLE_CART_ITEM_AMOUNT:
       const { ID, value } = action.payload;
       const tempCart = state.cart.map((item: any) => {
         if (item.id === ID) {
@@ -65,7 +69,7 @@ const cart_reducer = (state: any, action: any) => {
 
       return { ...state, cart: tempCart };
 
-    case 'COUNT_CART_TOTALS':
+    case ActionType.COUNT_CART_TOTALS:
       const { total_items, total_amount } = state.cart.reduce(
         (total: any, cartItem: any) => {
           const { amount, price } = cartItem;
@@ -89,7 +93,7 @@ const cart_reducer = (state: any, action: any) => {
         total_with_discount: total_amount_WD,
       };
 
-    case 'CHECK_COUPON':
+    case ActionType.CHECK_COUPON:
       let discount_value = 0;
       if (action.payload === 'NOODLE_IT_BUY_NOW') {
         discount_value = 10;

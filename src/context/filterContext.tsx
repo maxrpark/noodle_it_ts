@@ -2,7 +2,8 @@ import React, { useContext, useReducer, useEffect } from 'react';
 import { useProductsContext } from './productsContext';
 import filter_reducer from '../reducers/filter_reducer';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
-interface FilterInterface {
+import { ActionType } from '../ts/states/action-types';
+export interface FilterInterface {
   text: string;
   brand: string;
   category: string;
@@ -14,12 +15,12 @@ interface FilterInterface {
   tag: string;
 }
 interface FilterContextInterface {
-  noodles: NoodleDetails[];
+  // noodles: NoodleDetails[];
   all_products: NoodleDetails[];
   filtered_products: NoodleDetails[];
   sort: string;
-  updateFilters: () => void;
-  updateSort: () => void;
+  updateFilters: (e: any) => void;
+  updateSort: (e: any) => void;
   clearFilters: () => void;
   text: string;
   filters: FilterInterface;
@@ -42,20 +43,31 @@ const inicialState = {
   text: '',
 };
 
+export interface InicialState {
+  all_products: NoodleDetails[];
+  filtered_products: NoodleDetails[];
+  sort: string;
+  filters: FilterInterface;
+  text: string;
+}
+
 const FilterContext = React.createContext({} as FilterContextInterface);
 
 export const FilterProvider: React.FC = ({ children }) => {
   const { noodles } = useProductsContext();
-  const [state, dispatch] = useReducer(filter_reducer, inicialState);
+  const [state, dispatch] = useReducer(
+    filter_reducer,
+    inicialState as InicialState
+  );
 
-  const updateSort = (e: any) => {
+  const updateSort = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    dispatch({ type: 'UPDATE_SORT', payload: value });
+    dispatch({ type: ActionType.UPDATE_SORT, payload: value });
   };
 
-  const updateFilters = (e: any) => {
+  const updateFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
     let name = e.target.name;
-    let value = e.target.value;
+    let value: string | number | null | undefined = e.target.value;
 
     if (name === 'category') {
       value = e.target.textContent;
@@ -76,20 +88,20 @@ export const FilterProvider: React.FC = ({ children }) => {
       value = e.target.dataset.spicy_level;
     }
 
-    dispatch({ type: 'UPDATE_FILTERS', payload: { name, value } });
+    dispatch({ type: ActionType.UPDATE_FILTERS, payload: { name, value } });
   };
 
   const clearFilters = () => {
-    dispatch({ type: 'CLEAR_FILTERS' });
+    dispatch({ type: ActionType.CLEAR_FILTERS });
   };
 
   useEffect(() => {
-    dispatch({ type: 'FILTER_PRODUCTS' });
-    dispatch({ type: 'SORT_PRODUCTS' });
+    dispatch({ type: ActionType.FILTER_PRODUCTS });
+    dispatch({ type: ActionType.SORT_PRODUCTS });
   }, [noodles, state.sort, state.filters]);
 
   useEffect(() => {
-    dispatch({ type: 'GET_PRODUCTS', payload: noodles });
+    dispatch({ type: ActionType.GET_PRODUCTS, payload: noodles });
   }, [noodles]);
 
   return (

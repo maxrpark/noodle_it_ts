@@ -1,6 +1,10 @@
-const filter_reducer = (state: any, action: any) => {
+import { InicialState } from '../context/filterContext';
+import { ActionType } from '../ts/states/action-types';
+import { Actions } from '../ts/states/actions/filter_actions';
+
+const filter_reducer = (state: InicialState, action: Actions) => {
   switch (action.type) {
-    case 'GET_PRODUCTS':
+    case ActionType.GET_PRODUCTS:
       let maxPrice = action.payload.map((p: any) => p.price_per_package);
       maxPrice = Math.max(...maxPrice);
       return {
@@ -9,10 +13,10 @@ const filter_reducer = (state: any, action: any) => {
         filtered_products: [...action.payload],
         filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
       };
-    case 'UPDATE_SORT':
+    case ActionType.UPDATE_SORT:
       return { ...state, sort: action.payload };
 
-    case 'SORT_PRODUCTS':
+    case ActionType.SORT_PRODUCTS:
       const { sort, filtered_products } = state;
       let tempProducts = [...filtered_products];
       if (sort === 'price-lowest') {
@@ -27,7 +31,10 @@ const filter_reducer = (state: any, action: any) => {
         });
       }
       if (sort === 'price-highest') {
-        tempProducts = tempProducts.sort((a, b) => b.price - a.price);
+        tempProducts = tempProducts.sort(
+          (a, b) => +b.price_per_package - +a.price_per_package
+        );
+        console.log(tempProducts);
       }
       if (sort === 'name-a') {
         tempProducts = tempProducts.sort((a, b) => {
@@ -41,12 +48,12 @@ const filter_reducer = (state: any, action: any) => {
       }
       return { ...state, filtered_products: tempProducts };
 
-    case 'UPDATE_FILTERS':
+    case ActionType.UPDATE_FILTERS:
       const { name, value } = action.payload;
 
       return { ...state, filters: { ...state.filters, [name]: value } };
 
-    case 'FILTER_PRODUCTS':
+    case ActionType.FILTER_PRODUCTS:
       const { all_products } = state;
       const { text, category, brand, rating, price, tag, spicy_level } =
         state.filters;
@@ -77,12 +84,12 @@ const filter_reducer = (state: any, action: any) => {
       }
       // price
       tempFilteredProducts = tempFilteredProducts.filter(
-        (noodle) => noodle.price_per_package <= price
+        (noodle) => +noodle.price_per_package <= price
       );
       // spicy_level
       if (spicy_level !== 'all') {
         tempFilteredProducts = tempFilteredProducts.filter(
-          (noodle) => noodle.spicy_level_number == spicy_level
+          (noodle) => noodle.spicy_level_number == +spicy_level
         );
       }
       // tags
@@ -95,13 +102,13 @@ const filter_reducer = (state: any, action: any) => {
       // rating
       if (rating !== 'all') {
         tempFilteredProducts = tempFilteredProducts.filter(
-          (noodle) => noodle.rating == rating
+          (noodle) => noodle.rating == +rating
         );
       }
 
       return { ...state, filtered_products: tempFilteredProducts };
 
-    case 'CLEAR_FILTERS':
+    case ActionType.CLEAR_FILTERS:
       return {
         ...state,
         filters: {
