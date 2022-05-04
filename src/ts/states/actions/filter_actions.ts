@@ -1,10 +1,8 @@
 import { ActionType } from '../action-types';
-import { NoodleDetails } from '../../interfaces/global_interfaces';
 
-interface GetProduct {
-  noodle: NoodleDetails;
-  all_products: NoodleDetails[];
-  // filtered_products;
+interface UpdateFiltersPayload {
+  name: string;
+  value: string | number | null | undefined;
 }
 interface GET_PRODUCTS {
   type: ActionType.GET_PRODUCTS;
@@ -12,22 +10,20 @@ interface GET_PRODUCTS {
 }
 interface UPDATE_SORT {
   type: ActionType.UPDATE_SORT;
-  payload?: any;
+  payload: string;
 }
 interface SORT_PRODUCTS {
   type: ActionType.SORT_PRODUCTS;
 }
 interface UPDATE_FILTERS {
   type: ActionType.UPDATE_FILTERS;
-  payload?: any;
+  payload: UpdateFiltersPayload;
 }
 interface FILTER_PRODUCTS {
   type: ActionType.FILTER_PRODUCTS;
-  payload?: any;
 }
 interface CLEAR_FILTERS {
   type: ActionType.CLEAR_FILTERS;
-  payload?: any;
 }
 
 export type Actions =

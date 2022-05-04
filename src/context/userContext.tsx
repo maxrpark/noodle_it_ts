@@ -4,7 +4,7 @@ import axiosInstance from '../utils/auth_axios';
 import axios from 'axios';
 import { BACK_END_URL } from '../utils/variables';
 import { useProductsContext } from '../context/productsContext';
-
+import { ActionType } from '../ts/states/action-types';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 
 interface authTokensInt {
@@ -52,11 +52,23 @@ const initialState = {
   isFavoriteNoodle: false,
   isRegistrationForm: false,
 };
+export interface InitialState {
+  user: userDetails | null;
+  authTokens: authTokensInt | null;
+  isAlreadyLogIn: boolean;
+  userAuth: userDetails | null;
+  favoritesNoodles: NoodleDetails[];
+  isFavoriteNoodle: boolean;
+  isRegistrationForm: boolean;
+}
 
 const UserContext = React.createContext({} as UserContextType);
 
 export const UserProvider: React.FC = ({ children }) => {
-  const [state, dispach] = useReducer(user_reducer, initialState);
+  const [state, dispach] = useReducer(
+    user_reducer,
+    initialState as InitialState
+  );
   const { noodles, noodle } = useProductsContext();
 
   const logOutUser = async () => {
@@ -69,7 +81,7 @@ export const UserProvider: React.FC = ({ children }) => {
       localStorage.removeItem('refresh_token');
       // @ts-ignore: Unreachable code error
       axiosInstance.defaults.headers['Authorization'] = null;
-      dispach({ type: 'LOG_OUT_USER' });
+      dispach({ type: ActionType.LOG_OUT_USER });
     } catch (err) {
       console.log(err);
     }
@@ -89,7 +101,7 @@ export const UserProvider: React.FC = ({ children }) => {
           'JWT ' + localStorage.getItem('access_token');
 
         if (res.status === 200) {
-          dispach({ type: 'LOG_IN', payload: res.data });
+          dispach({ type: ActionType.LOG_IN, payload: res.data });
         } else {
           alert('Something went wrong!');
         }
@@ -101,7 +113,7 @@ export const UserProvider: React.FC = ({ children }) => {
       const res = await axios.get(
         `${BACK_END_URL}user-details/${state.userAuth.user_id}`
       );
-      dispach({ type: 'GET_USER_DETAILS', payload: res.data });
+      dispach({ type: ActionType.GET_USER_DETAILS, payload: res.data });
       getUserFavoriteList();
     } catch (error) {
       console.log(error);
@@ -109,19 +121,19 @@ export const UserProvider: React.FC = ({ children }) => {
   };
 
   const showRegistration = () => {
-    dispach({ type: 'TOOGLE_FORM' });
+    dispach({ type: ActionType.TOOGLE_FORM });
   };
 
   const logUserBackIn = () => {
-    dispach({ type: 'LOG_BACK' });
+    dispach({ type: ActionType.LOG_BACK });
   };
 
   const getUserFavoriteList = () => {
-    dispach({ type: 'GET_FAVORITES_NOODLES', payload: noodles });
+    dispach({ type: ActionType.GET_FAVORITES_NOODLES, payload: noodles });
   };
 
   const isUserFavoriteNoodle = () => {
-    dispach({ type: 'IS_USER_FAVORITE_NOODLE', payload: noodle });
+    dispach({ type: ActionType.IS_USER_FAVORITE_NOODLE, payload: noodle });
   };
 
   const setUserFavoriteList = async (user: string, noodle: NoodleDetails) => {
@@ -133,7 +145,10 @@ export const UserProvider: React.FC = ({ children }) => {
         xsrfHeaderName: 'X-CSRFTOKEN',
         withCredentials: true,
       });
-      dispach({ type: 'SET_USER_FAVORITES_NOODLE', payload: { noodle } });
+      dispach({
+        type: ActionType.SET_USER_FAVORITES_NOODLE,
+        payload: { noodle },
+      });
     } catch (error) {
       console.log(error);
     }

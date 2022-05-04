@@ -22,8 +22,6 @@ const Dashboard: React.FC = ({}) => {
     }
   }, [user]);
 
-  console.log(orderDetails);
-
   const toogleFavList = () => {
     if (showMoreFav === 3) {
       setShowMoreFav(favoritesNoodles.length);

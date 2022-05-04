@@ -1,8 +1,11 @@
 import jwt_decode from 'jwt-decode';
+import { InitialState } from '../context/userContext';
+import { ActionType } from '../ts/states/action-types';
+import { Actions } from '../ts/states/actions/user_actions';
 
-const user_reducer = (state: any, action: any) => {
+const user_reducer = (state: any, action: Actions) => {
   switch (action.type) {
-    case 'LOG_IN':
+    case ActionType.LOG_IN:
       const data = action.payload;
       let token = data.access;
       let decoded = jwt_decode(token);
@@ -13,14 +16,14 @@ const user_reducer = (state: any, action: any) => {
         authTokens: token,
         userAuth: decoded,
       };
-    case 'GET_USER_DETAILS':
+    case ActionType.GET_USER_DETAILS:
       return {
         ...state,
         user: action.payload,
         isAlreadyLogIn: true,
         favoritesNoodles: action.payload.favorites,
       };
-    case 'LOG_BACK':
+    case ActionType.LOG_BACK:
       const authTokens = localStorage.getItem('access_token')
         ? localStorage.getItem('access_token')!
         : null;
@@ -32,13 +35,13 @@ const user_reducer = (state: any, action: any) => {
         authTokens: authTokens,
         userAuth: userAuth,
       };
-    case 'TOOGLE_FORM':
+    case ActionType.TOOGLE_FORM:
       let { isRegistrationForm } = state;
       return {
         ...state,
         isRegistrationForm: !isRegistrationForm,
       };
-    case 'LOG_OUT_USER':
+    case ActionType.LOG_OUT_USER:
       return {
         ...state,
         user: null,
@@ -48,7 +51,7 @@ const user_reducer = (state: any, action: any) => {
       };
 
     /// USER FAVORITES
-    case 'GET_FAVORITES_NOODLES':
+    case ActionType.GET_FAVORITES_NOODLES:
       let noodles = action.payload;
       const favoritesList = noodles.filter((elem: { slug: any }) => {
         // @ts-ignore: Unreachable code error
@@ -58,7 +61,7 @@ const user_reducer = (state: any, action: any) => {
         ...state,
         favoritesNoodles: favoritesList,
       };
-    case 'IS_USER_FAVORITE_NOODLE':
+    case ActionType.IS_USER_FAVORITE_NOODLE:
       let noodle = action.payload;
       let isFavorite;
 
@@ -72,7 +75,7 @@ const user_reducer = (state: any, action: any) => {
         ...state,
         isFavoriteNoodle: isFavorite,
       };
-    case 'SET_USER_FAVORITES_NOODLE':
+    case ActionType.SET_USER_FAVORITES_NOODLE:
       let userCurrentList = state.favoritesNoodles;
       let list: any = [];
 

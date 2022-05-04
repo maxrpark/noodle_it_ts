@@ -5,6 +5,7 @@ import { Actions } from '../ts/states/actions/filter_actions';
 const filter_reducer = (state: InicialState, action: Actions) => {
   switch (action.type) {
     case ActionType.GET_PRODUCTS:
+      console.log(action.payload);
       let maxPrice = action.payload.map((p: any) => p.price_per_package);
       maxPrice = Math.max(...maxPrice);
       return {
