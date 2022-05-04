@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
-import { useCartContext } from '../context/cartContext';
+import { useCartContext, CartContent } from '../context/cartContext';
 
 // stripe
 import { loadStripe } from '@stripe/stripe-js';
@@ -14,11 +14,6 @@ const stripePromise = loadStripe(
 );
 
 type Props = {};
-
-interface Options {
-  clientSecret: any;
-  appearance: any;
-}
 
 const Checkout: React.FC = (props: Props) => {
   const { total_amount, has_discount, total_with_discount, discount, cart } =
@@ -58,7 +53,7 @@ const Checkout: React.FC = (props: Props) => {
 
   return (
     <Wrapper className='page-100'>
-      {cart.map((item: any) => {
+      {cart.map((item: CartContent) => {
         const { name, price, amount, id } = item;
         return (
           <div key={id}>

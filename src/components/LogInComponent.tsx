@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useUserContext } from '../context/userContext';
+import { useUserContext, FormDataInterface } from '../context/userContext';
 
-interface InitialFormData {
-  email: string;
-  password: string;
-}
 const initialFormData = {
   email: '',
   password: '',
@@ -14,10 +10,8 @@ const initialFormData = {
 
 const LogInComponent: React.FC = () => {
   const { userLoggedIn, userAuth, showRegistration } = useUserContext();
-  // const { showRegistration, isRegistrationForm } = useUserContext();
-
   const [formData, updateFormData] = useState(
-    initialFormData as InitialFormData
+    initialFormData as FormDataInterface
   );
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {

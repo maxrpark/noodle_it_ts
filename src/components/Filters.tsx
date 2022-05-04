@@ -170,7 +170,7 @@ const Filters: React.FC = (props: Props) => {
           {/* Spicy */}
           <div className='form-control'>
             <h5>Spacy</h5>
-            <div className='rating'>
+            <div className='spicy_level'>
               {rankingList.map((pepper, index) => {
                 if (pepper === 'all') {
                   return (

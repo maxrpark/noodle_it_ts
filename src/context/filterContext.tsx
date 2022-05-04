@@ -20,7 +20,7 @@ interface FilterContextInterface {
   filtered_products: NoodleDetails[];
   sort: string;
   updateFilters: (e: any) => void;
-  updateSort: (e: any) => void;
+  updateSort: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   clearFilters: () => void;
   text: string;
   filters: FilterInterface;
@@ -60,12 +60,16 @@ export const FilterProvider: React.FC = ({ children }) => {
     inicialState as InicialState
   );
 
-  const updateSort = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     dispatch({ type: ActionType.UPDATE_SORT, payload: value });
   };
 
-  const updateFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateFilters = (
+    e:
+      | React.ChangeEvent<HTMLButtonElement>
+      | React.ChangeEvent<HTMLInputElement>
+  ) => {
     let name = e.target.name;
     let value: string | number | null | undefined = e.target.value;
 

@@ -1,4 +1,4 @@
-import { InitialState } from '../context/cartContext';
+import { InitialState, CartContent } from '../context/cartContext';
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/cart_actions';
 
@@ -6,9 +6,10 @@ const cart_reducer = (state: any, action: Actions) => {
   switch (action.type) {
     case ActionType.ADD_TO_CART:
       const { id, amount, noodle } = action.payload;
-      const tempItem = state.cart.find((i: any) => i.id === id);
+      const tempItem = state.cart.find((i: CartContent) => i.id === id);
       if (tempItem) {
         const tempCart = state.cart.map((cartItem: any) => {
+          // fix any
           if (cartItem.id === id) {
             let newAmount = cartItem.amount + amount;
             if (newAmount > cartItem.max) {
@@ -40,7 +41,7 @@ const cart_reducer = (state: any, action: Actions) => {
 
     case ActionType.REMOVE_CART_ITEM:
       const tempCartState = state.cart.filter(
-        (item: any) => item.id !== action.payload
+        (item: CartContent) => item.id !== action.payload
       );
       return { ...state, cart: tempCartState };
 
@@ -71,10 +72,10 @@ const cart_reducer = (state: any, action: Actions) => {
 
     case ActionType.COUNT_CART_TOTALS:
       const { total_items, total_amount } = state.cart.reduce(
-        (total: any, cartItem: any) => {
+        (total: any, cartItem: CartContent) => {
           const { amount, price } = cartItem;
           total.total_items += amount;
-          total.total_amount += price * amount;
+          total.total_amount += +price * amount;
           return total;
         },
         {

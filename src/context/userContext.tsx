@@ -11,6 +11,11 @@ interface authTokensInt {
   access: string;
   refresh: string;
 }
+
+export interface FormDataInterface {
+  email: string;
+  password: string;
+}
 export interface userDetails {
   email: string;
   first_name: string;
@@ -29,7 +34,7 @@ type UserContextType = {
   userAuth: userDetails | null;
   getUserDetails: () => void;
   logOutUser: () => void;
-  userLoggedIn: (formData: any) => void;
+  userLoggedIn: (formData: FormDataInterface) => void;
   //
   favoritesNoodles: NoodleDetails[];
   isFavoriteNoodle: boolean;
@@ -87,7 +92,7 @@ export const UserProvider: React.FC = ({ children }) => {
     }
   };
 
-  const userLoggedIn = async (formData: any) => {
+  const userLoggedIn = async (formData: FormDataInterface) => {
     axiosInstance
       .post(`token/`, {
         email: formData.email,

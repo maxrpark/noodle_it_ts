@@ -1,5 +1,6 @@
 import jwt_decode from 'jwt-decode';
 import { InitialState } from '../context/userContext';
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/user_actions';
 
@@ -53,7 +54,7 @@ const user_reducer = (state: any, action: Actions) => {
     /// USER FAVORITES
     case ActionType.GET_FAVORITES_NOODLES:
       let noodles = action.payload;
-      const favoritesList = noodles.filter((elem: { slug: any }) => {
+      const favoritesList = noodles.filter((elem: { slug: string }) => {
         // @ts-ignore: Unreachable code error
         return state.user?.favorites.find(({ slug }) => elem.slug === slug);
       });
@@ -77,16 +78,16 @@ const user_reducer = (state: any, action: Actions) => {
       };
     case ActionType.SET_USER_FAVORITES_NOODLE:
       let userCurrentList = state.favoritesNoodles;
-      let list: any = [];
+      let list = [];
 
       if (
         userCurrentList.length &&
         userCurrentList.find(
-          (elem: any) => elem.slug === action.payload.noodle.slug
+          (elem: NoodleDetails) => elem.slug === action.payload.noodle.slug
         )
       ) {
         list = userCurrentList.filter(
-          (elem: any) => elem.slug !== action.payload.noodle.slug
+          (elem: NoodleDetails) => elem.slug !== action.payload.noodle.slug
         );
       } else {
         list.push(...userCurrentList, action.payload.noodle);

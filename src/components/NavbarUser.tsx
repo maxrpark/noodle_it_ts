@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 import { ToogleTheme } from '../components';
@@ -22,7 +22,8 @@ const NavbarUser: React.FC = () => {
   const search = useRef<HTMLInputElement>(null);
 
   const handleSearch = async (e: any) => {
-    e.preventDefault();
+    // fix
+    e.preventDefault()!;
     if (search.current?.value.length) {
       try {
         const response = await axios.get(

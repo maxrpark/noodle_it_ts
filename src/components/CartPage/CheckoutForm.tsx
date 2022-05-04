@@ -7,7 +7,7 @@ import { useCartContext } from '../../context/cartContext';
 import { useUserContext } from '../../context/userContext';
 
 type Props = {
-  clientSecret: any;
+  clientSecret: string;
 };
 
 interface OrderDetailsInterface {

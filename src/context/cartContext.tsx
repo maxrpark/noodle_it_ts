@@ -9,13 +9,13 @@ import { ActionType } from '../ts/states/action-types';
 const getLocalStorage = () => {
   let cart = localStorage.getItem('cart');
   if (cart) {
-    return JSON.parse(localStorage.getItem('cart') as any);
+    return JSON.parse(localStorage.getItem('cart') as string);
   } else {
     return [];
   }
 };
 
-interface CartContent {
+export interface CartContent {
   id: string;
   image: string;
   name: string;
@@ -54,7 +54,7 @@ const initialState = {
 
 export interface InitialState {
   //  cart: getLocalStorage(),
-  cart: any;
+  cart: CartContent;
   total_items: number;
   total_amount: number;
   total_with_discount: number;

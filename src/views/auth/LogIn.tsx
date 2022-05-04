@@ -6,14 +6,6 @@ import { LogInComponent } from '../../components';
 
 import { useUserContext } from '../../context/userContext';
 
-interface InitialFormData {
-  email: string;
-  password: string;
-}
-const initialFormData = {
-  email: '',
-  password: '',
-};
 const LogIn: React.FC = () => {
   const { userAuth } = useUserContext();
 

@@ -1,12 +1,14 @@
 import { InicialState } from '../context/filterContext';
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/filter_actions';
 
 const filter_reducer = (state: InicialState, action: Actions) => {
   switch (action.type) {
     case ActionType.GET_PRODUCTS:
-      console.log(action.payload);
-      let maxPrice = action.payload.map((p: any) => p.price_per_package);
+      let maxPrice: any = action.payload.map(
+        (p: NoodleDetails) => +p.price_per_package
+      );
       maxPrice = Math.max(...maxPrice);
       return {
         ...state,

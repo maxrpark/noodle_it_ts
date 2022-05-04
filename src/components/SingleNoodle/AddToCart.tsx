@@ -15,12 +15,6 @@ const AddToCart: React.FC<Props> = ({ noodle }) => {
   const { addToCartFunc } = useCartContext();
   const { id } = noodle;
 
-  // const addToCartFunc = (id: any, name: any) => {
-  //   console.log('add to cart');
-  //   console.log(id);
-  //   console.log(name);
-  // };
-
   // useEffect
   const increase = () => {
     setAmount((oldAmount) => {

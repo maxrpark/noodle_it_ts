@@ -1,3 +1,4 @@
+import { NoodleDetails } from '../../interfaces/global_interfaces';
 import { ActionType } from '../action-types';
 
 interface UpdateFiltersPayload {
@@ -6,7 +7,7 @@ interface UpdateFiltersPayload {
 }
 interface GET_PRODUCTS {
   type: ActionType.GET_PRODUCTS;
-  payload: any;
+  payload: NoodleDetails[];
 }
 interface UPDATE_SORT {
   type: ActionType.UPDATE_SORT;
