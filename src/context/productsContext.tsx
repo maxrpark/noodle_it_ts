@@ -119,6 +119,7 @@ export const ProductsProvider: React.FC = ({ children }) => {
       value={{
         ...state,
         getSingleNoodle,
+
         URL_NOODLES,
       }}
     >

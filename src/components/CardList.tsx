@@ -1,8 +1,6 @@
 import React from 'react';
 import { List } from '../context/productsContext';
-
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 
 const image =

@@ -1,28 +1,40 @@
 import React, { useEffect, useContext, useReducer, useState } from 'react';
 import global_reducer from '../reducers/global_reducer';
 import { ActionType } from '../ts/states/action-types';
-
+import axios from 'axios';
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
+import { toastDangerTop } from '../utils/toast';
 interface UseContextInterface {
   isModalOpen: boolean;
   selectedImg: string;
   coupon_code: string;
   theme: string | null;
+  query: string;
+  result: NoodleDetails[] | null;
+  isLoading: boolean;
   closeModal: () => void;
   showImage: (e: React.MouseEvent<HTMLImageElement>) => void;
   toogleTheme: () => void;
   openModal: () => void;
+  searchUserQuery: (query: string) => void;
 }
 
 export interface InicialState {
   isModalOpen: boolean;
   selectedImg: string;
   coupon_code: string;
+  isLoading: boolean;
+  query: string;
+  result: NoodleDetails[] | null;
 }
 
 const initialState: InicialState = {
   isModalOpen: false,
   selectedImg: '',
   coupon_code: '',
+  query: '',
+  result: null,
+  isLoading: false,
 };
 
 const AppContext = React.createContext({} as UseContextInterface);
@@ -82,6 +94,29 @@ const AppProvider: React.FC = ({ children }) => {
     dispatch({ type: ActionType.OPEN_WITH_IMG, payload: img.src });
     document.body.style.overflow = 'hidden';
   };
+  const searchUserQuery = async (query: string) => {
+    state.query = '';
+    state.result = null;
+    dispatch({ type: ActionType.SEARCH_START, payload: query });
+    try {
+      const response = await axios.get(
+        'https://noodles-api.herokuapp.com/api/v1/search/?query=' + query
+      );
+      const data = {
+        result: response.data,
+        query: query,
+      };
+      if (response.data.length) {
+        dispatch({ type: ActionType.SEARCH_RESULT, payload: data });
+      } else {
+        dispatch({ type: ActionType.NO_RESULT_FOUND });
+        // alert('No results found');
+        toastDangerTop('No Result found!');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     createCouponCode();
@@ -96,6 +131,7 @@ const AppProvider: React.FC = ({ children }) => {
         showImage,
         openModal,
         toogleTheme,
+        searchUserQuery,
       }}
     >
       {children}

@@ -5,9 +5,7 @@ import { useUserContext } from '../../context/userContext';
 import { useGlobalContext } from '../../context/globalContext';
 import { Link } from 'react-router-dom';
 
-type Props = {};
-
-const CartDetails: React.FC = (props: Props) => {
+const CartDetails: React.FC = () => {
   const {
     total_amount,
     has_discount,

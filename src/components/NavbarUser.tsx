@@ -11,7 +11,7 @@ import { FaBars } from 'react-icons/fa';
 import axios from 'axios';
 const NavbarUser: React.FC = () => {
   const { logOutUser, userAuth } = useUserContext();
-  const { closeModal } = useGlobalContext();
+  const { closeModal, searchUserQuery, query, result } = useGlobalContext();
   const history = useNavigate();
 
   const handleLogout = () => {
@@ -25,21 +25,7 @@ const NavbarUser: React.FC = () => {
     // fix
     e.preventDefault()!;
     if (search.current?.value.length) {
-      try {
-        const response = await axios.get(
-          'https://noodles-api.herokuapp.com/api/v1/search/?query=' +
-            search.current.value
-        );
-        const data = {
-          result: response.data,
-          query: search.current.value,
-        };
-        if (response.data.length) {
-          history('/search', { state: data });
-        } else {
-          alert('No results found');
-        }
-      } catch (error) {}
+      searchUserQuery(search.current!.value);
     }
   };
 
@@ -48,6 +34,13 @@ const NavbarUser: React.FC = () => {
       history('/');
     }
   }, [userAuth]);
+  useEffect(() => {
+    if (query) {
+      if (result?.length) {
+        history('/search');
+      }
+    }
+  }, [result]);
 
   return (
     <Wrapper>

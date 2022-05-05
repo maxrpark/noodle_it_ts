@@ -1,4 +1,6 @@
-import { InitialState, CartContent } from '../context/cartContext';
+import { InitialState } from '../context/cartContext';
+import { CartContent } from '../ts/interfaces/global_interfaces';
+
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/cart_actions';
 

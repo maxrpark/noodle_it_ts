@@ -14,6 +14,7 @@ interface LOG_IN {
   type: ActionType.LOG_IN;
   payload: LogInInterface;
 }
+
 interface GET_USER_DETAILS {
   type: ActionType.GET_USER_DETAILS;
   payload: userDetails;
@@ -26,6 +27,10 @@ interface TOOGLE_FORM {
 }
 interface LOG_OUT_USER {
   type: ActionType.LOG_OUT_USER;
+}
+interface LOAD_NOODLES {
+  type: ActionType.LOAD_NOODLES;
+  payload: NoodleDetails[];
 }
 interface GET_FAVORITES_NOODLES {
   type: ActionType.GET_FAVORITES_NOODLES;
@@ -48,4 +53,5 @@ export type Actions =
   | LOG_OUT_USER
   | GET_FAVORITES_NOODLES
   | IS_USER_FAVORITE_NOODLE
+  | LOAD_NOODLES
   | SET_USER_FAVORITES_NOODLE;

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-// import { NoodleDetails } from '../context/globalContext';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { useProductsContext } from '../context/productsContext';
-
+import { useUserContext } from '../context/userContext';
 import { relatedNoodles } from '../utils/helperFunctions';
+
 // components
 import {
   CardSmall,
@@ -17,6 +17,7 @@ import {
 const Noodle: React.FC = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
+  const { getUserFavoriteList, isUserFavoriteNoodle } = useUserContext();
 
   const { slug } = useParams();
   const [relatedNoodlesBrand, setRelatedNoodlesBrand] = useState(
@@ -34,6 +35,7 @@ const Noodle: React.FC = () => {
   );
 
   useEffect(() => {
+    console.log(noodles);
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
   }, [slug]);
 
@@ -41,6 +43,13 @@ const Noodle: React.FC = () => {
     setRelatedNoodlesBrand(relatedByBrand);
     setRelatedNoodlesCategory(relatedByCategory);
   }, [noodle, noodles]); // fix
+
+  useEffect(() => {
+    if (noodles && noodle) {
+      getUserFavoriteList();
+      isUserFavoriteNoodle();
+    }
+  }, [noodles]); // fix
 
   if (isProductLoading) {
     return <Loading />;

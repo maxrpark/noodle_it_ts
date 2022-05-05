@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import styled from 'styled-components';
-import { useCartContext, CartContent } from '../context/cartContext';
+import { useCartContext } from '../context/cartContext';
+import { CartContent } from '../ts/interfaces/global_interfaces';
 
 // stripe
 import { loadStripe } from '@stripe/stripe-js';
@@ -11,11 +11,9 @@ import { CheckoutForm } from '../components/index';
 
 const stripePromise = loadStripe(
   'pk_test_51Ku48qG0Nbgy3fuoUxyKlphp9zRiLPaRXRlTIt8tWfOwISDBrOHQU0pIb8HZ7WxGHQUM6CAPZ0E7diHjyg9sO4zx00nIIYoZuC'
-);
+); // fix
 
-type Props = {};
-
-const Checkout: React.FC = (props: Props) => {
+const Checkout: React.FC = () => {
   const { total_amount, has_discount, total_with_discount, discount, cart } =
     useCartContext();
   // stripe

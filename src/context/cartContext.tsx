@@ -6,6 +6,8 @@ import { useGlobalContext } from '../context/globalContext';
 import cart_reducer from '../reducers/cart_reducer';
 import { ActionType } from '../ts/states/action-types';
 
+import { CartContent } from '../ts/interfaces/global_interfaces';
+
 const getLocalStorage = () => {
   let cart = localStorage.getItem('cart');
   if (cart) {
@@ -15,16 +17,6 @@ const getLocalStorage = () => {
   }
 };
 
-export interface CartContent {
-  id: string;
-  image: string;
-  name: string;
-  price: string;
-  brand: string;
-  category: string;
-  rating: string;
-  amount: number;
-}
 interface CartInterface {
   cart: CartContent[];
   total_items: number;

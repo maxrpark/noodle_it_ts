@@ -2,6 +2,10 @@ import './styles/App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useUserContext } from './context/userContext';
 
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 // Layout
 import { CommonLayout, UsersShareLayout } from './Layouts/';
 
@@ -101,6 +105,7 @@ function App() {
             </Route>
           </Routes>
         </Router>
+        <ToastContainer />
         <Footer />
       </div>
     </ThemeProvider>

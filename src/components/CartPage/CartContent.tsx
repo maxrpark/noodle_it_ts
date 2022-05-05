@@ -1,17 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CartItem } from '..';
+import { CartItem } from '../index';
+import { CartContent as CartInterface } from '../../ts/interfaces/global_interfaces';
 
-interface CartInterface {
-  id: string;
-  image: string;
-  name: string;
-  price: string;
-  amount: number;
-  brand: string;
-  rating: string | number;
-  category: string;
-}
 interface Props {
   cart: CartInterface[];
 }

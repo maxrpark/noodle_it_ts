@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useUserContext, FormDataInterface } from '../context/userContext';
 
 const initialFormData = {
@@ -9,7 +8,7 @@ const initialFormData = {
 };
 
 const LogInComponent: React.FC = () => {
-  const { userLoggedIn, userAuth, showRegistration } = useUserContext();
+  const { userLoggedIn, showRegistration } = useUserContext();
   const [formData, updateFormData] = useState(
     initialFormData as FormDataInterface
   );

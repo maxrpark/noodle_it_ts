@@ -3,21 +3,22 @@ import styled from 'styled-components';
 import { useCartContext } from '../../context/cartContext';
 import { AmountButtons } from '..';
 import { FaTrash } from 'react-icons/fa';
+import { CartContent } from '../../ts/interfaces/global_interfaces';
 
 interface Props {
-  item: CartInterface;
+  item: CartContent;
 }
 
-interface CartInterface {
-  id: string;
-  image: string;
-  name: string;
-  price: string;
-  amount: number;
-  brand: string;
-  rating: string | number;
-  category: string;
-}
+// interface CartInterface {
+//   id: string;
+//   image: string;
+//   name: string;
+//   price: string;
+//   amount: number;
+//   brand: string;
+//   rating: string | number;
+//   category: string;
+// }
 
 const CartItem: React.FC<Props> = ({ item }) => {
   const { removeItem, toggleAmount } = useCartContext();

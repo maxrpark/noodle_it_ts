@@ -1,9 +1,7 @@
 import React from 'react';
-// import { NoodleDetails } from '../../context/globalContext';
 import { NoodleDetails } from '../../ts/interfaces/global_interfaces';
 import { Link } from 'react-router-dom';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-
 import { useUserContext } from '../../context/userContext';
 
 type Props = {
@@ -18,7 +16,7 @@ const NoodleTopSection: React.FC<Props> = ({ noodle }) => {
       <div className='top'>
         <div className='title'>
           <h2>{noodle.name}</h2>
-          {user && (
+          {user && isFavoriteNoodle && (
             <div>
               <span onClick={() => setUserFavoriteList(user.user_name, noodle)}>
                 {isFavoriteNoodle ? (

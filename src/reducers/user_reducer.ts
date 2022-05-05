@@ -3,6 +3,7 @@ import { InitialState } from '../context/userContext';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/user_actions';
+import { toastSuccessBottom } from '../utils/toast';
 
 const user_reducer = (state: any, action: Actions) => {
   switch (action.type) {
@@ -63,6 +64,7 @@ const user_reducer = (state: any, action: Actions) => {
         favoritesNoodles: favoritesList,
       };
     case ActionType.IS_USER_FAVORITE_NOODLE:
+      console.log(state);
       let noodle = action.payload;
       let isFavorite;
 
@@ -89,8 +91,10 @@ const user_reducer = (state: any, action: Actions) => {
         list = userCurrentList.filter(
           (elem: NoodleDetails) => elem.slug !== action.payload.noodle.slug
         );
+        toastSuccessBottom('Remove to favorites');
       } else {
         list.push(...userCurrentList, action.payload.noodle);
+        toastSuccessBottom('added to favorites');
       }
       return {
         ...state,

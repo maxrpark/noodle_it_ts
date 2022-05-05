@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import noodle_it_img from '../assets/images/noodle_it_img.jpg';
 
-import noodle_it_img from '../assets/media/noodle_it_img.jpg';
-
-type Props = {};
-
-const HomeHero: React.FC<Props> = (props: Props) => {
+const HomeHero: React.FC = () => {
   return (
     <Wrapper>
       <h1>Just, Noodle it!</h1>

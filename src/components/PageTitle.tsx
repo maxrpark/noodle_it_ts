@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import noodle_it_img from '../assets/media/noodle_it_img.jpg';
+import noodle_it_img from '../assets/images/noodle_it_img.jpg';
 
 type Props = {
   title: string | undefined;

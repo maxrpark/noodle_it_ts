@@ -2,15 +2,11 @@ import React, { useEffect } from 'react';
 import { useFilterContext } from '../context/filterContext';
 
 import { IconsList } from '../components/index';
-
 import styled from 'styled-components';
 import Sort from './Sort';
-
 import { getUniqueValues } from '../utils/helperFunctions';
 
-type Props = {};
-
-const Filters: React.FC = (props: Props) => {
+const Filters: React.FC = () => {
   const {
     all_products,
     filters: { text, category, brand, min_price, max_price, price },

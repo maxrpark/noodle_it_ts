@@ -120,6 +120,7 @@ export const UserProvider: React.FC = ({ children }) => {
       );
       dispach({ type: ActionType.GET_USER_DETAILS, payload: res.data });
       getUserFavoriteList();
+      // dispach({ type: ActionType.GET_FAVORITES_NOODLES, payload: noodles });
     } catch (error) {
       console.log(error);
     }
@@ -138,6 +139,7 @@ export const UserProvider: React.FC = ({ children }) => {
   };
 
   const isUserFavoriteNoodle = () => {
+    console.log(noodles);
     dispach({ type: ActionType.IS_USER_FAVORITE_NOODLE, payload: noodle });
   };
 
@@ -160,12 +162,13 @@ export const UserProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    isUserFavoriteNoodle();
-  }, [noodle]);
+    getUserFavoriteList();
+  }, [noodles]);
 
   useEffect(() => {
     getUserFavoriteList();
-  }, [noodles]);
+    isUserFavoriteNoodle();
+  }, [noodle]);
 
   useEffect(() => {
     if (state.userAuth !== null) {

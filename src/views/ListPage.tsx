@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-import noodle_it_img from '../assets/media/noodle_it_img.jpg';
+import noodle_it_img from '../assets/images/noodle_it_img.jpg';
 
 // Components
 import { CardList, Loading, PageTitle } from '../components';

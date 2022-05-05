@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { RegisterComponent, LogInComponent } from '../../components';
 import { useUserContext } from '../../context/userContext';

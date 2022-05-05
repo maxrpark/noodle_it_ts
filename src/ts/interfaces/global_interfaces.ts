@@ -21,3 +21,14 @@ export interface NoodleDetails {
   spicy_level: string;
   spicy_level_number: number;
 }
+
+export interface CartContent {
+  id: string;
+  image: string;
+  name: string;
+  price: string;
+  brand: string;
+  category: string;
+  rating: string;
+  amount: number;
+}

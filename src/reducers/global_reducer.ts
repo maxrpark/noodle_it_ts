@@ -27,6 +27,20 @@ const global_reducer = (state: InicialState, action: Actions): InicialState => {
         ...state,
         coupon_code: action.payload,
       };
+    case ActionType.SEARCH_START:
+      return {
+        ...state,
+        query: action.payload,
+        isLoading: true,
+      };
+    case ActionType.SEARCH_RESULT:
+      const { query, result } = action.payload;
+      return {
+        ...state,
+        query: query,
+        result: result,
+        isLoading: false,
+      };
     default:
       return state;
   }

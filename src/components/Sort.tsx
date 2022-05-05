@@ -1,11 +1,8 @@
 import React from 'react';
 import { useFilterContext } from '../context/filterContext';
 
-type Props = {};
-
-const Sort: React.FC = (props: Props) => {
-  const { all_products, filtered_products, sort, updateSort } =
-    useFilterContext();
+const Sort: React.FC = () => {
+  const { sort, updateSort } = useFilterContext();
   return (
     <form>
       <label htmlFor='sort'>sort by</label>

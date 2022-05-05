@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useGlobalContext } from '../context/globalContext';
 
 import { ToogleTheme } from '../components';
 

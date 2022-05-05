@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
 import { LogInComponent } from '../../components';
-
 import { useUserContext } from '../../context/userContext';
 
 const LogIn: React.FC = () => {
@@ -13,7 +10,6 @@ const LogIn: React.FC = () => {
   useEffect(() => {
     if (userAuth) {
       history('/');
-      // history('/cart');
     }
   }, [userAuth]);
 

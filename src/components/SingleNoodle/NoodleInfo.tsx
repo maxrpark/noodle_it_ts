@@ -1,5 +1,4 @@
 import React from 'react';
-// import { NoodleDetails } from '../../context/globalContext';
 import { NoodleDetails } from '../../ts/interfaces/global_interfaces';
 import { GiKitchenScale } from 'react-icons/gi';
 import IconsList from '../IconsList';

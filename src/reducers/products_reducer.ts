@@ -12,6 +12,7 @@ const products_reducer = (
         ...state,
         isProductsLoading: true,
       };
+
     case ActionType.GET_CATEGORIES_LIST:
       const categoriesList = action.payload;
       return {
