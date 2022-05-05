@@ -17,7 +17,8 @@ import {
 const Noodle: React.FC = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
-  const { getUserFavoriteList, isUserFavoriteNoodle } = useUserContext();
+  const { getUserFavoriteList, isUserFavoriteNoodle, favoritesNoodles } =
+    useUserContext();
 
   const { slug } = useParams();
   const [relatedNoodlesBrand, setRelatedNoodlesBrand] = useState(
@@ -35,7 +36,6 @@ const Noodle: React.FC = () => {
   );
 
   useEffect(() => {
-    console.log(noodles);
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
   }, [slug]);
 
@@ -50,6 +50,8 @@ const Noodle: React.FC = () => {
       isUserFavoriteNoodle();
     }
   }, [noodles]); // fix
+
+  console.log(favoritesNoodles);
 
   if (isProductLoading) {
     return <Loading />;

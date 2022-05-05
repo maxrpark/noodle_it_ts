@@ -23,7 +23,7 @@ const user_reducer = (state: any, action: Actions) => {
         ...state,
         user: action.payload,
         isAlreadyLogIn: true,
-        favoritesNoodles: action.payload.favorites,
+        favoritesNoodles: [...action.payload.favorites],
       };
     case ActionType.LOG_BACK:
       const authTokens = localStorage.getItem('access_token')
@@ -57,14 +57,13 @@ const user_reducer = (state: any, action: Actions) => {
       let noodles = action.payload;
       const favoritesList = noodles.filter((elem: { slug: string }) => {
         // @ts-ignore: Unreachable code error
-        return state.user?.favorites.find(({ slug }) => elem.slug === slug);
+        return state.favoritesNoodles.find(({ slug }) => elem.slug === slug);
       });
       return {
         ...state,
         favoritesNoodles: favoritesList,
       };
     case ActionType.IS_USER_FAVORITE_NOODLE:
-      console.log(state);
       let noodle = action.payload;
       let isFavorite;
 

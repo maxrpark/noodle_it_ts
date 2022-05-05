@@ -16,7 +16,7 @@ const NoodleTopSection: React.FC<Props> = ({ noodle }) => {
       <div className='top'>
         <div className='title'>
           <h2>{noodle.name}</h2>
-          {user && isFavoriteNoodle && (
+          {user && (
             <div>
               <span onClick={() => setUserFavoriteList(user.user_name, noodle)}>
                 {isFavoriteNoodle ? (
