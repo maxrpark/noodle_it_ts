@@ -82,6 +82,7 @@ body{
 }
 .icons{
    pointer-events: none;
+   font-size: 10px;
 }
 
 .description{
@@ -324,6 +325,15 @@ li {
     text-transform: capitalize;
   }
 
+
+// order 
+  .order-date,
+  .see-order {
+    text-align: center;
+  }
+  .see-order {
+    justify-self: flex-end;
+  }
 
 
 `;

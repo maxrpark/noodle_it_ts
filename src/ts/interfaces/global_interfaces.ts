@@ -31,4 +31,5 @@ export interface CartContent {
   category: string;
   rating: string;
   amount: number;
+  slug: string;
 }

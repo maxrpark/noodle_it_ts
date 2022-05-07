@@ -2,7 +2,8 @@ import React, { useEffect, useContext, useReducer } from 'react';
 
 // import { NoodleDetails } from './productsContext';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
-import { useGlobalContext } from '../context/globalContext';
+import { cartAnimation } from '../utils/helperFunctions';
+
 import cart_reducer from '../reducers/cart_reducer';
 import { ActionType } from '../ts/states/action-types';
 
@@ -71,6 +72,7 @@ export const CartProvider: React.FC = ({ children }) => {
       type: ActionType.ADD_TO_CART,
       payload: { id, amount, noodle },
     });
+    cartAnimation();
   };
 
   // remove item

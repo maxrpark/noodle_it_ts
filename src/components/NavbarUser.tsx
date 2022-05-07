@@ -4,13 +4,15 @@ import { useUserContext } from '../context/userContext';
 import { ToogleTheme } from '../components';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useGlobalContext } from '../context/globalContext';
+import { useCartContext } from '../context/cartContext';
 
 import styled from 'styled-components';
 
 import { FaBars } from 'react-icons/fa';
-import axios from 'axios';
+
 const NavbarUser: React.FC = () => {
   const { logOutUser, userAuth } = useUserContext();
+  const { total_items } = useCartContext();
   const { closeModal, searchUserQuery, query, result } = useGlobalContext();
   const history = useNavigate();
 
@@ -34,6 +36,7 @@ const NavbarUser: React.FC = () => {
       history('/');
     }
   }, [userAuth]);
+
   useEffect(() => {
     if (query) {
       if (result?.length) {
@@ -55,8 +58,9 @@ const NavbarUser: React.FC = () => {
         <button onClick={() => handleLogout()}>Logout</button>
         <NavLink to={'/dashboard'}>Profile</NavLink>
         <ToogleTheme />
-        <Link to={'/cart'}>
+        <Link className='cart-icon' to={'/cart'}>
           <FaShoppingCart />
+          {total_items}
         </Link>
       </div>
     </Wrapper>

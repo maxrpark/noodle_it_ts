@@ -51,8 +51,6 @@ const Noodle: React.FC = () => {
     }
   }, [noodles]); // fix
 
-  console.log(favoritesNoodles);
-
   if (isProductLoading) {
     return <Loading />;
   } else {

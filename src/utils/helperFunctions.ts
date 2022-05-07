@@ -1,6 +1,6 @@
 // import { NoodleDetails } from '../context/globalContext';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
-
+import gsap from 'gsap';
 const relatedNoodles = (
   noodles: NoodleDetails[],
   filterByName: string,
@@ -33,4 +33,20 @@ const getUniqueValues = (data: NoodleDetails[], type: string) => {
   return ['all', ...new Set(unique)];
 };
 
-export { relatedNoodles, getUniqueValues };
+const cartAnimation = () => {
+  let lt = gsap.timeline();
+
+  lt.fromTo(
+    '.cart-icon',
+    {
+      rotate: 0,
+      scale: 1.4,
+    },
+    {
+      rotate: 360,
+      scale: 1,
+    }
+  );
+};
+
+export { relatedNoodles, getUniqueValues, cartAnimation };

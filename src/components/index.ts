@@ -31,6 +31,11 @@ import NoodleInfo from './SingleNoodle/NoodleInfo';
 import NoodleTopSection from './SingleNoodle/NoodleTopSection';
 import SingleNoodleMain from './SingleNoodle/SingleNoodleMain';
 
+// Dashboard
+
+import OrderSection from './OrderSection';
+import SingleOrder from './SingleOrder';
+
 export {
   AddToCart,
   Card,
@@ -42,6 +47,10 @@ export {
   CartItem,
   ModalCart,
   CheckoutForm,
+  //
+  // OrderSection
+  OrderSection,
+  SingleOrder,
   //
   Footer,
   ToogleTheme,

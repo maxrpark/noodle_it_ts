@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 type Props = {
   title: string;
   urlPath: string;
+  text?: string;
 };
 
-const SectionTitle: React.FC<Props> = ({ title, urlPath }) => {
+const SectionTitle: React.FC<Props> = ({ title, urlPath, text }) => {
   return (
     <Wrapper>
       <h2 className=''>{title}</h2>
       {urlPath && (
         <Link className='link' to={`/${urlPath}`}>
-          see more
+          {text ? text : 'see more'}
         </Link>
       )}
     </Wrapper>

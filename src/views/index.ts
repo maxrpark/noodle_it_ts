@@ -3,6 +3,7 @@ import Checkout from './Checkout';
 import Noodle from './Noodle';
 import Error from './Error';
 import ResultPage from './ResultPage';
+import OrderDetails from './OrderDetails';
 import Cart from './Cart';
 import ListPage from './ListPage';
 import Products from './Products';
@@ -19,4 +20,5 @@ export {
   Products,
   NoodlesType,
   Cart,
+  OrderDetails,
 };

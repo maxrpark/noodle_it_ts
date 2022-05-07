@@ -18,10 +18,16 @@ interface ResultDetails {
 const NoodlesType: React.FC = () => {
   const { noodlesBrandList, noodlesCategoryList } = useProductsContext();
   const { slug, query } = useParams();
-  const fetchUrl = `${query}/${slug}`;
-  const { isLoading, noodles } = useFetch(fetchUrl);
 
+  let fetchUrl;
+  if (query === 'brands') {
+    fetchUrl = `brand/${slug}`;
+  } else {
+    fetchUrl = `${query}/${slug}`;
+  }
+  const { isLoading, noodles } = useFetch(fetchUrl);
   const [resultDetails, setResultDetails] = useState({} as ResultDetails);
+
   useEffect(() => {
     if (query === 'brand') {
       noodlesBrandList.find((type) => {

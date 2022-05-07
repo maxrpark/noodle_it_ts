@@ -20,6 +20,7 @@ import {
   ListPage,
   NoodlesType,
   Checkout,
+  OrderDetails,
 } from './views';
 // auth views
 import {
@@ -99,7 +100,14 @@ function App() {
                   <ProtectedRoute>
                     <Checkout />
                   </ProtectedRoute>
-                  //  <Route path='/checkout' element={<Checkout />} />
+                }
+              />
+              <Route
+                path='/order-details/:id'
+                element={
+                  <ProtectedRoute>
+                    <OrderDetails />
+                  </ProtectedRoute>
                 }
               />
             </Route>

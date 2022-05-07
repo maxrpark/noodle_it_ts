@@ -3,6 +3,7 @@ import { CartContent } from '../ts/interfaces/global_interfaces';
 
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/cart_actions';
+import { toastSuccessBottom } from '../utils/toast';
 
 const cart_reducer = (state: any, action: Actions) => {
   switch (action.type) {
@@ -22,12 +23,13 @@ const cart_reducer = (state: any, action: Actions) => {
             return cartItem;
           }
         });
-
+        toastSuccessBottom('Cart updated');
         return { ...state, cart: tempCart };
       } else {
         const newItem = {
           id: id,
           name: noodle.name,
+          slug: noodle.slug,
           amount,
           image: noodle.images[0],
           price: noodle.price_per_package,
@@ -35,6 +37,7 @@ const cart_reducer = (state: any, action: Actions) => {
           category: noodle.category,
           rating: noodle.rating,
         };
+        toastSuccessBottom('Added to cart');
         return { ...state, cart: [...state.cart, newItem] };
       }
 

@@ -4,27 +4,19 @@ import { useCartContext } from '../../context/cartContext';
 import { AmountButtons } from '..';
 import { FaTrash } from 'react-icons/fa';
 import { CartContent } from '../../ts/interfaces/global_interfaces';
+import { Link } from 'react-router-dom';
 
 interface Props {
   item: CartContent;
 }
 
-// interface CartInterface {
-//   id: string;
-//   image: string;
-//   name: string;
-//   price: string;
-//   amount: number;
-//   brand: string;
-//   rating: string | number;
-//   category: string;
-// }
-
 const CartItem: React.FC<Props> = ({ item }) => {
   const { removeItem, toggleAmount } = useCartContext();
   return (
     <Wrapper key={item.id} className='single-item'>
-      <img src={item.image} alt='' />
+      <Link to={`/noodle/${item.slug}`}>
+        <img src={item.image} alt='' />
+      </Link>
       <div className='item-descriptions'>
         <p className='name'>{item.name}</p>
         <div className='item-details'>
@@ -50,6 +42,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
           <FaTrash />
         </button>
       </div>
+
       <div className='amount-details'>
         <div className='detail'>Price:{item.price} </div>
         <div className='detail'>Amount:{item.amount} </div>

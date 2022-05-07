@@ -1,0 +1,43 @@
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Interface } from 'readline';
+import styled from 'styled-components';
+
+type Props = {
+  order: any;
+};
+
+interface Options {
+  weekday: any;
+  year: any;
+  month: any;
+  day: any;
+}
+var options = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+} as Options;
+
+const SingleOrder: React.FC<Props> = ({ order }) => {
+  return (
+    <Wrapper>
+      <p>{new Date(order.created_at).toLocaleDateString('en-US', options)}</p>
+      <p className='order-date'>${order.paid_amount}</p>
+      <Link
+        to={`/order-details/${order.id}`}
+        className='see-order link'
+        style={{ textDecoration: 'none' }}
+      >
+        <p>See order</p>
+      </Link>
+    </Wrapper>
+  );
+};
+const Wrapper = styled.div`
+  /* @media screen and (min-width: 768px) { */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* } */
+`;
+export default SingleOrder;
