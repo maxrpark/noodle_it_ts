@@ -20,15 +20,15 @@ const Home: React.FC = () => {
     <>
       <HomeHero />
       <div className='section-center'>
-        <SectionTitle title={'All Products'} urlPath='products' />
-        <Card noodles={noodles.slice(0, 6)} />
+        <SectionTitle title={'Products'} urlPath='products' />
+        <Card noodles={noodles.slice(0, 8)} />
         <SectionTitle title={'Categories'} urlPath='list-page/categories' />
         <CardList
-          noodles={noodlesCategoryList.slice(0, 3)}
+          noodles={noodlesCategoryList.slice(0, 4)}
           type={'categories'}
         />
         <SectionTitle title={'Brands'} urlPath='list-page/brands' />
-        <CardList noodles={noodlesBrandList.slice(0, 3)} type={'brand'} />
+        <CardList noodles={noodlesBrandList.slice(0, 4)} type={'brand'} />
       </div>
     </>
   );

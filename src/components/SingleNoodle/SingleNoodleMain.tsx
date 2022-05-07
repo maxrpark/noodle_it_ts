@@ -54,6 +54,9 @@ const Wrapper = styled.div`
   background-color: white;
   box-shadow: var(--box-shadow-1);
   padding: 1rem;
+  .section-center {
+    max-width: 960px;
+  }
   .model-img {
     width: 100%;
     height: 100%;
