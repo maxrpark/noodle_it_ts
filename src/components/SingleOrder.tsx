@@ -26,18 +26,16 @@ const SingleOrder: React.FC<Props> = ({ order }) => {
       <p className='order-date'>${order.paid_amount}</p>
       <Link
         to={`/order-details/${order.id}`}
-        className='see-order link'
+        className='see-order'
         style={{ textDecoration: 'none' }}
       >
-        <p>See order</p>
+        See order
       </Link>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
-  /* @media screen and (min-width: 768px) { */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  /* } */
 `;
 export default SingleOrder;

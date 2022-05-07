@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import simplereview from 'simplereview';
 import styled from 'styled-components';
-import { UseToogleList } from '../../customHooks/UseToogleList';
 import { useCartContext } from '../../context/cartContext';
-
 import { useUserContext } from '../../context/userContext';
 import {
   Loading,
-  CardSmall,
-  SectionTitle,
   PageTitle,
   OrderSection,
-  CartContent,
+  WishListSection,
+  CartSection,
 } from '../../components';
 
 const Dashboard: React.FC = ({}) => {
   const { user, favoritesNoodles } = useUserContext();
   const { cart } = useCartContext();
-  const { showList, toogleListFunc } = UseToogleList();
-
   const showFavorites = () => {
     setTimeout(() => {
       simplereview(); // fix
@@ -31,24 +26,12 @@ const Dashboard: React.FC = ({}) => {
   if (user) {
     return (
       <Wrapper>
-        <PageTitle title={'DashBoard'} image={''}></PageTitle>
+        <PageTitle title={'DashBoard'} image={''} />
         <div className='section-center page-100'>
           <h2>Welcome, {user.user_name}</h2>
-          <SectionTitle title={'My Cart'} urlPath='Cart' text='Go Cart' />
-          <CartContent cart={cart} />;
+          <WishListSection />
           <OrderSection user={user} />
-          <div className='favSection'>
-            <SectionTitle title={'My Favorites'} urlPath='' />
-            {favoritesNoodles.length > 3 && (
-              <button className='link' onClick={toogleListFunc}>
-                {showList === 3 ? 'Show More' : 'Show Less'}
-              </button>
-            )}
-          </div>
-          <CardSmall
-            user={user}
-            noodles={favoritesNoodles.slice(0, showList)}
-          />
+          {cart.length > 0 && <CartSection />}
         </div>
       </Wrapper>
     );
@@ -71,10 +54,13 @@ const Wrapper = styled.main`
     align-items: center;
     justify-content: space-between;
   }
-  button {
+  .link {
     margin: 1rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
+  }
+  .cart-section {
+    padding: 1rem;
   }
 `;

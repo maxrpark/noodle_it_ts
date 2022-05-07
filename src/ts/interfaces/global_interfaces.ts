@@ -33,3 +33,13 @@ export interface CartContent {
   amount: number;
   slug: string;
 }
+
+export interface userDetails {
+  email: string;
+  first_name: string;
+  id: number;
+  user_id: number;
+  last_login: string;
+  user_name: string;
+  favorites: NoodleDetails[];
+}

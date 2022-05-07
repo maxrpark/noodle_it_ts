@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import SingleOrder from './SingleOrder';
-import SectionTitle from './SectionTitle';
-import { UseToogleList } from '../customHooks/UseToogleList';
-
+import { Link } from 'react-router-dom';
+import SingleOrder from '../SingleOrder';
+import SectionTitle from '../SectionTitle';
+import FallbackMessegeComponent from '../FallbackMessegeComponent';
+import { UseToogleList } from '../../customHooks/UseToogleList';
+import { userDetails } from '../../ts/interfaces/global_interfaces';
 const url = 'https://noodles-api.herokuapp.com/api/users/user-orders/';
 
 type Props = {
-  user: any;
+  user: userDetails;
 };
 
 const OrderSection: React.FC<Props> = ({ user }) => {
@@ -32,19 +34,25 @@ const OrderSection: React.FC<Props> = ({ user }) => {
           </button>
         )}
       </div>
-      <section className='details-wrapper'>
-        <div className='details'>
-          <p>Date</p>
-          <p className='order-date'>Total</p>
-          <p className='see-order'>Details</p>
-        </div>
-        <hr />
-        {orderDetails
-          .map((order: any) => {
-            return <SingleOrder key={order.id} order={order} />;
-          })
-          .slice(0, showList)}
-      </section>
+      {orderDetails.length ? (
+        <section className='details-wrapper'>
+          <div className='details'>
+            <p>Date</p>
+            <p className='order-date'>Total</p>
+            <p className='see-order top'>Details</p>
+          </div>
+          <hr />
+          {orderDetails
+            .map((order: any) => {
+              return <SingleOrder key={order.id} order={order} />;
+            })
+            .slice(0, showList)}
+        </section>
+      ) : (
+        <FallbackMessegeComponent title="Your don't have any other yet">
+          <Link to={'/products'}>See products</Link>
+        </FallbackMessegeComponent>
+      )}
     </Wrapper>
   );
 };
@@ -56,6 +64,9 @@ const Wrapper = styled.div`
   .details {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  .top {
+    color: black;
   }
 `;
 

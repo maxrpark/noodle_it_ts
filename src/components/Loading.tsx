@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loading: React.FC = () => {
   return (
-    <div className='page-100'>
+    <div className='loading center'>
       <h2>Loading...</h2>
     </div>
   );

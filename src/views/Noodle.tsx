@@ -28,11 +28,17 @@ const Noodle: React.FC = () => {
     [] as NoodleDetails[]
   );
 
-  const relatedByBrand = relatedNoodles(noodles, 'brand', noodle?.brand?.name);
+  const relatedByBrand = relatedNoodles(
+    noodles,
+    'brand',
+    noodle?.brand?.name,
+    noodle?.name
+  );
   const relatedByCategory = relatedNoodles(
     noodles,
     'category',
-    noodle?.category
+    noodle?.category,
+    noodle?.name
   );
 
   useEffect(() => {

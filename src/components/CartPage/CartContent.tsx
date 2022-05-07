@@ -10,7 +10,6 @@ interface Props {
 const CartContent: React.FC<Props> = ({ cart }) => {
   return (
     <Wrapper>
-      {/* <section className='items-container'> */}
       {cart.map((item: CartInterface) => {
         return <CartItem key={item.id} item={item} />;
       })}
@@ -19,8 +18,6 @@ const CartContent: React.FC<Props> = ({ cart }) => {
 };
 
 const Wrapper = styled.div`
-  /* display: flex; */
-  /* .items-container { */
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -29,14 +26,6 @@ const Wrapper = styled.div`
     /* width: 100%; */
     height: 200px;
   }
-  .another-section {
-    background-color: red;
-    height: 300px;
-  }
-  /* @media screen and (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  } */
 `;
 
 export default CartContent;

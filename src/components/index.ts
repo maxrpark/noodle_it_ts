@@ -33,10 +33,14 @@ import SingleNoodleMain from './SingleNoodle/SingleNoodleMain';
 
 // Dashboard
 
-import OrderSection from './OrderSection';
+import CartSection from './Dashboard/CartSection';
+import OrderSection from './Dashboard/OrderSection';
 import SingleOrder from './SingleOrder';
+import WishListSection from './Dashboard/WishListSection';
 
+import FallbackMessegeComponent from './FallbackMessegeComponent';
 export {
+  FallbackMessegeComponent,
   AddToCart,
   Card,
   CardSmall,
@@ -48,9 +52,11 @@ export {
   ModalCart,
   CheckoutForm,
   //
-  // OrderSection
+  // Dashboard
   OrderSection,
+  CartSection,
   SingleOrder,
+  WishListSection,
   //
   Footer,
   ToogleTheme,

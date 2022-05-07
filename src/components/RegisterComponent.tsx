@@ -78,7 +78,7 @@ const RegisterComponent: React.FC = () => {
             }
           />
         </div>
-        <button className='form-btn' onClick={handleSubmit}>
+        <button className='form-btn btn' onClick={handleSubmit}>
           Register
         </button>
         <p className='form-link'>

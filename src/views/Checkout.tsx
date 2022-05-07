@@ -7,7 +7,7 @@ import { CartContent } from '../ts/interfaces/global_interfaces';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
-import { CheckoutForm } from '../components/index';
+import { CheckoutForm, PageTitle } from '../components/index';
 
 const stripePromise = loadStripe(
   'pk_test_51Ku48qG0Nbgy3fuoUxyKlphp9zRiLPaRXRlTIt8tWfOwISDBrOHQU0pIb8HZ7WxGHQUM6CAPZ0E7diHjyg9sO4zx00nIIYoZuC'
@@ -51,31 +51,34 @@ const Checkout: React.FC = () => {
 
   return (
     <Wrapper className='page-100'>
-      {cart.map((item: CartContent) => {
-        const { name, price, amount, id } = item;
-        return (
-          <div key={id}>
-            name:{name}
-            <br />
-            amount:{amount}
-            <br />
-            price:{price}
-            <br />
-            subTotal : {+item.price * item.amount}
-            <br />
-          </div>
-        );
-      })}
-      <h2>Checkout</h2>
-      <p>total:{total_amount}</p>
-      <p>with discount:{total_with_discount}</p>
-      4242 4242 4242 4242
-      <div>
-        {clientSecret && (
-          <Elements stripe={stripePromise}>
-            <CheckoutForm clientSecret={clientSecret} />
-          </Elements>
-        )}
+      <PageTitle title={'Checkout'} image={''} />
+      <div className='section-center '>
+        {cart.map((item: CartContent) => {
+          const { name, price, amount, id } = item;
+          return (
+            <div key={id}>
+              name:{name}
+              <br />
+              amount:{amount}
+              <br />
+              price:{price}
+              <br />
+              subTotal : {+item.price * item.amount}
+              <br />
+            </div>
+          );
+        })}
+        <h2>Checkout</h2>
+        <p>total:{total_amount}</p>
+        <p>with discount:{total_with_discount}</p>
+        4242 4242 4242 4242
+        <div>
+          {clientSecret && (
+            <Elements stripe={stripePromise}>
+              <CheckoutForm clientSecret={clientSecret} />
+            </Elements>
+          )}
+        </div>
       </div>
     </Wrapper>
   );

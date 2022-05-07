@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AiFillHeart } from 'react-icons/ai';
-import { NoodleDetails } from '../ts/interfaces/global_interfaces';
-import { userDetails } from '../context/userContext';
+import { NoodleDetails, userDetails } from '../ts/interfaces/global_interfaces';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
 

@@ -3,7 +3,7 @@ import { CartContent } from '../ts/interfaces/global_interfaces';
 
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/cart_actions';
-import { toastSuccessBottom } from '../utils/toast';
+import { toastSuccessTop } from '../utils/toast';
 
 const cart_reducer = (state: any, action: Actions) => {
   switch (action.type) {
@@ -23,7 +23,7 @@ const cart_reducer = (state: any, action: Actions) => {
             return cartItem;
           }
         });
-        toastSuccessBottom('Cart updated');
+        toastSuccessTop('Cart updated');
         return { ...state, cart: tempCart };
       } else {
         const newItem = {
@@ -37,7 +37,7 @@ const cart_reducer = (state: any, action: Actions) => {
           category: noodle.category,
           rating: noodle.rating,
         };
-        toastSuccessBottom('Added to cart');
+        toastSuccessTop('Added to cart');
         return { ...state, cart: [...state.cart, newItem] };
       }
 

@@ -59,7 +59,7 @@ const LogInComponent: React.FC = () => {
             onChange={handleChange}
           />
         </div>
-        <button className='form-btn' type='submit'>
+        <button className='form-btn btn' type='submit'>
           Log In
         </button>
         <p className='form-link'>

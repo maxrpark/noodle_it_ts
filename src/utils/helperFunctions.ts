@@ -1,20 +1,20 @@
-// import { NoodleDetails } from '../context/globalContext';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import gsap from 'gsap';
 const relatedNoodles = (
   noodles: NoodleDetails[],
   filterByName: string,
-  stype: string
+  type: string,
+  noodleName: string
 ) => {
   let relatedNoodles: NoodleDetails[] = [];
   if (filterByName === 'brand') {
-    relatedNoodles = noodles.filter(
-      (item: NoodleDetails) => item.brand.name === stype
-    );
+    relatedNoodles = noodles
+      .filter((item: NoodleDetails) => item.brand.name === type)
+      .filter((item: NoodleDetails) => item.name !== noodleName);
   } else if (filterByName === 'category') {
-    relatedNoodles = noodles.filter(
-      (item: NoodleDetails) => item.category === stype
-    );
+    relatedNoodles = noodles
+      .filter((item: NoodleDetails) => item.category === type)
+      .filter((item: NoodleDetails) => item.name !== noodleName);
   }
   return relatedNoodles.slice(0, 3);
 };

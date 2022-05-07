@@ -5,7 +5,7 @@ import axios from 'axios';
 import { BACK_END_URL } from '../utils/variables';
 import { useProductsContext } from '../context/productsContext';
 import { ActionType } from '../ts/states/action-types';
-import { NoodleDetails } from '../ts/interfaces/global_interfaces';
+import { NoodleDetails, userDetails } from '../ts/interfaces/global_interfaces';
 
 interface authTokensInt {
   access: string;
@@ -15,15 +15,6 @@ interface authTokensInt {
 export interface FormDataInterface {
   email: string;
   password: string;
-}
-export interface userDetails {
-  email: string;
-  first_name: string;
-  id: number;
-  user_id: number;
-  last_login: string;
-  user_name: string;
-  favorites: NoodleDetails[];
 }
 
 type UserContextType = {

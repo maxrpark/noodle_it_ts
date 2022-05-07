@@ -1,6 +1,5 @@
 import { ActionType } from '../action-types';
-import { userDetails } from '../../../context/userContext';
-import { NoodleDetails } from '../../interfaces/global_interfaces';
+import { NoodleDetails, userDetails } from '../../interfaces/global_interfaces';
 
 interface LogInInterface {
   access: string;

@@ -45,6 +45,7 @@ export const GlobalStyle = createGlobalStyle`
 :root {
   --color-white-1: #fff;
   --color-black-1: #1d1d1d;
+  --btn-color: #5469d4;
   --border-radius-1: 5px;
   --border-radius-2: 10px;
   --box-shadow-1: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -115,7 +116,10 @@ li {
 }
 
 .page-100 {
-  min-height: 100vh;
+  min-height: calc(100vh - 450px);
+}
+.loading{
+  height: 100vh;
 }
 .center{
   display: flex;
@@ -148,6 +152,21 @@ li {
   color: ${(props) => props.theme.mainColor};
   box-shadow: var(--box-shadow-1);
   transition: var(--transition-1);
+
+  background: var(--btn-color);
+  font-family: Arial,sans-serif;
+  color: #ffffff;
+  border-radius: 4px;
+  border: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgb(0 0 0 / 7%);
+  /* width: 100%; */
 
   :hover {
     box-shadow: var(--box-shadow-2);
@@ -251,14 +270,9 @@ li {
   .form-control input {
     height: 37px;
   }
-  .form-btn {
-    justify-self: flex-start;
-    border: none;
-    height: 35px;
-    transition: all 0.3s linear;
-  }
+
   .form-btn:hover {
-    background: ${(props) => props.theme.secondaryColor};
+    transform: translateY(0);
   }
   .form-link{
     text-align: center;
@@ -283,6 +297,7 @@ li {
   gap:1rem;
   width: 100%;
   padding: 1rem;
+  height: 100%;
   }
  .single-card {
     width: 100%;
@@ -330,9 +345,11 @@ li {
   .order-date,
   .see-order {
     text-align: center;
+
   }
   .see-order {
     justify-self: flex-end;
+    color: var(--special-color-1);
   }
 
 

@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+// import { FaPlus, FaMinus } from 'react-icons/fa';
+import {
+  MdOutlineKeyboardArrowUp,
+  MdOutlineKeyboardArrowDown,
+} from 'react-icons/md';
 type Props = {
   increase: () => void;
   decrease: () => void;
@@ -10,39 +14,30 @@ type Props = {
 const AmountButtons: React.FC<Props> = ({ increase, decrease, amount }) => {
   return (
     <Wrapper className='amount-btsn'>
-      <button type='button' className='amount-btn' onClick={decrease}>
-        <FaMinus />
+      <button type='button' className='amount-btn' onClick={increase}>
+        <MdOutlineKeyboardArrowUp />
       </button>
       <h2 className='amount'>{amount}</h2>
-      <button type='button' className='amount-btn' onClick={increase}>
-        <FaPlus />
+      <button type='button' className='amount-btn' onClick={decrease}>
+        <MdOutlineKeyboardArrowDown />
       </button>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  display: grid;
-  width: 140px;
+  display: flex;
+  flex-direction: column;
   justify-items: center;
-  grid-template-columns: repeat(3, 1fr);
   align-items: center;
+
   h2 {
     margin-bottom: 0;
   }
   button {
-    background: transparent;
-    border-color: transparent;
-    cursor: pointer;
-    padding: 1rem 0;
-    width: 2rem;
-    height: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  h2 {
-    margin-bottom: 0;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
   }
 `;
 
