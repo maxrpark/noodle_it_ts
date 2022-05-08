@@ -77,4 +77,7 @@ const Wrapper = styled.div`
   .tags-container {
     margin: 1rem;
   }
+  .instructions p {
+    white-space: pre-line;
+  }
 `;

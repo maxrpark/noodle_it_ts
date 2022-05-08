@@ -6,6 +6,7 @@ import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { toastDangerTop } from '../utils/toast';
 interface UseContextInterface {
   isModalOpen: boolean;
+  isSidebarOpen: boolean;
   selectedImg: string;
   coupon_code: string;
   theme: string | null;
@@ -16,11 +17,13 @@ interface UseContextInterface {
   showImage: (e: React.MouseEvent<HTMLImageElement>) => void;
   toogleTheme: () => void;
   openModal: () => void;
+  toogleMenu: () => void;
   searchUserQuery: (query: string) => void;
 }
 
 export interface InicialState {
   isModalOpen: boolean;
+  isSidebarOpen: boolean;
   selectedImg: string;
   coupon_code: string;
   isLoading: boolean;
@@ -35,6 +38,7 @@ const initialState: InicialState = {
   query: '',
   result: null,
   isLoading: false,
+  isSidebarOpen: false,
 };
 
 const AppContext = React.createContext({} as UseContextInterface);
@@ -88,6 +92,12 @@ const AppProvider: React.FC = ({ children }) => {
     document.body.style.overflow = 'scroll';
   };
 
+  // toogleMenu
+  const toogleMenu = () => {
+    dispatch({ type: ActionType.TOOGLE_SIDEBAR });
+    document.body.style.overflow = 'scroll';
+  };
+
   const showImage = (e: React.MouseEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     dispatch({ type: ActionType.OPEN_MODAL });
@@ -132,6 +142,7 @@ const AppProvider: React.FC = ({ children }) => {
         openModal,
         toogleTheme,
         searchUserQuery,
+        toogleMenu,
       }}
     >
       {children}

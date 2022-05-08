@@ -1,6 +1,7 @@
 export enum ActionType {
   // global_actions
   OPEN_MODAL = 'OPEN_MODAL',
+  TOOGLE_SIDEBAR = 'TOOGLE_SIDEBAR',
   CLOSE_MODAL = 'CLOSE_MODAL',
   OPEN_WITH_IMG = 'OPEN_WITH_IMG',
   COUPON_CODE = 'COUPON_CODE',

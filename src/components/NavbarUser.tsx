@@ -13,7 +13,9 @@ import { FaBars } from 'react-icons/fa';
 const NavbarUser: React.FC = () => {
   const { logOutUser, userAuth } = useUserContext();
   const { total_items } = useCartContext();
-  const { closeModal, searchUserQuery, query, result } = useGlobalContext();
+  const { closeModal, searchUserQuery, query, result, toogleMenu } =
+    useGlobalContext();
+
   const history = useNavigate();
 
   const handleLogout = () => {
@@ -47,17 +49,17 @@ const NavbarUser: React.FC = () => {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSearch}>
-        <input type='text' ref={search} />
-      </form>
-      <FaBars />
+      <FaBars onClick={toogleMenu} />
       <NavLink to={'/'} className='logo'>
         Noodle It!
       </NavLink>
+      <form onSubmit={handleSearch}>
+        <input type='text' ref={search} />
+      </form>
       <div className='nav-items'>
-        <button onClick={() => handleLogout()}>Logout</button>
-        <NavLink to={'/dashboard'}>Profile</NavLink>
-        <ToogleTheme />
+        {/* <button onClick={() => handleLogout()}>Logout</button>
+        <NavLink to={'/dashboard'}>Profile</NavLink> */}
+        {/* <ToogleTheme /> */}
         <Link className='cart-icon' to={'/cart'}>
           <FaShoppingCart />
           {total_items}

@@ -1,6 +1,7 @@
 import './styles/App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useUserContext } from './context/userContext';
+import Sidebar from './components/Sidebar';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -58,8 +59,8 @@ function App() {
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkthem}>
       <GlobalStyle />
       <div className='app'>
-        {' '}
         <Router>
+          <Sidebar />
           <ScrollToTop />
           {userAuth === null ? <Navbar /> : <NavbarUser />}
           <Routes>

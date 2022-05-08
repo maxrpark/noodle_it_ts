@@ -31,9 +31,15 @@ const CardSmall: React.FC<Props> = ({ user, noodles }) => {
 
             <div className='bottom'>
               <div className='bottom__details'>
-                <p className={`special-link ${noodle.category}`}>
+                <Link
+                  to={`/noodles/categories/${noodle.category}`}
+                  className={`special-link ${noodle.category}`}
+                >
                   {noodle.category}
-                </p>
+                </Link>
+                {/* <p className={`special-link ${noodle.category}`}>
+                  {noodle.category}
+                </p> */}
                 {!user ? (
                   <p>{noodle.price_per_package}</p>
                 ) : (

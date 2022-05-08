@@ -8,6 +8,9 @@ interface SearchResultActionInt {
 interface OPEN_MODAL_ACTION {
   type: ActionType.OPEN_MODAL;
 }
+interface TOOGLE_SIDEBAR_ACTION {
+  type: ActionType.TOOGLE_SIDEBAR;
+}
 interface CLOSE_MODAL_ACTION {
   type: ActionType.CLOSE_MODAL;
 }
@@ -37,4 +40,5 @@ export type Actions =
   | SEARCH_RESULT
   | SEARCH_START
   | NO_RESULT_FOUND
+  | TOOGLE_SIDEBAR_ACTION
   | COUPON_CODE;

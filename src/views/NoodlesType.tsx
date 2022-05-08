@@ -33,10 +33,12 @@ const NoodlesType: React.FC = () => {
       noodlesBrandList.find((type) => {
         if (query === 'brand' && type.slug === slug) {
           setResultDetails(type);
-        } else if (query === 'brand' && type.slug === slug) {
-          if (type.slug === slug) {
-            setResultDetails(type);
-          }
+        }
+      });
+    } else if (query === 'categories') {
+      noodlesCategoryList.find((type) => {
+        if (query === 'categories' && type.slug === slug) {
+          setResultDetails(type);
         }
       });
     }

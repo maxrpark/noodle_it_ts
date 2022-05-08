@@ -73,7 +73,10 @@ export const GlobalStyle = createGlobalStyle`
   --text-color-light-theme: #ffffff;
   --text-color-dark-theme: #918f8f;
 }
-
+#app{
+  position: relative;
+  min-height: 100vh;
+}
 body{
   background: ${(props) => props.theme.mainColor};
   font-family: var(--primary-font-family);
@@ -414,4 +417,9 @@ li {
     cursor: pointer;
   }
 
+
+//sidebar
+ .hidde-sidebar {
+    left: -100% !important;
+  }
 `;
