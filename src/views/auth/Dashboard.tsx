@@ -49,17 +49,7 @@ const Wrapper = styled.main`
   .orderImg {
     width: 100px;
   }
-  .favSection {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .link {
-    margin: 1rem;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
+
   .cart-section {
     padding: 1rem;
   }

@@ -9,34 +9,33 @@ const image =
 type Props = {
   noodles: List[];
   type: string | undefined;
+  layout?: string;
 };
 
-const CardList: React.FC<Props> = ({ noodles, type }) => {
+const CardList: React.FC<Props> = ({ noodles, type, layout }) => {
   return (
-    <>
-      <Wrapper className='cards-layout'>
-        {noodles.map((noodle) => {
-          return (
-            <Link
-              className='single-card'
-              key={noodle.id}
-              to={`/noodles/${type}/${noodle.slug}`}
-            >
-              <img
-                className='card-img'
-                src={noodle.image ? noodle.image : image}
-                alt={noodle.name}
-              />
-              <div className='info'>
-                <div className='bottom__details'>
-                  <p>{noodle.name}</p>
-                </div>
+    <Wrapper className={`cards-layout ${layout && layout}`}>
+      {noodles.map((noodle, idx) => {
+        return (
+          <Link
+            className={`single-card card-${idx}`}
+            key={noodle.id}
+            to={`/noodles/${type}/${noodle.slug}`}
+          >
+            <img
+              className='card-img'
+              src={noodle.image ? noodle.image : image}
+              alt={noodle.name}
+            />
+            <div className='info'>
+              <div className='bottom__details'>
+                <p>{noodle.name}</p>
               </div>
-            </Link>
-          );
-        })}
-      </Wrapper>
-    </>
+            </div>
+          </Link>
+        );
+      })}
+    </Wrapper>
   );
 };
 

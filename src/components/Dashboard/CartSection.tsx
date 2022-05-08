@@ -9,7 +9,7 @@ const CartSection: React.FC = () => {
 
   return (
     <Wrapper>
-      <div className='favSection'>
+      <div className='detail-section'>
         <SectionTitle title={'My Cart'} urlPath='' text='' />
         <Link to={'/cart'} className='link' style={{ fontSize: '13px' }}>
           Go to Cart

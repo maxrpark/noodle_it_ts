@@ -14,7 +14,7 @@ const WishListSection: React.FC = () => {
   return (
     <>
       {' '}
-      <div className='favSection'>
+      <div className='detail-section'>
         <SectionTitle title={'My Wishlist'} urlPath='' />
         {favoritesNoodles.length > 3 && (
           <button type='button' className='link' onClick={toogleListFunc}>
