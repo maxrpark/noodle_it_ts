@@ -24,6 +24,9 @@ import Filters from './Filters';
 import Sort from './Sort';
 import IconsList from './IconsList';
 import AmountButtons from './AmountButtons';
+import ItemDetail from './ItemDetail';
+import OrderDetailsComponent from './OrderDetailsComponent';
+import TotalDetail from './TotalDetail';
 
 import AddToCart from './SingleNoodle/AddToCart';
 import Carrousel from './SingleNoodle/Carrousel';
@@ -51,6 +54,7 @@ export {
   CartItem,
   ModalCart,
   CheckoutForm,
+  ItemDetail,
   //
   // Dashboard
   OrderSection,
@@ -76,4 +80,6 @@ export {
   Sort,
   IconsList,
   AmountButtons,
+  OrderDetailsComponent,
+  TotalDetail,
 };

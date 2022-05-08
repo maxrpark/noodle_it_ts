@@ -6,6 +6,7 @@ import { FaTrash } from 'react-icons/fa';
 import { CartContent } from '../../ts/interfaces/global_interfaces';
 import { Link } from 'react-router-dom';
 import { BsPlusCircleFill, BsFillDashCircleFill } from 'react-icons/bs';
+import { ItemDetail } from '../index';
 
 interface Props {
   item: CartContent;
@@ -64,10 +65,12 @@ const CartItem: React.FC<Props> = ({ item }) => {
         <div
           className={`amount-details ${!toogleShowSection && 'toogle-details'}`}
         >
-          <p className='detail'>Brand: {item.brand}</p>
-          <p className='detail'>Price per package: ${item.price} </p>
-          <p className='detail'>Amount: {item.amount} packages </p>
-          <p> SubTotal : ${+item.price * item.amount}</p>
+          <ItemDetail
+            itemName={item.brand}
+            itemPrice={item.price}
+            itemAmount={item.amount}
+            showText={true}
+          />
         </div>
       </div>
     </Wrapper>

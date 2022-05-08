@@ -86,11 +86,10 @@ const CartDetails: React.FC = () => {
 };
 
 const Wrapper = styled.section`
-  background: white;
-  padding: 1rem;
-  height: 240px;
-  min-height: 335px;
   .details-section {
+    padding: 1rem;
+    min-height: 240px;
+    background: white;
     display: flex;
     flex-direction: column;
     justify-content: center;

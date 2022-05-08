@@ -29,8 +29,8 @@ const Dashboard: React.FC = ({}) => {
         <PageTitle title={'DashBoard'} image={''} />
         <div className='section-center page-100'>
           <h2>Welcome, {user.user_name}</h2>
-          <WishListSection />
           <OrderSection user={user} />
+          <WishListSection />
           {cart.length > 0 && <CartSection />}
         </div>
       </Wrapper>

@@ -13,7 +13,7 @@ type Props = {
 
 const AmountButtons: React.FC<Props> = ({ increase, decrease, amount }) => {
   return (
-    <Wrapper className='amount-btsn'>
+    <Wrapper className='amount-btns'>
       <button type='button' className='amount-btn' onClick={increase}>
         <MdOutlineKeyboardArrowUp />
       </button>
@@ -31,6 +31,11 @@ const Wrapper = styled.div`
   justify-items: center;
   align-items: center;
 
+  @media screen and (min-width: 960px) {
+    flex-direction: row;
+    gap: 2rem;
+    margin: 1rem;
+  }
   h2 {
     margin-bottom: 0;
   }
