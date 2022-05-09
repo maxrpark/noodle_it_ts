@@ -78,7 +78,9 @@ const CartDetails: React.FC = () => {
             Check Out
           </Link>
         ) : (
-          <button onClick={() => openModal()}>LogIng</button>
+          <button className='btn checkout-btn' onClick={() => openModal()}>
+            Log in
+          </button>
         )}
       </div>
     </Wrapper>

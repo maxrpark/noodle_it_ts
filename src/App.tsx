@@ -62,7 +62,8 @@ function App() {
         <Router>
           <Sidebar />
           <ScrollToTop />
-          {userAuth === null ? <Navbar /> : <NavbarUser />}
+          <Navbar />
+          {/* {userAuth === null ? <Navbar /> : <NavbarUser />} */}
           <Routes>
             <Route path='/' element={<CommonLayout />}>
               <Route index element={<Home />} />

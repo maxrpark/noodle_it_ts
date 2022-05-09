@@ -33,7 +33,12 @@ const Sidebar: React.FC = () => {
 
           {navLinks.map((link) => {
             return (
-              <Link onClick={toogleMenu} className='link' to={link.path}>
+              <Link
+                key={link.id}
+                onClick={toogleMenu}
+                className='link'
+                to={link.path}
+              >
                 {link.name}
               </Link>
             );

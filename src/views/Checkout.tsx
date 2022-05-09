@@ -90,7 +90,9 @@ const Wrapper = styled.div`
       gap: 2rem;
     }
   }
-
+  .payment-info-container {
+    padding: 0 0.5rem;
+  }
   @media screen and (min-width: 960px) {
     .payment-info-container {
       position: sticky;

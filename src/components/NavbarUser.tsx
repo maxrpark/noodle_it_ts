@@ -34,12 +34,6 @@ const NavbarUser: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!userAuth) {
-      history('/');
-    }
-  }, [userAuth]);
-
-  useEffect(() => {
     if (query) {
       if (result?.length) {
         history('/search');
@@ -53,22 +47,31 @@ const NavbarUser: React.FC = () => {
       <NavLink to={'/'} className='logo'>
         Noodle It!
       </NavLink>
+
       <form onSubmit={handleSearch}>
         <input type='text' ref={search} />
       </form>
       <div className='nav-items'>
-        {/* <button onClick={() => handleLogout()}>Logout</button>
-        <NavLink to={'/dashboard'}>Profile</NavLink> */}
-        {/* <ToogleTheme /> */}
+        {userAuth ? (
+          <>
+            <button onClick={() => handleLogout()}>Logout</button>
+            <NavLink to={'/dashboard'}>Profile</NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to={'/login'}>Log in</NavLink>
+          </>
+        )}
+
         <Link className='cart-icon' to={'/cart'}>
           <FaShoppingCart />
           {total_items}
         </Link>
       </div>
+      {/* <ToogleTheme /> */}
     </Wrapper>
   );
 };
-export default NavbarUser;
 
 const Wrapper = styled.div`
   display: flex;
@@ -85,3 +88,4 @@ const Wrapper = styled.div`
     }
   }
 `;
+export default NavbarUser;
