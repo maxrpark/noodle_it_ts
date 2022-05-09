@@ -38,15 +38,14 @@ const OrderDetails: React.FC = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (user && !orderDetails.cart_items) {
+    if (user) {
       fetch(url + user.user_name + '/' + id)
         .then((res) => res.json())
         .then((data) => {
           setOrderDetails(data);
-          console.log(data);
         });
     }
-  }, [user]);
+  }, [user, id]);
 
   let orderDate = new Date(orderDetails.created_at).toLocaleDateString(
     'en-US',

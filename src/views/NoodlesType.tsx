@@ -48,11 +48,11 @@ const NoodlesType: React.FC = () => {
     return <Loading />;
   }
   return (
-    <section className='page-100'>
+    <section className=''>
       <PageTitle title={slug} image={resultDetails.image}>
         <p className='dsc'>{resultDetails.description}</p>
       </PageTitle>
-      <div className='section-center'>
+      <div className='section-center page-100'>
         <Card noodles={noodles} />
       </div>
     </section>

@@ -28,12 +28,12 @@ const ResultPage: React.FC = () => {
   }, [isLoading]);
 
   return (
-    <Wrapper className='page-100'>
+    <Wrapper>
       <PageTitle title={'Search'} image={''} />
       {isLoading ? (
         <>Loading...</>
       ) : (
-        <div className='section-center '>
+        <div className='section-center page-100'>
           <h3>Search noodles by name</h3>
           <form onSubmit={handleSearch}>
             <input type='text' placeholder='E.g: Sinramyoen' ref={search} />

@@ -17,4 +17,16 @@ export const navLinks = [
     icon: 'brand',
     active: false,
   },
+  {
+    name: 'Search',
+    path: '/search',
+    icon: 'Search',
+    active: false,
+  },
+  {
+    name: 'About',
+    path: '/about',
+    icon: 'about',
+    active: false,
+  },
 ];
