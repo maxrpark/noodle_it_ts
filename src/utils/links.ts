@@ -6,6 +6,12 @@ export const navLinks = [
     active: false,
   },
   {
+    name: 'All Products',
+    path: '/products',
+    icon: 'products',
+    active: false,
+  },
+  {
     name: 'Categories',
     path: '/list-page/categories',
     icon: 'category',

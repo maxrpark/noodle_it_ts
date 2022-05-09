@@ -54,8 +54,11 @@ const Wrapper = styled.div`
     /* position: relative; */
     position: relative;
 
+    padding: 0 1rem;
+
     @media screen and (min-width: 768px) {
       display: grid;
+      padding: 0;
       grid-template-columns: 1fr 400px;
     }
   }

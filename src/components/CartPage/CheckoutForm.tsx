@@ -251,6 +251,7 @@ const Wrapper = styled.form`
   border-radius: 7px;
   padding: 40px;
   background: white;
+  margin: 0 auto;
   .form-control {
     display: flex;
     text-transform: capitalize;

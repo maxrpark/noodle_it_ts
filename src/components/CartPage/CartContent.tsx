@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
   /* } */
   img {
     /* width: 100%; */
