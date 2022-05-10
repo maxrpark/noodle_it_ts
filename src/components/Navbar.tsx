@@ -75,6 +75,8 @@ const Wrapper = styled.nav`
   }
   .nav-items {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
   }
 
@@ -107,6 +109,9 @@ const Wrapper = styled.nav`
     position: relative;
     height: 100%;
     font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .item-amount {
     position: absolute;

@@ -68,6 +68,10 @@ const Wrapper = styled.div`
   left: 0;
   z-index: 1;
   transition: all 0.5s linear;
+  display: flex;
+  justify-content: center;
+
+  /* align-items: center; */
 
   button {
     font-size: 1rem;
