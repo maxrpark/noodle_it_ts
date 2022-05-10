@@ -1,31 +1,32 @@
 import Card from './Card';
-import CardSmall from './CardSmall';
 import CardList from './CardList';
+import CardSmall from './CardSmall';
 
 import CartContent from './CartPage/CartContent';
 import CartDetails from './CartPage/CartDetails';
 import CartItem from './CartPage/CartItem';
-import ModalCart from './CartPage/ModalCart';
 import CheckoutForm from './CartPage/CheckoutForm';
+import ModalCart from './CartPage/ModalCart';
 
 import Footer from './Footer';
+import Logo from './Logo';
 import ToogleTheme from './ToogleTheme';
 
 import Loading from './Loading';
 import LogInComponent from './LogInComponent';
 import RegisterComponent from './RegisterComponent';
 
+import AmountButtons from './AmountButtons';
+import Filters from './Filters';
+import HomeHero from './HomeHero';
+import IconsList from './IconsList';
+import ItemDetail from './ItemDetail';
 import Navbar from './Navbar';
 import NavbarUser from './NavbarUser';
-import HomeHero from './HomeHero';
+import OrderDetailsComponent from './OrderDetailsComponent';
 import PageTitle from './PageTitle';
 import SectionTitle from './SectionTitle';
-import Filters from './Filters';
 import Sort from './Sort';
-import IconsList from './IconsList';
-import AmountButtons from './AmountButtons';
-import ItemDetail from './ItemDetail';
-import OrderDetailsComponent from './OrderDetailsComponent';
 import TotalDetail from './TotalDetail';
 
 import AddToCart from './SingleNoodle/AddToCart';
@@ -38,8 +39,8 @@ import SingleNoodleMain from './SingleNoodle/SingleNoodleMain';
 
 import CartSection from './Dashboard/CartSection';
 import OrderSection from './Dashboard/OrderSection';
-import SingleOrder from './SingleOrder';
 import WishListSection from './Dashboard/WishListSection';
+import SingleOrder from './SingleOrder';
 
 import FallbackMessegeComponent from './FallbackMessegeComponent';
 export {
@@ -82,4 +83,5 @@ export {
   AmountButtons,
   OrderDetailsComponent,
   TotalDetail,
+  Logo,
 };

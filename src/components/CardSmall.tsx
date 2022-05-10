@@ -89,6 +89,7 @@ const Wrapper = styled.div`
     height: 30px;
     text-transform: capitalize;
     font-size: 14px;
+    text-align: center;
   }
 
   .bottom {

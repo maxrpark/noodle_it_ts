@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/userContext';
-import { ToogleTheme } from '../components';
+import { ToogleTheme, Logo } from '../components';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useGlobalContext } from '../context/globalContext';
 import { useCartContext } from '../context/cartContext';
@@ -39,25 +39,21 @@ const NavbarUser: React.FC = () => {
     <Wrapper>
       <div className='navbar'>
         <NavLink to={'/'} className='logo'>
-          Noodle It!
+          <Logo />
         </NavLink>
         <form onSubmit={handleSearch}>
           <input type='text' ref={search} />
         </form>
         <div className='nav-items'>
           {userAuth ? (
-            <>
-              <NavLink to={'/dashboard'}>Profile</NavLink>
-            </>
+            <>{/* <NavLink to={'/dashboard'}>Profile</NavLink> */}</>
           ) : (
-            <>
-              <NavLink to={'/login'}>Log in</NavLink>
-            </>
+            <>{/* <NavLink to={'/login'}>Log in</NavLink> */}</>
           )}
 
           <Link className='cart-icon' to={'/cart'}>
             <FaShoppingCart />
-            {total_items}
+            <span className='item-amount'>{total_items}</span>
           </Link>
           <FaBars onClick={toogleMenu} />
         </div>
@@ -87,6 +83,9 @@ const Wrapper = styled.nav`
     margin: 1rem auto;
     padding: 1rem;
     display: flex;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 0 0 auto;
   }
   input {
     justify-self: flex-end;
@@ -102,6 +101,27 @@ const Wrapper = styled.nav`
       max-width: 300px;
       margin: 0 0 0 auto;
     }
+  }
+
+  .cart-icon {
+    position: relative;
+    height: 100%;
+    font-size: 1.25rem;
+  }
+  .item-amount {
+    position: absolute;
+    top: -5px;
+    right: -7px;
+    height: 15px;
+    width: 15px;
+    background: ${(props) => props.theme.secondaryColor};
+    padding: 3px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
   }
 `;
 export default NavbarUser;

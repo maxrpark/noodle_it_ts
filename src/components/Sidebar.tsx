@@ -76,7 +76,7 @@ const Wrapper = styled.div`
     width: 30%;
   }
   .logo {
-    margin-top: 1rem;
+    margin-top: 2rem;
     text-align: center;
   }
   .links-container,

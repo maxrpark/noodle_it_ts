@@ -421,5 +421,12 @@ li {
 //sidebar
  .hidde-sidebar {
     left: -100% !important;
+    z-index: 10;
   }
+
+
+  .slide.active {
+  z-index: 1;
+  }
+
 `;

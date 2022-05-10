@@ -100,6 +100,7 @@ const AppProvider: React.FC = ({ children }) => {
 
   const showImage = (e: React.MouseEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
+    console.log(img);
     dispatch({ type: ActionType.OPEN_MODAL });
     dispatch({ type: ActionType.OPEN_WITH_IMG, payload: img.src });
     document.body.style.overflow = 'hidden';
