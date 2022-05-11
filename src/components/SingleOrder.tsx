@@ -15,7 +15,7 @@ interface Options {
 }
 var options = {
   year: 'numeric',
-  month: 'long',
+  month: 'numeric',
   day: 'numeric',
 } as Options;
 

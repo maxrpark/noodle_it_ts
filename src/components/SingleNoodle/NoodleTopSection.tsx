@@ -14,7 +14,7 @@ const NoodleTopSection: React.FC<Props> = ({ noodle }) => {
   return (
     <>
       <div className='top'>
-        <div className='title'>
+        <div className='title' style={{ textAlign: 'center' }}>
           <h2>{noodle.name}</h2>
           {user && (
             <div>

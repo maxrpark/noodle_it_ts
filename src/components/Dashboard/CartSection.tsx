@@ -24,7 +24,7 @@ const CartSection: React.FC = () => {
 
 const Wrapper = styled.section`
   .cart-section {
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 `;
 

@@ -84,7 +84,7 @@ const Wrapper = styled.div`
     /* position: relative; */
     position: relative;
 
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1100px) {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 2rem;
@@ -92,6 +92,8 @@ const Wrapper = styled.div`
   }
   .payment-info-container {
     padding: 0 0.5rem;
+    max-width: 430px;
+    margin: 0 auto;
   }
   @media screen and (min-width: 960px) {
     .payment-info-container {

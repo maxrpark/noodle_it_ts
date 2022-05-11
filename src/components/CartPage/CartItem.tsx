@@ -102,7 +102,8 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     position: relative;
-    padding: 1rem;
+    padding: 0.5rem;
+    word-break: break-word;
   }
   .item-details {
     position: absolute;

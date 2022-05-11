@@ -51,7 +51,7 @@ const Sidebar: React.FC = () => {
             </button>
           </div>
         ) : (
-          <Link onClick={toogleMenu} to={'/login'}>
+          <Link onClick={toogleMenu} className='link' to={'/login'}>
             Login
           </Link>
         )}
@@ -66,7 +66,7 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 10;
   transition: all 0.5s linear;
   display: flex;
   justify-content: center;

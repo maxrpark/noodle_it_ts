@@ -46,11 +46,4 @@ const Wrapper = styled.main`
   h2 {
     text-align: center;
   }
-  .orderImg {
-    width: 100px;
-  }
-
-  .cart-section {
-    padding: 1rem;
-  }
 `;

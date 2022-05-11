@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styled from 'styled-components';
 type Props = {
   itemName: string;
   itemPrice: string;
@@ -16,7 +16,7 @@ const ItemDetail: React.FC<Props> = ({
   showText,
 }) => {
   return (
-    <section>
+    <Wrapper>
       <div className='order-desc'>
         <p className='item'>
           {showText && `Brand:`}
@@ -33,8 +33,14 @@ const ItemDetail: React.FC<Props> = ({
         </p>
       </div>
       {!showText && <hr />}
-    </section>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.section`
+  .item {
+    /* max-width: 140px; */
+    word-break: break-word;
+  }
+`;
 export default ItemDetail;
