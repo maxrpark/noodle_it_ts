@@ -4,7 +4,7 @@ const Logo: React.FC = () => {
   return (
     <Wrapper
       width='105'
-      height='30'
+      height='25'
       viewBox='0 0 105 37'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
@@ -23,9 +23,9 @@ const Logo: React.FC = () => {
           width='103.91'
           height='40.3633'
           filterUnits='userSpaceOnUse'
-          color-interpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feBlend
             mode='normal'
             in='SourceGraphic'

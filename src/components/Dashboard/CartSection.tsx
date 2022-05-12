@@ -24,7 +24,9 @@ const CartSection: React.FC = () => {
 
 const Wrapper = styled.section`
   .cart-section {
-    /* padding: 1rem; */
+    @media screen and (min-width: 768px) {
+      padding: 1rem;
+    }
   }
 `;
 

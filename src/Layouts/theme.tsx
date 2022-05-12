@@ -76,6 +76,7 @@ export const GlobalStyle = createGlobalStyle`
 #app{
   position: relative;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 body{
   background: ${(props) => props.theme.mainColor};

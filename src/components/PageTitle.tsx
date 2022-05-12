@@ -35,13 +35,20 @@ const Wrapper = styled.div`
   background-size: cover;
   margin-bottom: 1rem;
   h1 {
-    font-size: 10vw;
+    font-size: 3rem;
     color: white;
     padding: 0.5rem 1rem;
     text-transform: capitalize;
   }
   .dsc {
     color: white;
+    max-width: 300px;
+  }
+  @media screen and (min-width: 768px) {
+    .dsc {
+      color: white;
+      max-width: 600px;
+    }
   }
 `;
 

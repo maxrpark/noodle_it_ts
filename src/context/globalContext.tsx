@@ -3,7 +3,7 @@ import global_reducer from '../reducers/global_reducer';
 import { ActionType } from '../ts/states/action-types';
 import axios from 'axios';
 import { NoodleDetails } from '../ts/interfaces/global_interfaces';
-import { toastDangerTop } from '../utils/toast';
+import { toastWarningTop } from '../utils/toast';
 interface UseContextInterface {
   isModalOpen: boolean;
   isSidebarOpen: boolean;
@@ -122,7 +122,7 @@ const AppProvider: React.FC = ({ children }) => {
       } else {
         dispatch({ type: ActionType.NO_RESULT_FOUND });
         // alert('No results found');
-        toastDangerTop('No Result found!');
+        toastWarningTop('No Result found!');
       }
     } catch (error) {
       console.log(error);

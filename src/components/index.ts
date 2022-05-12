@@ -34,6 +34,7 @@ import Carrousel from './SingleNoodle/Carrousel';
 import NoodleInfo from './SingleNoodle/NoodleInfo';
 import NoodleTopSection from './SingleNoodle/NoodleTopSection';
 import SingleNoodleMain from './SingleNoodle/SingleNoodleMain';
+import Tags from './SingleNoodle/Tags';
 
 // Dashboard
 
@@ -84,4 +85,5 @@ export {
   OrderDetailsComponent,
   TotalDetail,
   Logo,
+  Tags,
 };

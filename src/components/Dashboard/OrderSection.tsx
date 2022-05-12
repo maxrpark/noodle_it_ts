@@ -14,6 +14,7 @@ type Props = {
 
 const OrderSection: React.FC<Props> = ({ user }) => {
   const [orderDetails, setOrderDetails] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { showList, toogleListFunc } = UseToogleList();
 
   useEffect(() => {
@@ -21,8 +22,17 @@ const OrderSection: React.FC<Props> = ({ user }) => {
       .then((res) => res.json())
       .then((data) => {
         setOrderDetails(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(err);
       });
   }, [user]);
+
+  if (isLoading) {
+    return <FallbackMessegeComponent title='Loading' />;
+  }
 
   return (
     <Wrapper>

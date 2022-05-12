@@ -88,6 +88,13 @@ const Wrapper = styled.div`
     padding: 0.5rem;
   }
 
+  @media screen and (min-width: 768px) {
+    .single-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+    }
+  }
+
   img {
     /* width: 100%; */
     height: 100px;
@@ -104,6 +111,9 @@ const Wrapper = styled.div`
     position: relative;
     padding: 0.5rem;
     word-break: break-word;
+  }
+  .name {
+    max-width: 160px;
   }
   .item-details {
     position: absolute;

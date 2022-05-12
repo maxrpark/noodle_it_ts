@@ -101,9 +101,9 @@ const Wrapper = styled.div`
     gap: 1rem;
   }
   .noodles-section-title {
-    margin: 1rem 0;
+    /* margin: 1rem 0; */
     border-bottom: 2px solid white;
-    padding-bottom: 0.5rem;
+    /* padding-bottom: 0.5rem; */
 
     @media screen and (min-width: 768px) {
       margin-top: 0;
@@ -114,9 +114,7 @@ const Wrapper = styled.div`
     text-align: center;
     margin-bottom: 1rem;
   }
-  .instructions {
-    max-width: 600px; // fix
-  }
+
   .section-one {
     max-width: 600px;
     width: 100%;

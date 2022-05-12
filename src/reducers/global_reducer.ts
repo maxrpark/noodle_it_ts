@@ -10,8 +10,6 @@ const global_reducer = (state: InicialState, action: Actions): InicialState => {
         isModalOpen: true,
       };
     case ActionType.TOOGLE_SIDEBAR:
-      console.log('TOOGLE_SIDEBAR');
-      console.log(state.isSidebarOpen);
       return {
         ...state,
         isSidebarOpen: !state.isSidebarOpen,
@@ -46,6 +44,11 @@ const global_reducer = (state: InicialState, action: Actions): InicialState => {
         ...state,
         query: query,
         result: result,
+        isLoading: false,
+      };
+    case ActionType.NO_RESULT_FOUND:
+      return {
+        ...state,
         isLoading: false,
       };
     default:

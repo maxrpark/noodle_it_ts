@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { NoodleDetails } from '../../ts/interfaces/global_interfaces';
 
 // Component
@@ -10,6 +9,7 @@ import {
   NoodleInfo,
   NoodleTopSection,
   AddToCart,
+  Tags,
 } from '../../components/';
 
 type Props = {
@@ -24,16 +24,7 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
         <div className='main-section'>
           <div className='section-one'>
             <Carrousel noodle={noodle} />
-            <div className='tags-container'>
-              <h3>Tags: </h3>
-              {noodle.tags.map((tag: string) => {
-                return (
-                  <Link to={`/noodles/tags/${tag}`} className='tag' key={tag}>
-                    #{tag}
-                  </Link>
-                );
-              })}
-            </div>
+            <Tags tags={noodle.tags} />
           </div>
           <NoodleInfo noodle={noodle} />
         </div>
@@ -74,10 +65,23 @@ const Wrapper = styled.div`
     padding: 1rem;
     object-fit: contain;
   }
-  .tags-container {
-    margin: 1rem;
+
+  .instructions {
+    max-width: 600px; // fix
+    margin-bottom: 1rem;
   }
   .instructions p {
     white-space: pre-line;
+    margin: 0.5rem 0;
   }
+  /* 
+  .description {
+    max-width: 300px;
+    margin: 1rem auto;
+  }
+  @media screen and (min-width: 768px) {
+    .description {
+      max-width: 400px;
+    }
+  } */
 `;

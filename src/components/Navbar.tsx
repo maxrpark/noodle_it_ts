@@ -42,7 +42,7 @@ const NavbarUser: React.FC = () => {
           <Logo />
         </NavLink>
         <form onSubmit={handleSearch}>
-          <input type='text' ref={search} />
+          <input type='text' placeholder='search' ref={search} />
         </form>
         <div className='nav-items'>
           {userAuth ? (
@@ -77,7 +77,7 @@ const Wrapper = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
   }
 
   form {
@@ -86,7 +86,8 @@ const Wrapper = styled.nav`
     padding: 1rem;
     display: flex;
     width: 100%;
-    max-width: 300px;
+    justify-content: center;
+    align-items: center;
     margin: 0 0 0 auto;
   }
   input {
@@ -95,13 +96,15 @@ const Wrapper = styled.nav`
     width: 100%;
     font-family: inherit;
     font-size: 1rem;
+    text-align: center;
   }
 
   @media screen and (min-width: 768px) {
     form {
       width: 100%;
-      max-width: 300px;
-      margin: 0 0 0 auto;
+
+      max-width: 500px;
+      margin: 0 auto;
     }
   }
 

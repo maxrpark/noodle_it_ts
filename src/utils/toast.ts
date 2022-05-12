@@ -28,9 +28,9 @@ const toastSuccessBottom = (messege: string) =>
     theme: 'dark',
   });
 
-const toastDangerTop = (messege: string) =>
+const toastWarningTop = (messege: string) =>
   toast.warning(messege, {
-    position: 'top-right',
+    position: 'bottom-right',
     toastId: new Date().getTime().toString(),
     autoClose: timeAutoClose,
     hideProgressBar: false,
@@ -57,6 +57,6 @@ const toastDangerBottom = (messege: string) =>
 export {
   toastSuccessTop,
   toastSuccessBottom,
-  toastDangerTop,
+  toastWarningTop,
   toastDangerBottom,
 };
