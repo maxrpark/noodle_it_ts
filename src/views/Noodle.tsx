@@ -67,12 +67,12 @@ const Noodle: React.FC = () => {
         <div className='related-noodles'>
           <div className='recommended-section'>
             <SectionTitle
-              title={'Recommended By Category'}
+              title={'Same Category'}
               urlPath={`noodles/categories/${noodle.category}`}
             />
             <CardSmall user={null} noodles={relatedNoodlesCategory} />
             <SectionTitle
-              title={'Recommended By Brand'}
+              title={'Same Brand'}
               urlPath={`noodles/brand/${noodle.brand.slug}`}
             />
             <CardSmall user={null} noodles={relatedNoodlesBrand} />

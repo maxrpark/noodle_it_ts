@@ -9,17 +9,26 @@ const Tags: React.FC<Props> = ({ tags }) => {
   return (
     <Wrapper className='tags-container'>
       <h3>Tags: </h3>
-      {tags.map((tag: string) => {
-        return (
-          <Link to={`/noodles/tags/${tag}`} className='tag' key={tag}>
-            #{tag}
-          </Link>
-        );
-      })}
+      <div className='tags'>
+        {tags.map((tag: string) => {
+          return (
+            <Link to={`/noodles/tags/${tag}`} className='tag' key={tag}>
+              #{tag}
+            </Link>
+          );
+        })}
+      </div>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
   margin: 1rem;
+  .tags {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 export default Tags;

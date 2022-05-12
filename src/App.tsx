@@ -33,7 +33,7 @@ import {
 } from './views/auth';
 
 // Components
-import { Footer, Navbar, NavbarUser } from './components/';
+import { Footer, Navbar, NavbarUser, Discount } from './components/';
 
 import { ThemeProvider } from 'styled-components';
 import { useGlobalContext } from './context/globalContext';
@@ -62,6 +62,7 @@ function App() {
         <Router>
           <Sidebar />
           <ScrollToTop />
+          <Discount />
           <Navbar />
           {/* {userAuth === null ? <Navbar /> : <NavbarUser />} */}
           <Routes>

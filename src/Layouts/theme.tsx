@@ -430,4 +430,29 @@ li {
   z-index: 1;
   }
 
+
+  // Discount
+
+  .discount-container {
+    max-width: 1200px;
+    background: var(--special-color-1);
+    color: white;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .discount-text{
+    text-align: center;
+    width: 100%;
+  }
+
+  .hidde-discount{
+    display: none;
+  }
+
 `;

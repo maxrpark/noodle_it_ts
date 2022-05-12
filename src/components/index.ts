@@ -7,6 +7,7 @@ import CartDetails from './CartPage/CartDetails';
 import CartItem from './CartPage/CartItem';
 import CheckoutForm from './CartPage/CheckoutForm';
 import ModalCart from './CartPage/ModalCart';
+import Discount from './Discount';
 
 import Footer from './Footer';
 import Logo from './Logo';
@@ -50,6 +51,7 @@ export {
   Card,
   CardSmall,
   CardList,
+  Discount,
   // Cart
   CartContent,
   CartDetails,
