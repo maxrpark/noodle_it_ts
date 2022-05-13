@@ -5,6 +5,9 @@ import { useUserContext } from '../context/userContext';
 import { Link } from 'react-router-dom';
 import { navLinks } from '../utils/links';
 import { AiOutlineClose } from 'react-icons/ai';
+import { menuAnimation } from '../utils/helperFunctions';
+import { ToogleTheme } from '../components';
+// import gsap from 'gsap';
 
 const Sidebar: React.FC = () => {
   const { toogleMenu, isSidebarOpen } = useGlobalContext();
@@ -15,70 +18,102 @@ const Sidebar: React.FC = () => {
     toogleMenu();
   };
 
-  return (
-    <Wrapper className={`${!isSidebarOpen ? 'hidde-sidebar' : ''}`}>
-      <button className='close-btn' onClick={toogleMenu}>
-        <AiOutlineClose />
-      </button>
-      <div className='sidebar-content'>
-        <h1 className='logo'>Noodle it!</h1>
-        <div className='links-container'>
-          {user && (
-            <div className='user-info '>
-              <Link className='link' onClick={toogleMenu} to={'/dashboard'}>
-                Profile
-              </Link>
-            </div>
-          )}
+  // const menuAnimation = () => {
+  //   gsap.to('.sidebar', {
+  //     left: 0,
+  //   });
+  // };
 
-          {navLinks.map((link) => {
-            return (
-              <Link
-                key={link.id}
-                onClick={toogleMenu}
-                className='link'
-                to={link.path}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
-        </div>
-        {user ? (
-          <div className='action-btns'>
-            <button type='button' className='link' onClick={handleLogout}>
-              Logout
-            </button>
+  return (
+    <Wrapper className='sidebar-wrapper'>
+      <aside className={`${!isSidebarOpen ? 'hidde-sidebar' : ''} sidebar`}>
+        <button className='close-btn' onClick={menuAnimation}>
+          <AiOutlineClose />
+        </button>
+        <div className='sidebar-content'>
+          <h1 className='logo'>Noodle it!</h1>
+          <div className='links-container'>
+            {user && (
+              <div className='user-info optional-link'>
+                <Link
+                  className='link'
+                  onClick={menuAnimation}
+                  to={'/dashboard'}
+                >
+                  Profile
+                </Link>
+              </div>
+            )}
+
+            {navLinks.map((link) => {
+              return (
+                <Link
+                  key={link.id}
+                  onClick={menuAnimation}
+                  className='link'
+                  to={link.path}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </div>
-        ) : (
-          <Link onClick={toogleMenu} className='link' to={'/login'}>
-            Login
-          </Link>
-        )}
-      </div>
+          {user ? (
+            <div className='action-btns'>
+              <button
+                type='button'
+                className='link optional-link'
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link
+              onClick={menuAnimation}
+              className='link optional-link'
+              to={'/login'}
+            >
+              Login
+            </Link>
+          )}
+          <ToogleTheme />
+        </div>
+      </aside>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
-  min-height: 100%;
-  width: 50%;
-  background-color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.462);
   z-index: 10;
-  transition: all 0.5s linear;
-  display: flex;
-  justify-content: center;
 
-  /* align-items: center; */
+  aside {
+    min-height: 100%;
+    width: 50%;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: all 0.5s linear;
+    display: flex;
+    justify-content: center;
+    left: -100%;
+    z-index: 10;
+    @media screen and (min-width: 960px) {
+      width: 30%;
+    }
+  }
 
-  button {
+  button,
+  a {
     font-size: 1rem;
   }
-  @media screen and (min-width: 960px) {
-    width: 30%;
+  .optional-link {
+    color: black;
   }
+
   .logo {
     margin-top: 2rem;
     text-align: center;
@@ -92,8 +127,19 @@ const Wrapper = styled.div`
     border: none;
     background: transparent;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: -40px;
+    top: 30px;
+    opacity: 0;
+    transform: scale(0);
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+  }
+  .link {
+    display: block;
   }
 `;
 export default Sidebar;

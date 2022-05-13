@@ -3,7 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/auth_axios';
 import { useUserContext } from '../context/userContext';
 
-const RegisterComponent: React.FC = () => {
+type Props = {
+  showBTN?: boolean;
+};
+
+const RegisterComponent: React.FC<Props> = ({ showBTN }) => {
   const history = useNavigate();
   const { showRegistration } = useUserContext();
   const [userInfo, setUserInfo] = useState({
@@ -42,6 +46,7 @@ const RegisterComponent: React.FC = () => {
   return (
     <>
       <form className='user-form'>
+        {showBTN && <h4> Register </h4>}
         <div className='form-control'>
           <label>
             <span>User Name</span>
@@ -81,11 +86,16 @@ const RegisterComponent: React.FC = () => {
         <button className='form-btn btn' onClick={handleSubmit}>
           Register
         </button>
+
         <p className='form-link'>
-          <button type='button' onClick={showRegistration}>
-            register
-          </button>
-          Already have an account? <Link to={'/login'}>LogIn</Link>
+          Already have an account?
+          {showBTN ? (
+            <button type='button' onClick={showRegistration}>
+              Log in
+            </button>
+          ) : (
+            <Link to={'/login'}>Log in</Link>
+          )}
         </p>
       </form>
     </>

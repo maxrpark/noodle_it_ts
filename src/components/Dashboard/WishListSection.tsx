@@ -13,7 +13,6 @@ const WishListSection: React.FC = () => {
   const { showList, toogleListFunc } = UseToogleList();
   return (
     <>
-      {' '}
       <div className='detail-section'>
         <SectionTitle title={'My Wishlist'} urlPath='' />
         {favoritesNoodles.length > 3 && (
@@ -26,7 +25,9 @@ const WishListSection: React.FC = () => {
         <CardSmall user={user} noodles={favoritesNoodles.slice(0, showList)} />
       ) : (
         <FallbackMessegeComponent title='No items in your wishlist yet'>
-          <Link to={'/products'}>See products</Link>
+          <Link className='btn' to={'/products'}>
+            See products
+          </Link>
         </FallbackMessegeComponent>
       )}
     </>

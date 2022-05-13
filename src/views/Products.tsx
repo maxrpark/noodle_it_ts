@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import { useFilterContext } from '../context/filterContext';
-import { Loading, Card, Filters, PageTitle } from '../components';
+import {
+  Loading,
+  Card,
+  Filters,
+  PageTitle,
+  FallbackMessegeComponent,
+} from '../components';
 import simplereview from 'simplereview';
 import styled from 'styled-components';
 
 type Props = {};
 
 const Products: React.FC = (props: Props) => {
-  const { all_products, filtered_products } = useFilterContext();
+  const { all_products, filtered_products, clearFilters } = useFilterContext();
 
   useEffect(() => {
     simplereview();
@@ -27,21 +33,28 @@ const Products: React.FC = (props: Props) => {
         <div className='filters'>
           <Filters />
         </div>
-
-        <Card noodles={filtered_products} />
+        {filtered_products.length === 0 ? (
+          <div className='filter-msg'>
+            <FallbackMessegeComponent title='No products found'>
+              <button type='button' className='btn' onClick={clearFilters}>
+                clear all
+              </button>
+            </FallbackMessegeComponent>
+          </div>
+        ) : (
+          <Card noodles={filtered_products} />
+        )}
       </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  /* .filters {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-  } */
-
+  .filter-msg {
+    align-self: flex-start;
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
   @media screen and (min-width: 768px) {
     .section-center {
       max-width: 1420px;

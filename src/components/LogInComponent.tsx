@@ -7,7 +7,11 @@ const initialFormData = {
   password: '',
 };
 
-const LogInComponent: React.FC = () => {
+type Props = {
+  showBTN?: boolean;
+};
+
+const LogInComponent: React.FC<Props> = ({ showBTN = false }) => {
   const { userLoggedIn, showRegistration } = useUserContext();
   const [formData, updateFormData] = useState(
     initialFormData as FormDataInterface
@@ -37,6 +41,7 @@ const LogInComponent: React.FC = () => {
   return (
     <>
       <form className='user-form' onSubmit={handleSubmit}>
+        {showBTN && <h4> Log In </h4>}
         <div className='form-control'>
           <label>
             <span>Email</span>
@@ -64,11 +69,13 @@ const LogInComponent: React.FC = () => {
         </button>
         <p className='form-link'>
           Don't an account already?
-          <span> </span>
-          <button type='button' onClick={showRegistration}>
-            register
-          </button>
-          <Link to={'/register'}>Register</Link>
+          {showBTN ? (
+            <button className='link' type='button' onClick={showRegistration}>
+              Register
+            </button>
+          ) : (
+            <Link to={'/register'}>Register</Link>
+          )}
         </p>
       </form>
     </>

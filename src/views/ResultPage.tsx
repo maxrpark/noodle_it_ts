@@ -12,7 +12,6 @@ const ResultPage: React.FC = () => {
     if (search.current?.value.length) {
       searchUserQuery(search.current!.value);
       search.current!.value = '';
-      console.log(search.current!.value);
     }
   };
 

@@ -122,6 +122,9 @@ li {
 .page-100 {
   min-height: calc(100vh - 450px);
 }
+.page-100-without-title {
+  min-height: calc(100vh - 200px);
+}
 .loading{
   height: 100vh;
 }
@@ -171,7 +174,10 @@ li {
   transition: all 0.2s ease;
   box-shadow: 0px 4px 5.5px 0px rgb(0 0 0 / 7%);
   /* width: 100%; */
+  .btn-small{
+    max-width: 130px;
 
+  }
   :hover {
     box-shadow: var(--box-shadow-2);
     transform: translateY(-3px);
@@ -261,6 +267,10 @@ li {
     width: 100%;
     max-width: 600px;
     gap: 1rem;
+
+  h4{
+    text-align: center;
+  }
   }
 
   .form-control {
@@ -281,8 +291,13 @@ li {
   .form-link{
     text-align: center;
   }
-  .form-link a{
+  .form-link a, .form-link button{
+    border: none;
+    background: transparent;
     color: var(--special-color-1);
+    margin: 0;
+    margin-left:.3rem ;
+    font-size: 1rem;
   }
 
   .container{
@@ -419,9 +434,10 @@ li {
   }
 
 
-//sidebar
+//
+
  .hidde-sidebar {
-    left: -100% !important;
+    /* left: -100% !important; */
     z-index: 10;
   }
 
@@ -432,10 +448,11 @@ li {
 
 
   // Discount
-
+  .dicount-section{
+    background: var(--special-color-1);
+  }
   .discount-container {
     max-width: 1200px;
-    background: var(--special-color-1);
     color: white;
     margin: 0 auto;
     display: flex;
@@ -443,7 +460,6 @@ li {
     align-items: center;
     height: 50px;
     padding: 1rem;
-    max-width: 1200px;
     margin: 0 auto;
   }
   .discount-text{

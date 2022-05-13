@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { RegisterComponent, LogInComponent } from '../../components';
-import { useUserContext } from '../../context/userContext';
+import { RegisterComponent } from '../../components';
 
 const Register: React.FC = () => {
-  const { isRegistrationForm } = useUserContext();
   return (
-    <div className='page-100 center'>
+    <div className='page-100-without-title center'>
       <h1>Register</h1>
-      {!isRegistrationForm ? <LogInComponent /> : <RegisterComponent />}
+      <RegisterComponent />
     </div>
   );
 };

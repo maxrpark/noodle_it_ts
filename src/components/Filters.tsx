@@ -200,7 +200,6 @@ const Filters: React.FC = () => {
           </div>
           {/* end of tags */}
           <button type='button' className='clear-btn' onClick={clearFilters}>
-            {' '}
             clear all
           </button>
         </form>
@@ -209,6 +208,9 @@ const Filters: React.FC = () => {
   );
 };
 const Wrapper = styled.div`
+  @media screen and (min-width: 960px) {
+    max-width: 363px;
+  }
   .filter-section {
     background: white;
     padding: 0 0.5rem;

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 const Error: React.FC = () => {
   return (
-    <Wrapper>
-      <div className='page-100 center'>
+    <Wrapper className=''>
+      <div className='page-100-without-title center'>
         <h2 className='error-page'>
           Ups! <br /> Nothing here
         </h2>

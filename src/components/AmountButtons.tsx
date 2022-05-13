@@ -30,11 +30,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-items: center;
   align-items: center;
-
+  margin: 1rem;
   @media screen and (min-width: 960px) {
     flex-direction: row;
     gap: 2rem;
-    margin: 1rem;
   }
   h2 {
     margin-bottom: 0;

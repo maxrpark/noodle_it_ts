@@ -14,7 +14,7 @@ const LogIn: React.FC = () => {
   }, [userAuth]);
 
   return (
-    <div className='page-100 center'>
+    <div className='page-100-without-title center'>
       <h1>Log In</h1>
       <LogInComponent />
     </div>

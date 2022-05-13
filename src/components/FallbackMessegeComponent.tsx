@@ -16,6 +16,11 @@ const FallbackMessegeComponent: React.FC<Props> = ({ title, children }) => {
 
 const Wrapper = styled.div`
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
 `;
 
 export default FallbackMessegeComponent;

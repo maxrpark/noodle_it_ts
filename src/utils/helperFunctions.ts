@@ -48,5 +48,48 @@ const cartAnimation = () => {
     }
   );
 };
+let canPlay = false;
+let tl = gsap.timeline({ paused: true, reversed: true });
+const playAnimation = () => {
+  tl.to('.sidebar-wrapper', {
+    transformOrigin: 'center center',
+    height: '100%',
+    width: '100%',
+    position: 'fixed',
+    duration: 0,
+  })
+    .to('.sidebar-wrapper', {
+      opacity: 1,
+      duration: 0,
+    })
+    .to('.sidebar', {
+      left: 0,
+      duration: 0.3,
+    })
+    .to(
+      '.close-btn',
+      {
+        opacity: 1,
+        scale: 1,
+        rotate: 360,
+      },
+      '+=1'
+    );
+};
 
-export { relatedNoodles, getUniqueValues, cartAnimation };
+// };
+
+const menuAnimation = () => {
+  canPlay = true;
+  if (canPlay) {
+    playAnimation();
+    canPlay = false;
+  }
+  if (tl.reversed()) {
+    tl.play();
+  } else {
+    tl.reverse(1);
+  }
+};
+
+export { relatedNoodles, getUniqueValues, cartAnimation, menuAnimation };

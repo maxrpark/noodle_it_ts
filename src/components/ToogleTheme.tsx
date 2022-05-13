@@ -60,9 +60,10 @@ const Wrapper = styled.div`
   .label i {
     color: #f1c40f;
   }
-  @media screen and (min-width: 678px) {
-    .dark-mode-btn {
-      margin-right: 2rem;
-    }
+  /* @media screen and (min-width: 678px) { */
+  .dark-mode-btn {
+    margin: 1rem;
+    margin-top: 2rem;
+    /* } */
   }
 `;

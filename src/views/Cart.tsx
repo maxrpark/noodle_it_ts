@@ -26,7 +26,9 @@ const Cart: React.FC = () => {
         <PageTitle title={'Your Cart'} image={''} />
         <div className='page-100 center'>
           <FallbackMessegeComponent title='No items in your cart yet'>
-            <Link to={'/products'}>See products</Link>
+            <Link className='btn' to={'/products'}>
+              See products
+            </Link>
           </FallbackMessegeComponent>
         </div>
       </>

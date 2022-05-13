@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { LogInComponent, RegisterComponent } from '../../components';
 import { useGlobalContext } from '../../context/globalContext';
 import { useUserContext } from '../../context/userContext';
-
+const showBTN = true;
 const ModalCart: React.FC = () => {
   const { closeModal } = useGlobalContext();
   const { isRegistrationForm } = useUserContext();
@@ -15,7 +15,11 @@ const ModalCart: React.FC = () => {
   };
   return (
     <Wrapper onClick={(e) => handleClick(e)} className='main-wrapper'>
-      {!isRegistrationForm ? <LogInComponent /> : <RegisterComponent />}
+      {!isRegistrationForm ? (
+        <LogInComponent showBTN={showBTN} />
+      ) : (
+        <RegisterComponent showBTN={showBTN} />
+      )}
     </Wrapper>
   );
 };

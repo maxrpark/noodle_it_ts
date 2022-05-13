@@ -5,9 +5,9 @@ import { ToogleTheme, Logo } from '../components';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useGlobalContext } from '../context/globalContext';
 import { useCartContext } from '../context/cartContext';
+import { menuAnimation } from '../utils/helperFunctions';
 
 import styled from 'styled-components';
-
 import { FaBars } from 'react-icons/fa';
 
 const NavbarUser: React.FC = () => {
@@ -24,6 +24,7 @@ const NavbarUser: React.FC = () => {
     e.preventDefault()!;
     if (search.current?.value.length) {
       searchUserQuery(search.current!.value);
+      search.current!.value = '';
     }
   };
 
@@ -34,6 +35,47 @@ const NavbarUser: React.FC = () => {
       }
     }
   }, [result]);
+
+  // const menuAnimation = () => {
+  //   console.log('menuAnimation');
+  //   let tl = gsap.timeline();
+
+  //   tl.to('.sidebar-wrapper', {
+  //     transformOrigin: 'center center',
+  //     background: 'red',
+  //     height: '100%',
+  //     width: '100%',
+  //     position: 'fixed',
+  //     duration: 0.1,
+  //   })
+  //     .to('.sidebar-wrapper', {
+  //       opacity: 1,
+  //       duration: 0.5,
+  //     })
+  //     .to('.sidebar', {
+  //       left: 0,
+  //       duration: 0.3,
+  //     })
+  //     .to(
+  //       '.close-btn',
+  //       {
+  //         opacity: 1,
+  //         scale: 1,
+  //         rotate: 360,
+  //         onComplete: () => {
+  //           console.log('onComplete');
+  //           console.log(tl.progress());
+  //         },
+  //       },
+  //       '+=1'
+  //     );
+
+  //   if (tl.progress() === 0) {
+  //     tl.play();
+  //   } else {
+  //     tl.reverse();
+  //   }
+  // };
 
   return (
     <Wrapper>
@@ -55,7 +97,7 @@ const NavbarUser: React.FC = () => {
             <FaShoppingCart />
             <span className='item-amount'>{total_items}</span>
           </Link>
-          <FaBars onClick={toogleMenu} />
+          <FaBars onClick={menuAnimation} />
         </div>
         {/* <ToogleTheme /> */}
       </div>
@@ -64,6 +106,7 @@ const NavbarUser: React.FC = () => {
 };
 
 const Wrapper = styled.nav`
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   .navbar {
     display: flex;
     justify-content: space-between;

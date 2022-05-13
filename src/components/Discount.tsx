@@ -1,5 +1,4 @@
 import { useGlobalContext } from '../context/globalContext';
-import { useCartContext } from '../context/cartContext';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from 'react';
 
@@ -17,14 +16,18 @@ const Discount: React.FC = () => {
     discount_value = 30;
   }
   return (
-    <div
-      className={`discount-container ${showComponent ? '' : 'hidde-discount'}`}
-    >
-      <h5 className='discount-text'>
-        {discount_value}% off with discount code: {coupon_code}
-      </h5>
-      <AiOutlineClose onClick={() => setShowComponent(false)} />
-    </div>
+    <section className='dicount-section'>
+      <div
+        className={`discount-container ${
+          showComponent ? '' : 'hidde-discount'
+        }`}
+      >
+        <h5 className='discount-text'>
+          {discount_value}% off with discount code: {coupon_code}
+        </h5>
+        <AiOutlineClose onClick={() => setShowComponent(false)} />
+      </div>
+    </section>
   );
 };
 
