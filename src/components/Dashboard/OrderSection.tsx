@@ -6,7 +6,8 @@ import SectionTitle from '../SectionTitle';
 import FallbackMessegeComponent from '../FallbackMessegeComponent';
 import { UseToogleList } from '../../customHooks/UseToogleList';
 import { userDetails } from '../../ts/interfaces/global_interfaces';
-const url = 'https://noodles-api.herokuapp.com/api/users/user-orders/';
+import { BACK_END_URL } from '../../utils/variables';
+const url = BACK_END_URL + 'user-orders/';
 
 type Props = {
   user: userDetails;

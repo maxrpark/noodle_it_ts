@@ -28,6 +28,7 @@ import OrderDetailsComponent from './OrderDetailsComponent';
 import PageTitle from './PageTitle';
 import SectionTitle from './SectionTitle';
 import Sort from './Sort';
+import Sidebar from './Sidebar';
 import TotalDetail from './TotalDetail';
 
 import AddToCart from './SingleNoodle/AddToCart';
@@ -82,6 +83,7 @@ export {
   PageTitle,
   Filters,
   Sort,
+  Sidebar,
   IconsList,
   AmountButtons,
   OrderDetailsComponent,

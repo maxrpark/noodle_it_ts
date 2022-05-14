@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
-
+import { BACK_END_URL } from '../../utils/variables';
 import { useCartContext } from '../../context/cartContext';
 import { useUserContext } from '../../context/userContext';
 
@@ -69,17 +69,14 @@ const CheckoutForm: React.FC<Props> = ({ clientSecret }) => {
 
   const createUserOrder = async () => {
     try {
-      await fetch(
-        `https://noodles-api.herokuapp.com/api/users/create-order/${user?.user_name}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            items: cart_checkout,
-            order_details_data: order_details_data,
-          }),
-        }
-      ).then((response) => {
+      await fetch(`${BACK_END_URL}create-order/${user?.user_name}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart_checkout,
+          order_details_data: order_details_data,
+        }),
+      }).then((response) => {
         if (response.status === 200) {
           setMessage(
             'Order Placed Successfully, soon you will be redirected to your dashboard'
@@ -249,7 +246,7 @@ const Wrapper = styled.form`
     0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
   border-radius: 7px;
   padding: 40px;
-  background: white;
+
   background: ${(props) => props.theme.cardColor};
   margin: 1rem auto;
   .form-control {
@@ -271,7 +268,7 @@ const Wrapper = styled.form`
     border-style: inset;
     padding: 1rem;
     border-color: rgb(118, 118, 118);
-    background-color: #333333;
+    background-color: white;
   }
 
   /* Buttons and links */

@@ -1,27 +1,27 @@
 import './styles/App.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { useUserContext } from './context/userContext';
-import Sidebar from './components/Sidebar';
-
 import { ToastContainer } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
-
 // Layout
 import { CommonLayout, UsersShareLayout } from './Layouts/';
-
+import { ThemeProvider } from 'styled-components';
+import { useGlobalContext } from './context/globalContext';
+import { GlobalStyle, lightTheme, darkthem } from './Layouts/theme';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 // views
 import {
+  AboutPage,
+  Cart,
+  Checkout,
   Error,
   Home,
+  ListPage,
   Noodle,
+  NoodlesType,
+  OrderDetailsPage,
   Products,
   ResultPage,
-  Cart,
-  ListPage,
-  NoodlesType,
-  Checkout,
-  OrderDetails,
 } from './views';
 // auth views
 import {
@@ -33,14 +33,7 @@ import {
 } from './views/auth';
 
 // Components
-import { Footer, Navbar, NavbarUser, Discount } from './components/';
-
-import { ThemeProvider } from 'styled-components';
-import { useGlobalContext } from './context/globalContext';
-
-import { GlobalStyle, lightTheme, darkthem } from './Layouts/theme';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Sidebar, Footer, Navbar, Discount } from './components';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -53,7 +46,6 @@ function ScrollToTop() {
 }
 
 function App() {
-  const { userAuth } = useUserContext();
   const { theme } = useGlobalContext();
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkthem}>
@@ -64,11 +56,11 @@ function App() {
           <ScrollToTop />
           <Discount />
           <Navbar />
-          {/* {userAuth === null ? <Navbar /> : <NavbarUser />} */}
           <Routes>
             <Route path='/' element={<CommonLayout />}>
               <Route index element={<Home />} />
               <Route path='/products/' element={<Products />} />
+              <Route path='/about' element={<AboutPage />} />
               <Route path='/noodles/:query/:slug' element={<NoodlesType />} />
               <Route path='/noodle/:slug' element={<Noodle />} />
               <Route path='/cart' element={<Cart />} />
@@ -109,7 +101,7 @@ function App() {
                 path='/order-details/:id'
                 element={
                   <ProtectedRoute>
-                    <OrderDetails />
+                    <OrderDetailsPage />
                   </ProtectedRoute>
                 }
               />

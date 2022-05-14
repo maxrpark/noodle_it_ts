@@ -5,7 +5,7 @@ import { usePageTitle } from '../customHooks/UsePageTitle';
 // stripe
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-
+import { BACK_END_URL } from '../utils/variables';
 import {
   CheckoutForm,
   PageTitle,
@@ -32,16 +32,14 @@ const Checkout: React.FC = () => {
     };
   });
 
+  let url = BACK_END_URL + 'create-payment-intent';
   const createPaymentIntent = async () => {
     try {
-      await fetch(
-        'https://noodles-api.herokuapp.com/api/users/create-payment-intent',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: cart_checkout, discount: discount }),
-        }
-      )
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart_checkout, discount: discount }),
+      })
         .then((res) => res.json())
         .then((data) => setClientSecret(data.clientSecret))
         .then(() => console.log(clientSecret));

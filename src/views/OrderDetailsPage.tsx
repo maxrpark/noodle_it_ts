@@ -3,6 +3,7 @@ import { useUserContext } from '../context/userContext';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { usePageTitle } from '../customHooks/UsePageTitle';
+import { BACK_END_URL } from '../utils/variables';
 import {
   PageTitle,
   OrderDetailsComponent,
@@ -10,7 +11,7 @@ import {
   SectionTitle,
 } from '../components/index';
 import { CartContent } from '../ts/interfaces/global_interfaces';
-const url = 'https://noodles-api.herokuapp.com/api/users/user-order/';
+const url = BACK_END_URL + 'user-order/';
 
 interface OrderDetails {
   id: number;
@@ -33,7 +34,7 @@ var options = {
   day: 'numeric',
 } as Options;
 
-const OrderDetails: React.FC = () => {
+const OrderDetailsPage: React.FC = () => {
   usePageTitle('My orders'); // page title hook
   const { user } = useUserContext();
   const [orderDetails, setOrderDetails] = useState({} as OrderDetails);
@@ -84,4 +85,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default OrderDetails;
+export default OrderDetailsPage;

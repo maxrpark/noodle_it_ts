@@ -12,7 +12,6 @@ const ProtectedRoute: React.FC<Props> = ({
   children: JSX.Element;
 }) => {
   const userExist = localStorage.getItem('access_token');
-  const { userAuth } = useUserContext();
   return userExist ? children : <Navigate to='/' replace />;
 };
 

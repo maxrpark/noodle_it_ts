@@ -1,24 +1,26 @@
-import Home from './Home';
-import Checkout from './Checkout';
-import Noodle from './Noodle';
-import Error from './Error';
-import ResultPage from './ResultPage';
-import OrderDetails from './OrderDetails';
+import AboutPage from './AboutPage';
 import Cart from './Cart';
+import Checkout from './Checkout';
+import Error from './Error';
+import Home from './Home';
 import ListPage from './ListPage';
+import Noodle from './Noodle';
+import OrderDetailsPage from './OrderDetailsPage';
 import Products from './Products';
+import ResultPage from './ResultPage';
 
 import NoodlesType from './NoodlesType';
 
 export {
-  Home,
-  Checkout,
-  Noodle,
-  Error,
-  ResultPage,
-  ListPage,
-  Products,
-  NoodlesType,
+  AboutPage,
   Cart,
-  OrderDetails,
+  Checkout,
+  Error,
+  Home,
+  ListPage,
+  Noodle,
+  NoodlesType,
+  OrderDetailsPage,
+  Products,
+  ResultPage,
 };

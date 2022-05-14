@@ -197,7 +197,7 @@ li {
 }
 
 .special-link {
-  color: ${(props) => props.theme.colorTextTwo};
+  /* color: ${(props) => props.theme.colorTextTwo}; */
   height: 30px;
   font-size: .9rem;
   font-weight: bold;
@@ -210,6 +210,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .related-links,
 .tags-container {
