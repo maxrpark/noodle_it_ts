@@ -12,9 +12,10 @@ import {
   OrderDetailsComponent,
 } from '../components/index';
 
-const stripePromise = loadStripe(
-  'pk_test_51Ku48qG0Nbgy3fuoUxyKlphp9zRiLPaRXRlTIt8tWfOwISDBrOHQU0pIb8HZ7WxGHQUM6CAPZ0E7diHjyg9sO4zx00nIIYoZuC'
-); // fix
+const REACT_APP_STRIPE_KEY: string =
+  process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY!;
+
+const stripePromise = loadStripe(REACT_APP_STRIPE_KEY);
 
 const Checkout: React.FC = () => {
   const { total_amount, total_with_discount, discount, cart } =

@@ -41,7 +41,7 @@ const SingleNoodleMain: React.FC<Props> = ({ noodle }) => {
 
 export default SingleNoodleMain;
 const Wrapper = styled.div`
-  background-color: white;
+  background: ${(props) => props.theme.cardColor};
   box-shadow: var(--box-shadow-1);
   padding: 1rem;
   .section-center {

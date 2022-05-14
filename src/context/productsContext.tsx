@@ -75,8 +75,6 @@ export const ProductsProvider: React.FC = ({ children }) => {
   const fetchNoodles = axios.get(URL_NOODLES + fetchUrlNoodles);
 
   const getData = async () => {
-    console.log('getData');
-
     dispatch({ type: ActionType.GET_PRODUCTS_START });
     Promise.all([fetchNoodles, fetchBrands, fetchCategories])
       .then(([res1, res2, res3]) => {

@@ -212,9 +212,12 @@ const Wrapper = styled.div`
     max-width: 363px;
   }
   .filter-section {
-    background: white;
-    padding: 0 0.5rem;
+    background-color: ${(props) => props.theme.cardColor};
     padding: 0.5rem;
+  }
+  input,
+  select {
+    text-align: center;
   }
   h5 {
     text-transform: capitalize;

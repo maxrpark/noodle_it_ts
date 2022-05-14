@@ -91,7 +91,7 @@ const Wrapper = styled.section`
   .details-section {
     padding: 1rem;
     min-height: 240px;
-    background: white;
+    background: ${(props) => props.theme.cardColor};
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -10,6 +10,8 @@ declare module 'styled-components' {
     specialColor: string;
     cardColor: string;
     linkColors: string;
+    colorTextTwo: string;
+    modalBack: string;
   }
 }
 
@@ -20,8 +22,9 @@ export const lightTheme: DefaultTheme = {
   secondaryColor: 'var(--main-dark-color-3)',
   specialColor: 'var(--special-color-1)',
   cardColor: 'var( --primary-white)',
-
+  colorTextTwo: 'var(--color-white-1)',
   linkColors: 'var(--special-color-1)',
+  modalBack: 'var(--modal-background-light)',
 };
 
 export const darkthem: DefaultTheme = {
@@ -31,7 +34,9 @@ export const darkthem: DefaultTheme = {
   secondaryColor: 'var(--main-light-color-3)',
   specialColor: 'var(--special-color-1)',
   cardColor: 'var(--main-dark-color-1)',
+  colorTextTwo: 'var(--main-dark-color-3)',
   linkColors: 'var(--special-color-1)',
+  modalBack: 'var(--modal-background-dark)',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -52,6 +57,9 @@ export const GlobalStyle = createGlobalStyle`
   --box-shadow-2: rgba(0, 0, 0, 0.2) 0px 6px 15px;
   --transition-1: all 0.3s ease-in-out;
   --primary-font-family: 'Poppins', sans-serif;
+
+  --modal-background-light: rgba(0,0,0,0.5);
+  --modal-background-dark: rgba(44, 44, 44, 0.726);
 
   /* theme */
   --backgroung-color: #eeebd0;
@@ -189,7 +197,7 @@ li {
 }
 
 .special-link {
-  color: #fff;
+  color: ${(props) => props.theme.colorTextTwo};
   height: 30px;
   font-size: .9rem;
   font-weight: bold;
@@ -235,6 +243,7 @@ li {
   box-shadow: var(--box-shadow-2);
   letter-spacing: 0.1rem;
 }
+
 .special-link:hover {
   opacity: 0.8;
   box-shadow: var(--box-shadow-2);
@@ -244,10 +253,22 @@ li {
   background: rgb(59, 147, 59);
 }
 .bibimmyeon {
-  background: rgba(5, 113, 110, 0.821);
+  background: rgba(18, 177, 135, 0.821);
 }
 .spicy {
-  background: #ff0000de;
+  background: rgba(255, 0, 0, 0.777);
+}
+.hot {
+  background: rgba(255, 149, 0, 0.871);
+}
+.beef {
+  background: rgba(0, 170, 255, 0.871);
+}
+.fried {
+  background: rgba(232, 215, 29, 0.871);
+}
+.seafood {
+  background: rgba(255, 128, 0, 0.871);
 }
 
 /* heart */
@@ -298,6 +319,13 @@ li {
     margin: 0;
     margin-left:.3rem ;
     font-size: 1rem;
+  }
+  input, select{
+    background: ${(props) => props.theme.cardColor};
+    color: ${(props) => props.theme.textColor};
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid ${(props) => props.theme.secondaryColor};
   }
 
   .container{
@@ -465,6 +493,7 @@ li {
   .discount-text{
     text-align: center;
     width: 100%;
+    color: ${(props) => props.theme.cardColor};
   }
 
   .hidde-discount{

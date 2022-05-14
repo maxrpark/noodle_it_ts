@@ -78,13 +78,13 @@ const CartItem: React.FC<Props> = ({ item }) => {
 };
 
 const Wrapper = styled.div`
-  background-color: white;
+  background: ${(props) => props.theme.cardColor};
   overflow: hidden;
   .single-item {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    background-color: white;
+    background: ${(props) => props.theme.cardColor};
     padding: 0.5rem;
   }
 
@@ -135,6 +135,7 @@ const Wrapper = styled.div`
     border: none;
     background: transparent;
     margin-left: 1rem;
+    color: ${(props) => props.theme.textColor};
   }
   .detail-wrapper {
     overflow: hidden;

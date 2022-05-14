@@ -38,10 +38,14 @@ const Wrapper = styled.div`
   h2 {
     margin-bottom: 0;
   }
+  .amount {
+    color: ${(props) => props.theme.specialColor};
+  }
   button {
     background: none;
     border: none;
     font-size: 1.25rem;
+    color: ${(props) => props.theme.textColor};
   }
 `;
 

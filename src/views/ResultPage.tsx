@@ -17,7 +17,7 @@ const ResultPage: React.FC = () => {
 
   useEffect(() => {
     search.current?.focus();
-  }, [isLoading]);
+  }, []);
 
   return (
     <Wrapper>

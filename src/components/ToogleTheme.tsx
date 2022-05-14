@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   /* darkMode */
 
   .label {
-    background: ${(props) => props.theme.secondaryColor};
+    background: ${(props) => props.theme.textColor};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,6 +64,5 @@ const Wrapper = styled.div`
   .dark-mode-btn {
     margin: 1rem;
     margin-top: 2rem;
-    /* } */
   }
 `;

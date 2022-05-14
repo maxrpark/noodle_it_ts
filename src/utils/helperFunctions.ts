@@ -51,13 +51,21 @@ const cartAnimation = () => {
 let canPlay = false;
 let tl = gsap.timeline({ paused: true, reversed: true });
 const playAnimation = () => {
-  tl.to('.sidebar-wrapper', {
-    transformOrigin: 'center center',
-    height: '100%',
-    width: '100%',
-    position: 'fixed',
-    duration: 0,
+  tl.to('.navIcon', {
+    rotate: 90,
+    duration: 0.3,
   })
+    .to(
+      '.sidebar-wrapper',
+      {
+        transformOrigin: 'center center',
+        height: '100%',
+        width: '100%',
+        position: 'fixed',
+        duration: 0,
+      },
+      0
+    )
     .to('.sidebar-wrapper', {
       opacity: 1,
       duration: 0,

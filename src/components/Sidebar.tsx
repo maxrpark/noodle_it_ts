@@ -18,12 +18,6 @@ const Sidebar: React.FC = () => {
     toogleMenu();
   };
 
-  // const menuAnimation = () => {
-  //   gsap.to('.sidebar', {
-  //     left: 0,
-  //   });
-  // };
-
   return (
     <Wrapper className='sidebar-wrapper'>
       <aside className={`${!isSidebarOpen ? 'hidde-sidebar' : ''} sidebar`}>
@@ -85,13 +79,13 @@ const Sidebar: React.FC = () => {
 };
 const Wrapper = styled.div`
   opacity: 0;
-  background: rgba(0, 0, 0, 0.462);
+  background: ${(props) => props.theme.modalBack};
   z-index: 10;
 
   aside {
     min-height: 100%;
     width: 50%;
-    background-color: white;
+    background-color: ${(props) => props.theme.cardColor};
     position: fixed;
     top: 0;
     left: 0;
@@ -109,9 +103,16 @@ const Wrapper = styled.div`
   button,
   a {
     font-size: 1rem;
+    transition: var(--transition-1);
+  }
+  button:hover,
+  a:hover {
+    font-size: 1rem;
+    transform: translateX(6px) scale(1.1);
+    opacity: 1;
   }
   .optional-link {
-    color: black;
+    color: ${(props) => props.theme.textColor};
   }
 
   .logo {

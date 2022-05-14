@@ -13,10 +13,8 @@ import { FaBars } from 'react-icons/fa';
 const NavbarUser: React.FC = () => {
   const { userAuth } = useUserContext();
   const { total_items } = useCartContext();
-  const { searchUserQuery, query, result, toogleMenu } = useGlobalContext();
-
+  const { searchUserQuery, query, result } = useGlobalContext();
   const history = useNavigate();
-
   const search = useRef<HTMLInputElement>(null);
 
   const handleSearch = async (e: any) => {
@@ -36,47 +34,6 @@ const NavbarUser: React.FC = () => {
     }
   }, [result]);
 
-  // const menuAnimation = () => {
-  //   console.log('menuAnimation');
-  //   let tl = gsap.timeline();
-
-  //   tl.to('.sidebar-wrapper', {
-  //     transformOrigin: 'center center',
-  //     background: 'red',
-  //     height: '100%',
-  //     width: '100%',
-  //     position: 'fixed',
-  //     duration: 0.1,
-  //   })
-  //     .to('.sidebar-wrapper', {
-  //       opacity: 1,
-  //       duration: 0.5,
-  //     })
-  //     .to('.sidebar', {
-  //       left: 0,
-  //       duration: 0.3,
-  //     })
-  //     .to(
-  //       '.close-btn',
-  //       {
-  //         opacity: 1,
-  //         scale: 1,
-  //         rotate: 360,
-  //         onComplete: () => {
-  //           console.log('onComplete');
-  //           console.log(tl.progress());
-  //         },
-  //       },
-  //       '+=1'
-  //     );
-
-  //   if (tl.progress() === 0) {
-  //     tl.play();
-  //   } else {
-  //     tl.reverse();
-  //   }
-  // };
-
   return (
     <Wrapper>
       <div className='navbar'>
@@ -87,19 +44,12 @@ const NavbarUser: React.FC = () => {
           <input type='text' placeholder='search' ref={search} />
         </form>
         <div className='nav-items'>
-          {userAuth ? (
-            <>{/* <NavLink to={'/dashboard'}>Profile</NavLink> */}</>
-          ) : (
-            <>{/* <NavLink to={'/login'}>Log in</NavLink> */}</>
-          )}
-
           <Link className='cart-icon' to={'/cart'}>
             <FaShoppingCart />
             <span className='item-amount'>{total_items}</span>
           </Link>
-          <FaBars onClick={menuAnimation} />
+          <FaBars className='navIcon' onClick={menuAnimation} />
         </div>
-        {/* <ToogleTheme /> */}
       </div>
     </Wrapper>
   );
@@ -107,6 +57,7 @@ const NavbarUser: React.FC = () => {
 
 const Wrapper = styled.nav`
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background: ${(props) => props.theme.mainColor};
   .navbar {
     display: flex;
     justify-content: space-between;
@@ -145,7 +96,6 @@ const Wrapper = styled.nav`
   @media screen and (min-width: 768px) {
     form {
       width: 100%;
-
       max-width: 500px;
       margin: 0 auto;
     }
@@ -165,7 +115,7 @@ const Wrapper = styled.nav`
     right: -7px;
     height: 15px;
     width: 15px;
-    background: ${(props) => props.theme.secondaryColor};
+    background: ${(props) => props.theme.specialColor};
     padding: 3px;
     border-radius: 50%;
     color: white;
@@ -173,6 +123,10 @@ const Wrapper = styled.nav`
     justify-content: center;
     align-items: center;
     font-size: 10px;
+  }
+  .navIcon {
+    font-size: 1.25rem;
+    transition: var(--transition-1);
   }
 `;
 export default NavbarUser;

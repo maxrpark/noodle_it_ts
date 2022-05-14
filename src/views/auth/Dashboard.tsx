@@ -12,7 +12,7 @@ import {
 } from '../../components';
 
 const Dashboard: React.FC = ({}) => {
-  const { user, favoritesNoodles } = useUserContext();
+  const { user } = useUserContext();
   const { cart } = useCartContext();
   const showFavorites = () => {
     setTimeout(() => {

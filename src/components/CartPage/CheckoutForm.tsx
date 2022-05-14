@@ -82,11 +82,11 @@ const CheckoutForm: React.FC<Props> = ({ clientSecret }) => {
       ).then((response) => {
         if (response.status === 200) {
           setMessage(
-            'Order Placed Successfully, soon you will be redirected to your orders page'
+            'Order Placed Successfully, soon you will be redirected to your dashboard'
           );
           setTimeout(() => {
             clearCart();
-            navigate('/');
+            navigate('/dashboard');
           }, 3000);
         }
       });
@@ -244,6 +244,7 @@ const CheckoutForm: React.FC<Props> = ({ clientSecret }) => {
 };
 const Wrapper = styled.form`
   width: 100%;
+
   /* min-width: 500px; */
   align-self: center;
   box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
@@ -251,6 +252,7 @@ const Wrapper = styled.form`
   border-radius: 7px;
   padding: 40px;
   background: white;
+  background: ${(props) => props.theme.cardColor};
   margin: 1rem auto;
   .form-control {
     display: flex;
