@@ -178,6 +178,7 @@ const AboutPage: React.FC = () => {
 const Wrapper = styled.div`
   .content {
     max-width: 960px;
+    padding: 1rem;
   }
   h2,
   h3 {
