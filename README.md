@@ -1,5 +1,5 @@
 <div align="center">
-<h2Noodle it! </h1>
+<h2> Noodle it! </h1>
   
 ![alt text](https://img.shields.io/badge/My%20first%20website-3.0.2-blue)  ![alt text](https://img.shields.io/badge/Made%20by-Max-brightgreen) ![alt text](https://img.shields.io/badge/Made%20With-React.js-blue) ![alt text](https://img.shields.io/badge/Made%20With-typescript-blue) ![alt text](https://img.shields.io/badge/Made%20With-Django-green)
 </div>
