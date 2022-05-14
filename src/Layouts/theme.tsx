@@ -197,7 +197,7 @@ li {
 }
 
 .special-link {
-  /* color: ${(props) => props.theme.colorTextTwo}; */
+  /* color: ${(props) => props.theme.secondaryColor}; */
   height: 30px;
   font-size: .9rem;
   font-weight: bold;
@@ -210,7 +210,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
 }
 .related-links,
 .tags-container {
@@ -232,7 +232,8 @@ li {
 }
 .brand-link{
   background: #5469d4;
-  color: white;
+  /* color: white; */
+
 }
 .tag {
   display: inline-block;
