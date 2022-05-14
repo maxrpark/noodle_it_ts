@@ -105,6 +105,7 @@ const AboutPage: React.FC = () => {
               className='link'
               href='https://www.npmjs.com/package/@maxcoding/simpleslider'
               target={'_blank'}
+              rel='noreferrer'
             >
               SimpleSlider
             </a>{' '}
@@ -118,6 +119,7 @@ const AboutPage: React.FC = () => {
               className='link'
               href='https://www.npmjs.com/package/simplereview'
               target={'_blank'}
+              rel='noreferrer'
             >
               {' '}
               SimpleReview
@@ -135,6 +137,7 @@ const AboutPage: React.FC = () => {
               className='link'
               href='https://noodles-api.herokuapp.com/'
               target={'_blank'}
+              rel='noreferrer'
             >
               HERE
             </a>
@@ -156,6 +159,7 @@ const AboutPage: React.FC = () => {
               className='link'
               href='https://github.com/maxrpark/noodle_it_ts'
               target={'_blank'}
+              rel='noreferrer'
             >
               Visit
             </a>
@@ -166,6 +170,7 @@ const AboutPage: React.FC = () => {
               className='link'
               href='https://github.com/maxrpark/nooodles_api'
               target={'_blank'}
+              rel='noreferrer'
             >
               Visit
             </a>
