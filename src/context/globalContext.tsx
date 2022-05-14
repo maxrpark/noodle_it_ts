@@ -17,7 +17,6 @@ interface UseContextInterface {
   showImage: (e: React.MouseEvent<HTMLImageElement>) => void;
   toogleTheme: () => void;
   openModal: () => void;
-  toogleMenu: () => void;
   searchUserQuery: (query: string) => void;
 }
 
@@ -92,12 +91,6 @@ const AppProvider: React.FC = ({ children }) => {
     document.body.style.overflow = 'scroll';
   };
 
-  // toogleMenu
-  const toogleMenu = () => {
-    dispatch({ type: ActionType.TOOGLE_SIDEBAR });
-    document.body.style.overflow = 'scroll';
-  };
-
   const showImage = (e: React.MouseEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     console.log(img);
@@ -143,7 +136,6 @@ const AppProvider: React.FC = ({ children }) => {
         openModal,
         toogleTheme,
         searchUserQuery,
-        toogleMenu,
       }}
     >
       {children}

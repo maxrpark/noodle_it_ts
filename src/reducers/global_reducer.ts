@@ -9,11 +9,6 @@ const global_reducer = (state: InicialState, action: Actions): InicialState => {
         ...state,
         isModalOpen: true,
       };
-    case ActionType.TOOGLE_SIDEBAR:
-      return {
-        ...state,
-        isSidebarOpen: !state.isSidebarOpen,
-      };
     case ActionType.CLOSE_MODAL:
       return {
         ...state,

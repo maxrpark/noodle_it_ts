@@ -23,7 +23,6 @@ import HomeHero from './HomeHero';
 import IconsList from './IconsList';
 import ItemDetail from './ItemDetail';
 import Navbar from './Navbar';
-import NavbarUser from './NavbarUser';
 import OrderDetailsComponent from './OrderDetailsComponent';
 import PageTitle from './PageTitle';
 import SectionTitle from './SectionTitle';
@@ -73,7 +72,6 @@ export {
   LogInComponent,
   Loading,
   Navbar,
-  NavbarUser,
   NoodleInfo,
   Carrousel,
   NoodleTopSection,

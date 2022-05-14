@@ -10,7 +10,7 @@ import { menuAnimation } from '../utils/helperFunctions';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa';
 
-const NavbarUser: React.FC = () => {
+const Navbar: React.FC = () => {
   const { userAuth } = useUserContext();
   const { total_items } = useCartContext();
   const { searchUserQuery, query, result } = useGlobalContext();
@@ -129,4 +129,4 @@ const Wrapper = styled.nav`
     transition: var(--transition-1);
   }
 `;
-export default NavbarUser;
+export default Navbar;

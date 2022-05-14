@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../context/globalContext';
 import { useUserContext } from '../context/userContext';
 import { useCartContext } from '../context/cartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { navLinks } from '../utils/links';
 import { AiOutlineClose } from 'react-icons/ai';
 import { menuAnimation } from '../utils/helperFunctions';
@@ -11,13 +11,15 @@ import { ToogleTheme } from '../components';
 // import gsap from 'gsap';
 
 const Sidebar: React.FC = () => {
-  const { toogleMenu, isSidebarOpen } = useGlobalContext();
+  const { isSidebarOpen } = useGlobalContext();
   const { cart } = useCartContext();
   const { user, logOutUser } = useUserContext();
+  const history = useNavigate();
 
   const handleLogout = () => {
     logOutUser();
-    toogleMenu();
+    menuAnimation();
+    history('/');
   };
 
   return (
