@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BACK_END_URL } from './variables';
-
+import { toastDangerBottom } from '../utils/toast';
 const axiosInstance = axios.create({
   baseURL: BACK_END_URL,
   timeout: 5000,
@@ -23,51 +23,55 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
 
     if (error.response.statusText === 'Unauthorized') {
-      alert('No active account found with the given credentials');
+      toastDangerBottom('No active account found with the given credentials');
       return Promise.reject(error);
     }
 
     // Users errors
     if (errorType === 'empty_values') {
-      alert('Please fill all the fields');
+      toastDangerBottom('Please fill all the fields');
       return Promise.reject(error);
     }
     if (errorType === 'No active account found with the given credentials') {
-      alert('Please fill all the fields');
+      toastDangerBottom('Please fill all the fields');
       return Promise.reject(error);
     }
 
     if (errorType === 'email_error') {
-      alert('Please enter a valid email address');
+      toastDangerBottom('Please enter a valid email address');
       return Promise.reject(error);
     }
 
     if (errorType === 'email_exist') {
-      alert('This email already exist');
+      toastDangerBottom('This email already exist');
       return Promise.reject(error);
     }
 
     if (errorType === 'user_name_length') {
-      alert('User name must be at least 3 characters long');
+      toastDangerBottom('User name must be at least 3 characters long');
+
       return Promise.reject(error);
     }
 
     if (errorType === 'user_name_exist') {
-      alert('User name already exists, please choose another one.');
+      toastDangerBottom('User name already exists, please choose another one.');
+
       return Promise.reject(error);
     }
 
     if (errorType === 'password_length') {
-      alert('Password must be at least 8 characters long.');
+      toastDangerBottom('No active account found with the given credentials');
       return Promise.reject(error);
     }
     if (errorType === 'user_name_exist') {
-      alert('This email address is already used by another account.');
+      toastDangerBottom(
+        'This email address is already used by another account.'
+      );
       return Promise.reject(error);
     }
 
     if (typeof error.response === 'undefined') {
-      alert(
+      toastDangerBottom(
         'A server/network error occurred. ' +
           'Looks like CORS might be the problem. ' +
           'Sorry about this - we will get it fixed shortly.'

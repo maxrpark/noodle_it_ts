@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { CardSmall, PageTitle, Loading } from '../components/index';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/globalContext';
-
+import { usePageTitle } from '../customHooks/UsePageTitle';
 const ResultPage: React.FC = () => {
+  usePageTitle('Search'); // page title hook
   const search = useRef<HTMLInputElement>(null);
   const { searchUserQuery, query, result, isLoading } = useGlobalContext();
 
@@ -14,10 +15,6 @@ const ResultPage: React.FC = () => {
       search.current!.value = '';
     }
   };
-
-  useEffect(() => {
-    search.current?.focus();
-  }, []);
 
   return (
     <Wrapper>

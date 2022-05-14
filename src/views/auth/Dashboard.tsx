@@ -3,6 +3,7 @@ import simplereview from 'simplereview';
 import styled from 'styled-components';
 import { useCartContext } from '../../context/cartContext';
 import { useUserContext } from '../../context/userContext';
+import { usePageTitle } from '../../customHooks/UsePageTitle';
 import {
   Loading,
   PageTitle,
@@ -12,6 +13,7 @@ import {
 } from '../../components';
 
 const Dashboard: React.FC = ({}) => {
+  usePageTitle('Dashboard'); // page title hook
   const { user } = useUserContext();
   const { cart } = useCartContext();
   const showFavorites = () => {

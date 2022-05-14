@@ -53,7 +53,7 @@ let tl = gsap.timeline({ paused: true, reversed: true });
 const playAnimation = () => {
   tl.to('.navIcon', {
     rotate: 90,
-    duration: 0.3,
+    duration: 0,
   })
     .to(
       '.sidebar-wrapper',
@@ -78,10 +78,10 @@ const playAnimation = () => {
       '.close-btn',
       {
         opacity: 1,
-        scale: 1,
-        rotate: 360,
+        rotate: 180,
+        duration: 0,
       },
-      '+=1'
+      '+=.7'
     );
 };
 

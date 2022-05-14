@@ -167,7 +167,7 @@ li {
   color: ${(props) => props.theme.mainColor};
   box-shadow: var(--box-shadow-1);
   transition: var(--transition-1);
-
+  text-align: center;
   background: var(--btn-color);
   font-family: Arial,sans-serif;
   color: #ffffff;
@@ -217,7 +217,7 @@ li {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.5rem;
 }
 .related-links {
   margin: 1rem;
@@ -228,6 +228,10 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.brand-link{
+  background: #5469d4;
+  color: white;
 }
 .tag {
   display: inline-block;
@@ -327,6 +331,7 @@ li {
     font-family: inherit;
     border: 1px solid ${(props) => props.theme.secondaryColor};
   }
+ 
 
   .container{
     display: flex;
@@ -499,5 +504,12 @@ li {
   .hidde-discount{
     display: none;
   }
-
+.info-user{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .3rem;
+  flex-direction: column;
+  font-size: 12px;
+}
 `;

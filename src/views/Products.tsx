@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useFilterContext } from '../context/filterContext';
+import { usePageTitle } from '../customHooks/UsePageTitle';
 import {
   Loading,
   Card,
@@ -13,6 +14,7 @@ import styled from 'styled-components';
 type Props = {};
 
 const Products: React.FC = (props: Props) => {
+  usePageTitle('Products');
   const { all_products, filtered_products, clearFilters } = useFilterContext();
 
   useEffect(() => {

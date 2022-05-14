@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext, FormDataInterface } from '../context/userContext';
-
+import { toastDangerBottom } from '../utils/toast';
 const initialFormData = {
   email: '',
   password: '',
@@ -26,14 +26,19 @@ const LogInComponent: React.FC<Props> = ({ showBTN = false }) => {
     });
   };
 
+  let timeOut: any;
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    clearTimeout(timeOut);
     if (!formData.email && !formData.password) {
+      toastDangerBottom('All fields are required');
       console.log('Please enter email and password');
     } else if (!formData.email) {
+      toastDangerBottom('Please enter email');
       console.log('Please enter email');
     } else if (!formData.password) {
-      console.log('Please enter email');
+      toastDangerBottom('Please enter password');
+      console.log('Please enter password');
     } else {
       userLoggedIn(formData);
     }
@@ -41,6 +46,11 @@ const LogInComponent: React.FC<Props> = ({ showBTN = false }) => {
   return (
     <>
       <form className='user-form' onSubmit={handleSubmit}>
+        <div className='info-user'>
+          <p>test user</p>
+          <p>email: user_1_test@user.com</p>
+          <p>passworld: user_1_test</p>
+        </div>
         {showBTN && <h4> Log In </h4>}
         <div className='form-control'>
           <label>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/auth_axios';
 import { useUserContext } from '../context/userContext';
-
+import { toastDangerBottom } from '../utils/toast';
 type Props = {
   showBTN?: boolean;
 };
@@ -19,12 +19,16 @@ const RegisterComponent: React.FC<Props> = ({ showBTN }) => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!userInfo.user_name && !userInfo.email && !userInfo.password) {
+      toastDangerBottom('All fields are required');
       console.log('Please enter user name, email and password');
     } else if (!userInfo.user_name) {
+      toastDangerBottom('Please enter user name');
       console.log('Please enter user name');
     } else if (!userInfo.email) {
-      console.log('Please enter email');
+      toastDangerBottom('Please enter your email');
+      console.log('Please enter your email');
     } else if (!userInfo.password) {
+      toastDangerBottom('Please enter password');
       console.log('Please enter password');
     } else {
       try {

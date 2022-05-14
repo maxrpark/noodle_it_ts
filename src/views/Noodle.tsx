@@ -48,6 +48,10 @@ const Noodle: React.FC = () => {
   useEffect(() => {
     setRelatedNoodlesBrand(relatedByBrand);
     setRelatedNoodlesCategory(relatedByCategory);
+
+    if (noodle && noodle.name) {
+      document.title = 'Noodle it!' + ' || ' + noodle.name;
+    }
   }, [noodle, noodles]); // fix
 
   useEffect(() => {
@@ -56,6 +60,11 @@ const Noodle: React.FC = () => {
       isUserFavoriteNoodle();
     }
   }, [noodles]); // fix
+
+  let title = '';
+  if (slug) {
+    title = slug?.slice(0, 1).toUpperCase() + slug?.slice(1);
+  }
 
   if (isProductLoading) {
     return <Loading />;
@@ -101,9 +110,8 @@ const Wrapper = styled.div`
     gap: 1rem;
   }
   .noodles-section-title {
-    /* margin: 1rem 0; */
     border-bottom: 2px solid white;
-    /* padding-bottom: 0.5rem; */
+    padding: 0.5rem 0;
 
     @media screen and (min-width: 768px) {
       margin-top: 0;

@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useProductsContext } from '../context/productsContext';
 import { Card, Loading, HomeHero, CardList, SectionTitle } from '../components';
 import simplereview from 'simplereview';
+import { usePageTitle } from '../customHooks/UsePageTitle';
 
 const Home: React.FC = () => {
+  usePageTitle(); // page title hook
   const { noodles, isProductsLoading, noodlesCategoryList, noodlesBrandList } =
     useProductsContext();
 

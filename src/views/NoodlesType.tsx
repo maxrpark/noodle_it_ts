@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../customHooks/useFetch';
 import { useProductsContext } from '../context/productsContext';
-
+import { usePageTitle } from '../customHooks/UsePageTitle';
 // Components
 import { Card, Loading, PageTitle } from '../components';
 
@@ -43,6 +43,17 @@ const NoodlesType: React.FC = () => {
       });
     }
   }, [noodlesBrandList, noodlesCategoryList]);
+
+  let title = slug;
+  if (slug && query) {
+    title =
+      query?.slice(0, 1).toUpperCase() +
+      query?.slice(1) +
+      ' || ' +
+      slug?.slice(0, 1).toUpperCase() +
+      slug?.slice(1);
+  }
+  usePageTitle(title); // page title hook
 
   if (isLoading) {
     return <Loading />;

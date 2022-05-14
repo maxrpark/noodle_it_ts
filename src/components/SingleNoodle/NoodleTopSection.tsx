@@ -42,7 +42,7 @@ const NoodleTopSection: React.FC<Props> = ({ noodle }) => {
           </Link>
           <Link
             to={`/noodles/brand/${noodle.brand.slug}`}
-            className={`special-link ${noodle.brand.name}`}
+            className={`special-link brand-link ${noodle.brand.name}`}
           >
             {noodle.brand.slug}
           </Link>

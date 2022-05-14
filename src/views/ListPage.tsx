@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import noodle_it_img from '../assets/images/noodle_it_img.jpg';
-
+import { usePageTitle } from '../customHooks/UsePageTitle';
 // Components
 import { CardList, Loading, PageTitle } from '../components';
 import { useProductsContext } from '../context/productsContext';
@@ -22,6 +22,11 @@ const ListPage: React.FC = () => {
       setIsLoading(false);
     }
   }, [noodlesCategoryList, noodlesBrandList]);
+  let title = slug;
+  if (slug) {
+    title = slug?.slice(0, 1).toUpperCase() + slug?.slice(1);
+  }
+  usePageTitle(title); // page title hook
 
   if (isLoading) {
     return <Loading />;

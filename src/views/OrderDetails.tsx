@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useUserContext } from '../context/userContext';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { usePageTitle } from '../customHooks/UsePageTitle';
 import {
   PageTitle,
   OrderDetailsComponent,
@@ -33,6 +34,7 @@ var options = {
 } as Options;
 
 const OrderDetails: React.FC = () => {
+  usePageTitle('My orders'); // page title hook
   const { user } = useUserContext();
   const [orderDetails, setOrderDetails] = useState({} as OrderDetails);
   const { id } = useParams();

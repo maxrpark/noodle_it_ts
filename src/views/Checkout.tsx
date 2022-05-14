@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useCartContext } from '../context/cartContext';
-
+import { usePageTitle } from '../customHooks/UsePageTitle';
 // stripe
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -18,6 +18,7 @@ const REACT_APP_STRIPE_KEY: string =
 const stripePromise = loadStripe(REACT_APP_STRIPE_KEY);
 
 const Checkout: React.FC = () => {
+  usePageTitle('Checkout'); // page title hook
   const { total_amount, total_with_discount, discount, cart } =
     useCartContext();
   // stripe

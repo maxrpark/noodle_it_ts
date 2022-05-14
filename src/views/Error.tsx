@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { usePageTitle } from '../customHooks/UsePageTitle';
 import styled from 'styled-components';
 
 const Error: React.FC = () => {
+  usePageTitle('Ups!'); // page title hook
   return (
     <Wrapper className=''>
       <div className='page-100-without-title center'>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useCartContext } from '../context/cartContext';
 import { useUserContext } from '../context/userContext';
 import { Link } from 'react-router-dom';
+import { usePageTitle } from '../customHooks/UsePageTitle';
 
 import {
   CartContent,
@@ -14,6 +15,7 @@ import {
 import { useGlobalContext } from '../context/globalContext';
 
 const Cart: React.FC = () => {
+  usePageTitle('My Cart'); // page title hook
   const { userAuth } = useUserContext();
   const { cart } = useCartContext();
   const { isModalOpen } = useGlobalContext();

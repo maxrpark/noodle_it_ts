@@ -244,8 +244,6 @@ const CheckoutForm: React.FC<Props> = ({ clientSecret }) => {
 };
 const Wrapper = styled.form`
   width: 100%;
-
-  /* min-width: 500px; */
   align-self: center;
   box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
     0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
@@ -260,7 +258,7 @@ const Wrapper = styled.form`
   }
 
   #payment-message {
-    color: rgb(105, 115, 134);
+    color: var(--special-color-1);
     font-size: 16px;
     line-height: 20px;
     padding-top: 12px;
@@ -273,6 +271,7 @@ const Wrapper = styled.form`
     border-style: inset;
     padding: 1rem;
     border-color: rgb(118, 118, 118);
+    background-color: #333333;
   }
 
   /* Buttons and links */

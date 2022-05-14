@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 
 let timeAutoClose = 1500;
+let dangerAutoClose = 3000;
 
 const toastSuccessTop = (messege: string) =>
   toast.success(messege, {
@@ -45,7 +46,7 @@ const toastDangerBottom = (messege: string) =>
   toast.error(messege, {
     position: 'bottom-right',
     toastId: new Date().getTime().toString(),
-    autoClose: timeAutoClose,
+    autoClose: dangerAutoClose,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

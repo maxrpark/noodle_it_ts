@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/globalContext';
 import { useUserContext } from '../context/userContext';
+import { useCartContext } from '../context/cartContext';
 import { Link } from 'react-router-dom';
 import { navLinks } from '../utils/links';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -11,6 +12,7 @@ import { ToogleTheme } from '../components';
 
 const Sidebar: React.FC = () => {
   const { toogleMenu, isSidebarOpen } = useGlobalContext();
+  const { cart } = useCartContext();
   const { user, logOutUser } = useUserContext();
 
   const handleLogout = () => {
@@ -26,6 +28,13 @@ const Sidebar: React.FC = () => {
         </button>
         <div className='sidebar-content'>
           <h1 className='logo'>Noodle it!</h1>
+          {cart.length && user ? (
+            <Link onClick={menuAnimation} className='btn' to={'/cart'}>
+              Checkout
+            </Link>
+          ) : (
+            ''
+          )}
           <div className='links-container'>
             {user && (
               <div className='user-info optional-link'>
@@ -38,7 +47,6 @@ const Sidebar: React.FC = () => {
                 </Link>
               </div>
             )}
-
             {navLinks.map((link) => {
               return (
                 <Link
@@ -131,7 +139,7 @@ const Wrapper = styled.div`
     right: -40px;
     top: 30px;
     opacity: 0;
-    transform: scale(0);
+    /* transform: scale(0) rotate(0deg); */
     background: white;
     display: flex;
     justify-content: center;
