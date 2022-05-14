@@ -1,47 +1,83 @@
-# Getting Started with Create React App
+<div align="center">
+<h2> Noodle it! </h1>
+  
+![alt text](https://img.shields.io/badge/My%20first%20website-3.0.2-blue)  ![alt text](https://img.shields.io/badge/Made%20by-Max-brightgreen) ![alt text](https://img.shields.io/badge/Made%20With-React.js-blue) ![alt text](https://img.shields.io/badge/Made%20With-typescript-blue) ![alt text](https://img.shields.io/badge/Made%20With-Django-green)
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Noodle it! 
 
-## Available Scripts
+## About the project
 
-In the project directory, you can run:
+Noodle it! is the frontend side of a full-stack project about a noodle shop.
+The frontend is built with React.js and typescript and deployed on netlify and the backend (noodles-API) was
+built with Django and deployed on Heroku.
 
-### `npm start`
+I try to implement as many different things as I could to practice and learn deeply React, Typescript and Django.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Frontend
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+As I mentioned the frontend is built with React and typescript, for the styles I used styled-components. I used useContext and useReducer to manage most of the states of the application which made everything simple because the application is quite big.
+           
+Besides that, I also create a few custumeHooks which were also helpful around the app.
 
-### `npm test`
+## pPages
+ Noodle it! has around 14 different pages which are:
+- Home
+- Dashboard
+- Products
+- NoodlePage (Single Product)
+- Listpage
+  - Show a list of the result of all categories or brands.
+- NoodlesTypePage
+  - Show a list of all noodles corresponding to a certain brand, category, or tag.
+- Search
+- Order
+- Cart
+- Checkout
+- Login
+- Register
+- Error
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Page About The dashboard and checkout page are only available for users that are registered.
 
-### `npm run build`
+## Benefice of registered users
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Besides being able to complete their purchase, registered users have also access to their dashboard page.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Also, registered users can mark single noodles as favorites.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Dashboard Page
 
-### `npm run eject`
+On the Dashboard page the user can find their orders, and wishlist(favorites noodles), and if he or she has items in the cart, can also see them there.
+## Search Page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I mostly create this page to make use of one of the endpoints of the API.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Dark mode
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The application also has a light and dark theme which is basic but I implemented it so I could learn how to use ThemeProvider from styled-components.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Payment getaway
 
-## Learn More
+For the payment I used stripe, it was my first time implementing something like this, and it turned out to be quite simple after I watched some tutorials but especially because their documentation is so clear.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Ideas
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# noodle_it_ts
+Some of the inspiration for the website, like the sidebar, wishlist, and checkout page are coming from the Udemy website.
+
+## My NPM packages
+In this application I had use my two npm packages,[SimpleSlider](https://www.npmjs.com/package/@maxcoding/simpleslider) for the carrousel in SINGLE NOODLE PAGE and [SimpleReview](https://www.npmjs.com/package/simplereview) also in the single noodle page and in the card component.
+
+## Backend
+
+The backend of the project is created using python. The main idea was to create the API, which is available for everyone to use it.
+You can visit the API[HERE](https://noodles-api.herokuapp.com/) to know more about it.
+
+## Learn more about it
+
+These are only few things included in the project that just come to my mind now if you want to know more about it, please take a look the the two repositories
+
+[Noodle it](https://github.com/maxrpark/noodle_it_ts)
+[Noodles-api](https://github.com/maxrpark/nooodles_api)
+
+
