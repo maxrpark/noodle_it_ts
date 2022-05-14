@@ -18,8 +18,7 @@ import {
 const Noodle: React.FC = () => {
   const { noodle, noodles, isProductLoading, getSingleNoodle, URL_NOODLES } =
     useProductsContext();
-  const { getUserFavoriteList, isUserFavoriteNoodle, favoritesNoodles } =
-    useUserContext();
+  const { getUserFavoriteList, isUserFavoriteNoodle } = useUserContext();
   const { closeModal } = useGlobalContext();
 
   const { slug } = useParams();
@@ -46,6 +45,7 @@ const Noodle: React.FC = () => {
   useEffect(() => {
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
     closeModal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   useEffect(() => {
@@ -53,8 +53,9 @@ const Noodle: React.FC = () => {
     setRelatedNoodlesCategory(relatedByCategory);
 
     if (noodle && noodle.name) {
-      document.title = 'Noodle it!' + ' || ' + noodle.name;
+      document.title = `Noodle it! || ${noodle.name}`;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [noodle, noodles]); // fix
 
   useEffect(() => {
@@ -62,6 +63,7 @@ const Noodle: React.FC = () => {
       getUserFavoriteList();
       isUserFavoriteNoodle();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [noodles]); // fix
 
   if (isProductLoading) {

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useUserContext } from '../context/userContext';
-import { ToogleTheme, Logo } from '../components';
+import { Logo } from '../components';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useGlobalContext } from '../context/globalContext';
 import { useCartContext } from '../context/cartContext';
@@ -11,7 +10,6 @@ import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
-  const { userAuth } = useUserContext();
   const { total_items } = useCartContext();
   const { searchUserQuery, query, result } = useGlobalContext();
   const history = useNavigate();
@@ -32,6 +30,7 @@ const Navbar: React.FC = () => {
         history('/search');
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result]);
 
   return (

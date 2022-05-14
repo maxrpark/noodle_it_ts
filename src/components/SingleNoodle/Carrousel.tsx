@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Carrousel: React.FC<Props> = ({ noodle }) => {
-  const { showImage, closeModal, selectedImg, isModalOpen, coupon_code } =
+  const { showImage, closeModal, selectedImg, isModalOpen } =
     useGlobalContext();
 
   return (

@@ -12,6 +12,7 @@ const LogIn: React.FC = () => {
     if (userAuth) {
       history('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userAuth]);
 
   return (
