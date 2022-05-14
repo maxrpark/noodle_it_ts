@@ -5,6 +5,7 @@ import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 import { useProductsContext } from '../context/productsContext';
 import { useUserContext } from '../context/userContext';
 import { relatedNoodles } from '../utils/helperFunctions';
+import { useGlobalContext } from '../context/globalContext';
 
 // components
 import {
@@ -19,6 +20,7 @@ const Noodle: React.FC = () => {
     useProductsContext();
   const { getUserFavoriteList, isUserFavoriteNoodle, favoritesNoodles } =
     useUserContext();
+  const { closeModal } = useGlobalContext();
 
   const { slug } = useParams();
   const [relatedNoodlesBrand, setRelatedNoodlesBrand] = useState(
@@ -43,6 +45,7 @@ const Noodle: React.FC = () => {
 
   useEffect(() => {
     getSingleNoodle(URL_NOODLES + 'noodles/' + slug);
+    closeModal();
   }, [slug]);
 
   useEffect(() => {
@@ -60,11 +63,6 @@ const Noodle: React.FC = () => {
       isUserFavoriteNoodle();
     }
   }, [noodles]); // fix
-
-  let title = '';
-  if (slug) {
-    title = slug?.slice(0, 1).toUpperCase() + slug?.slice(1);
-  }
 
   if (isProductLoading) {
     return <Loading />;
