@@ -5,7 +5,10 @@ import SingleOrder from '../SingleOrder';
 import SectionTitle from '../SectionTitle';
 import FallbackMessegeComponent from '../FallbackMessegeComponent';
 import { UseToogleList } from '../../customHooks/UseToogleList';
-import { userDetails } from '../../ts/interfaces/global_interfaces';
+import {
+  userDetails,
+  OrderInterface,
+} from '../../ts/interfaces/global_interfaces';
 import { BACK_END_URL } from '../../utils/variables';
 const url = BACK_END_URL + 'user-orders/';
 
@@ -40,7 +43,7 @@ const OrderSection: React.FC<Props> = ({ user }) => {
       <div className='detail-section'>
         <SectionTitle title={'All my Orders'} urlPath='' />
         {orderDetails.length > 3 && (
-          <button className='link' onClick={toogleListFunc}>
+          <button className='link' onClick={() => toogleListFunc}>
             {showList === 3 ? 'Show More' : 'Show Less'}
           </button>
         )}
@@ -54,7 +57,7 @@ const OrderSection: React.FC<Props> = ({ user }) => {
           </div>
           <hr />
           {orderDetails
-            .map((order: any) => {
+            .map((order: OrderInterface) => {
               return <SingleOrder key={order.id} order={order} />;
             })
             .slice(0, showList)}

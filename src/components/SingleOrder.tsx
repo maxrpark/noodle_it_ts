@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Interface } from 'readline';
+import {
+  OrderInterface,
+  DateOptions,
+} from '../ts/interfaces/global_interfaces';
 import styled from 'styled-components';
 
 type Props = {
-  order: any;
+  order: OrderInterface;
 };
 
-interface Options {
-  weekday: any;
-  year: any;
-  month: any;
-  day: any;
-}
-var options = {
+let options = {
   year: 'numeric',
   month: 'numeric',
   day: 'numeric',
-} as Options;
+} as DateOptions;
 
 const SingleOrder: React.FC<Props> = ({ order }) => {
   return (

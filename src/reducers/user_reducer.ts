@@ -1,16 +1,16 @@
 import jwt_decode from 'jwt-decode';
 import { InitialState } from '../context/userContext';
-import { NoodleDetails } from '../ts/interfaces/global_interfaces';
+import { NoodleDetails, userDetails } from '../ts/interfaces/global_interfaces';
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/user_actions';
 import { toastSuccessBottom } from '../utils/toast';
 
-const user_reducer = (state: any, action: Actions) => {
+const user_reducer = (state: InitialState, action: Actions): InitialState => {
   switch (action.type) {
     case ActionType.LOG_IN:
       const data = action.payload;
       let token = data.access;
-      let decoded = jwt_decode(token);
+      let decoded: userDetails | null = jwt_decode(token);
       return {
         ...state,
         user: null,
@@ -29,7 +29,7 @@ const user_reducer = (state: any, action: Actions) => {
       const authTokens = localStorage.getItem('access_token')
         ? localStorage.getItem('access_token')!
         : null;
-      const userAuth = localStorage.getItem('access_token')
+      const userAuth: userDetails | null = localStorage.getItem('access_token')
         ? jwt_decode(localStorage.getItem('access_token')!)
         : null;
       return {

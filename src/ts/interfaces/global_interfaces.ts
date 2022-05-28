@@ -4,7 +4,7 @@ export interface Brand {
 }
 
 export interface NoodleDetails {
-  id: number;
+  id: string;
   name: string;
   images: string[];
   rating: number;
@@ -29,7 +29,7 @@ export interface CartContent {
   price: string;
   brand: string;
   category: string;
-  rating: string;
+  rating: number;
   amount: number;
   slug: string;
 }
@@ -42,4 +42,34 @@ export interface userDetails {
   last_login: string;
   user_name: string;
   favorites: NoodleDetails[];
+}
+
+export interface NoodleGroup {
+  description: string;
+  id: number;
+  image: string;
+  name: string;
+  slug: string;
+}
+
+export interface OrderDetailsInterface {
+  first_name: string;
+  last_name: string;
+  address: string;
+  country: string;
+  zipcode: string;
+  email: string;
+}
+
+export interface OrderInterface {
+  id: string;
+  created_at: string;
+  paid_amount: string;
+}
+
+export interface DateOptions {
+  weekday: 'long' | 'short' | 'narrow' | undefined;
+  year: 'numeric' | '2-digit' | undefined;
+  month: 'long' | 'short' | 'narrow' | 'numeric' | '2-digit' | undefined;
+  day: 'numeric' | '2-digit' | undefined;
 }

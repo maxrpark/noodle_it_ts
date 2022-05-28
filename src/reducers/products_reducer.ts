@@ -1,7 +1,7 @@
 import { InitialState } from '../context/productsContext';
 import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/products_actions';
-
+import { NoodleDetails } from '../ts/interfaces/global_interfaces';
 const products_reducer = (
   state: InitialState,
   action: Actions
@@ -45,14 +45,14 @@ const products_reducer = (
     case ActionType.GET_PRODUCT_START:
       return {
         ...state,
-        noodle: {},
+        noodle: {} as NoodleDetails,
         isProductLoading: true,
       };
     case ActionType.GET_PRODUCT_SUCCESS:
       const noodle = action.payload;
       return {
         ...state,
-        noodle: noodle,
+        noodle: noodle as NoodleDetails,
         isProductLoading: false,
       };
     case ActionType.GET_PRODUCT_ERROR:

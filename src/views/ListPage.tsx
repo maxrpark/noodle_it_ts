@@ -5,11 +5,11 @@ import { usePageTitle } from '../customHooks/UsePageTitle';
 // Components
 import { CardList, Loading, PageTitle } from '../components';
 import { useProductsContext } from '../context/productsContext';
-
+import { NoodleGroup } from '../ts/interfaces/global_interfaces';
 const ListPage: React.FC = () => {
   const { noodlesBrandList, noodlesCategoryList } = useProductsContext();
   const { slug } = useParams();
-  const [noodles, setNoodles] = useState([] as any);
+  const [noodles, setNoodles] = useState([] as NoodleGroup[]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

@@ -5,19 +5,16 @@ import { ActionType } from '../ts/states/action-types';
 import { Actions } from '../ts/states/actions/cart_actions';
 import { toastSuccessBottom } from '../utils/toast';
 
-const cart_reducer = (state: any, action: Actions) => {
+const cart_reducer = (state: InitialState, action: Actions): InitialState => {
   switch (action.type) {
     case ActionType.ADD_TO_CART:
       const { id, amount, noodle } = action.payload;
       const tempItem = state.cart.find((i: CartContent) => i.id === id);
       if (tempItem) {
-        const tempCart = state.cart.map((cartItem: any) => {
-          // fix any
+        const tempCart = state.cart.map((cartItem: CartContent) => {
           if (cartItem.id === id) {
             let newAmount = cartItem.amount + amount;
-            if (newAmount > cartItem.max) {
-              newAmount = cartItem.max;
-            }
+
             return { ...cartItem, amount: newAmount };
           } else {
             return cartItem;
@@ -52,14 +49,12 @@ const cart_reducer = (state: any, action: Actions) => {
 
     case ActionType.TOGGLE_CART_ITEM_AMOUNT:
       const { ID, value } = action.payload;
-      const tempCart = state.cart.map((item: any) => {
+      const tempCart = state.cart.map((item: CartContent) => {
         if (item.id === ID) {
           console.log(ID);
           if (value === 'inc') {
             let newAmount = item.amount + 1;
-            if (newAmount > item.max) {
-              newAmount = item.max;
-            }
+
             return { ...item, amount: newAmount };
           }
           if (value === 'dec') {
@@ -77,7 +72,10 @@ const cart_reducer = (state: any, action: Actions) => {
 
     case ActionType.COUNT_CART_TOTALS:
       const { total_items, total_amount } = state.cart.reduce(
-        (total: any, cartItem: CartContent) => {
+        (
+          total: { total_items: number; total_amount: number },
+          cartItem: CartContent
+        ) => {
           const { amount, price } = cartItem;
           total.total_items += amount;
           total.total_amount += +price * amount;
@@ -91,7 +89,7 @@ const cart_reducer = (state: any, action: Actions) => {
 
       let user_discount = (state.discount / 100) * total_amount;
       let total_amount_WD = total_amount - user_discount;
-
+      total_amount_WD = parseInt(total_amount_WD.toFixed(2));
       return {
         ...state,
         total_items,

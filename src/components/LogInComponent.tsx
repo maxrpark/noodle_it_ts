@@ -26,7 +26,7 @@ const LogInComponent: React.FC<Props> = ({ showBTN = false }) => {
     });
   };
 
-  let timeOut: any;
+  let timeOut: number;
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     clearTimeout(timeOut);

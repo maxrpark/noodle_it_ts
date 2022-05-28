@@ -19,29 +19,30 @@ export interface FormDataInterface {
 
 type UserContextType = {
   user: userDetails | null;
-  authTokens: authTokensInt | null;
+  authTokens: string | null;
   setAuthTokens: string | null;
-  setuserAuth: string | null;
-  userAuth: userDetails | null;
+
   getUserDetails: () => void;
   logOutUser: () => void;
   userLoggedIn: (formData: FormDataInterface) => void;
-  //
+
+  setuserAuth: string | null;
+  userAuth: userDetails | null;
+  noodles: NoodleDetails[] | null;
+
   favoritesNoodles: NoodleDetails[];
   isFavoriteNoodle: boolean;
-  noodles: NoodleDetails[] | null;
+  isAlreadyLogIn: boolean;
+  isRegistrationForm: Boolean;
   getUserFavoriteList: () => void;
   setUserFavoriteList: (user: string, noodle: NoodleDetails) => void;
   isUserFavoriteNoodle: () => void;
-  isAlreadyLogIn: boolean;
-
-  isRegistrationForm: Boolean;
   showRegistration: () => void;
 };
 
 const initialState = {
   user: null as userDetails | null,
-  authTokens: null as authTokensInt | null,
+  authTokens: null,
   isAlreadyLogIn: false,
   userAuth: null as userDetails | null,
   favoritesNoodles: [] as NoodleDetails[],
@@ -50,12 +51,16 @@ const initialState = {
 };
 export interface InitialState {
   user: userDetails | null;
-  authTokens: authTokensInt | null;
+  authTokens: string | null;
   isAlreadyLogIn: boolean;
   userAuth: userDetails | null;
   favoritesNoodles: NoodleDetails[];
   isFavoriteNoodle: boolean;
   isRegistrationForm: boolean;
+
+  setuserAuth: string | null;
+  setAuthTokens: string | null;
+  noodles: NoodleDetails[] | null;
 }
 
 const UserContext = React.createContext({} as UserContextType);
@@ -107,7 +112,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const getUserDetails = async () => {
     try {
       const res = await axios.get(
-        `${BACK_END_URL}user-details/${state.userAuth.user_id}`
+        `${BACK_END_URL}user-details/${state.userAuth!.user_id}`
       );
       dispach({ type: ActionType.GET_USER_DETAILS, payload: res.data });
     } catch (error) {
@@ -182,7 +187,6 @@ export const UserProvider: React.FC = ({ children }) => {
         userLoggedIn,
         getUserFavoriteList,
         setUserFavoriteList,
-
         isUserFavoriteNoodle,
         showRegistration,
       }}

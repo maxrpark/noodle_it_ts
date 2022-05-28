@@ -23,7 +23,6 @@ interface GET_PRODUCTS_ERROR {
 }
 interface GET_PRODUCT_START {
   type: ActionType.GET_PRODUCT_START;
-  payload?: any | boolean;
 }
 interface GET_PRODUCT_SUCCESS {
   type: ActionType.GET_PRODUCT_SUCCESS;
@@ -31,7 +30,6 @@ interface GET_PRODUCT_SUCCESS {
 }
 interface GET_PRODUCT_ERROR {
   type: ActionType.GET_PRODUCT_ERROR;
-  payload?: any;
 }
 export type Actions =
   | GET_PRODUCTS_START

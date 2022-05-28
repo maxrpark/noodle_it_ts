@@ -25,13 +25,9 @@ interface CartInterface {
   total_with_discount: number;
   discount: number;
   has_discount: boolean;
-  addToCartFunc: (
-    id: string | number,
-    noodle: NoodleDetails,
-    amount: number
-  ) => void;
-  removeItem: (id: string | number) => void;
-  toggleAmount: (id: string | number, value: string) => void;
+  addToCartFunc: (id: string, noodle: NoodleDetails, amount: number) => void;
+  removeItem: (id: string) => void;
+  toggleAmount: (id: string, value: string) => void;
   clearCart: () => void;
   check_coupon: (userCodeInput: string) => void;
 }
@@ -47,11 +43,11 @@ const initialState = {
 
 export interface InitialState {
   //  cart: getLocalStorage(),
-  cart: CartContent;
+  cart: CartContent[];
   total_items: number;
   total_amount: number;
   total_with_discount: number;
-  has_discount: false;
+  has_discount: boolean;
   discount: number;
 }
 
@@ -63,11 +59,7 @@ export const CartProvider: React.FC = ({ children }) => {
     initialState as InitialState
   );
 
-  const addToCartFunc = (
-    id: string | number,
-    noodle: NoodleDetails,
-    amount: number
-  ) => {
+  const addToCartFunc = (id: string, noodle: NoodleDetails, amount: number) => {
     dispatch({
       type: ActionType.ADD_TO_CART,
       payload: { id, amount, noodle },
@@ -76,12 +68,12 @@ export const CartProvider: React.FC = ({ children }) => {
   };
 
   // remove item
-  const removeItem = (id: string | number) => {
+  const removeItem = (id: string) => {
     dispatch({ type: ActionType.REMOVE_CART_ITEM, payload: id });
   };
 
   // toggle amount
-  const toggleAmount = (ID: string | number, value: string) => {
+  const toggleAmount = (ID: string, value: string) => {
     dispatch({
       type: ActionType.TOGGLE_CART_ITEM_AMOUNT,
       payload: { ID, value },

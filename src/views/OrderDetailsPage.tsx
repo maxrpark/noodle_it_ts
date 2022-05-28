@@ -10,7 +10,7 @@ import {
   OrderSection,
   SectionTitle,
 } from '../components/index';
-import { CartContent } from '../ts/interfaces/global_interfaces';
+import { CartContent, DateOptions } from '../ts/interfaces/global_interfaces';
 const url = BACK_END_URL + 'user-order/';
 
 interface OrderDetails {
@@ -22,17 +22,11 @@ interface OrderDetails {
   total_amount_without_discount: string;
 }
 
-interface Options {
-  weekday: any;
-  year: any;
-  month: any;
-  day: any;
-}
 var options = {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
-} as Options;
+} as DateOptions;
 
 const OrderDetailsPage: React.FC = () => {
   usePageTitle('My orders'); // page title hook

@@ -37,7 +37,7 @@ interface GET_FAVORITES_NOODLES {
 }
 interface IS_USER_FAVORITE_NOODLE {
   type: ActionType.IS_USER_FAVORITE_NOODLE;
-  payload: NoodleDetails;
+  payload: NoodleDetails | {};
 }
 interface SET_USER_FAVORITES_NOODLE {
   type: ActionType.SET_USER_FAVORITES_NOODLE;

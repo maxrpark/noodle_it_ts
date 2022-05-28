@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { FaPepperHot } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const IconsList: React.FC<Props> = ({ iconType, numberOfIcons }) => {
-  let icon: any;
+  let icon: ReactNode;
   if (iconType === 'pepper') {
     icon = <FaPepperHot />;
   } else {

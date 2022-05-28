@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 interface Props {
-  children: any;
+  children: JSX.Element;
 }
 
 const ProtectedRouteRegister: React.FC<Props> = ({

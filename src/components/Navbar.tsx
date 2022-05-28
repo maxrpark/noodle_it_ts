@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   const history = useNavigate();
   const search = useRef<HTMLInputElement>(null);
 
-  const handleSearch = async (e: any) => {
+  const handleSearch = async (e: React.FormEvent) => {
     // fix
     e.preventDefault()!;
     if (search.current?.value.length) {

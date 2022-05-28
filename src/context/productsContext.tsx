@@ -38,7 +38,7 @@ const initialState = {
 
   isProductLoading: true,
   isProductError: false,
-  noodle: null as NoodleDetails | null,
+  noodle: {} as NoodleDetails,
   related_by_category: [] as NoodleDetails[],
   related_by_brand: [] as NoodleDetails[],
 };
@@ -53,7 +53,7 @@ export interface InitialState {
 
   isProductLoading: boolean;
   isProductError: boolean;
-  noodle: NoodleDetails | any; // fix
+  noodle: NoodleDetails;
   related_by_category: NoodleDetails[];
   related_by_brand: NoodleDetails[];
 }

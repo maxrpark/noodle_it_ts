@@ -5,19 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { BACK_END_URL } from '../../utils/variables';
 import { useCartContext } from '../../context/cartContext';
 import { useUserContext } from '../../context/userContext';
-
+import { OrderDetailsInterface } from '../../ts/interfaces/global_interfaces';
 type Props = {
   clientSecret: string;
 };
-
-interface OrderDetailsInterface {
-  first_name: string;
-  last_name: string;
-  address: string;
-  country: string;
-  zipcode: string;
-  email: string;
-}
 
 const orderDetailsInfo = {
   first_name: '',

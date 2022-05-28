@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useUserContext } from '../../context/userContext';
 
 interface Props {
-  children: any;
+  children: JSX.Element;
 }
 
 const ProtectedRoute: React.FC<Props> = ({

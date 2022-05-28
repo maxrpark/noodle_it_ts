@@ -3,7 +3,7 @@ import { NoodleDetails } from '../../interfaces/global_interfaces';
 
 interface addTocard {
   noodle: NoodleDetails;
-  id: string | number;
+  id: string;
   amount: number;
 }
 interface toogleAmount {
