@@ -3,9 +3,9 @@ import { useState } from 'react';
 export const UseToogleList = () => {
   const [showList, setShowList] = useState(3);
 
-  const toogleListFunc = (items: []) => {
+  const toogleListFunc = (items: number) => {
     if (showList === 3) {
-      setShowList(items.length);
+      setShowList(items);
     } else {
       setShowList(3);
     }

@@ -43,7 +43,10 @@ const OrderSection: React.FC<Props> = ({ user }) => {
       <div className='detail-section'>
         <SectionTitle title={'All my Orders'} urlPath='' />
         {orderDetails.length > 3 && (
-          <button className='link' onClick={() => toogleListFunc}>
+          <button
+            className='link'
+            onClick={() => toogleListFunc(orderDetails.length)}
+          >
             {showList === 3 ? 'Show More' : 'Show Less'}
           </button>
         )}

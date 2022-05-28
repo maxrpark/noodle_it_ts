@@ -16,7 +16,11 @@ const WishListSection: React.FC = () => {
       <div className='detail-section'>
         <SectionTitle title={'My Wishlist'} urlPath='' />
         {favoritesNoodles.length > 3 && (
-          <button type='button' className='link' onClick={() => toogleListFunc}>
+          <button
+            type='button'
+            className='link'
+            onClick={() => toogleListFunc(favoritesNoodles.length)}
+          >
             {showList === 3 ? 'Show More' : 'Show Less'}
           </button>
         )}
